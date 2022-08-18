@@ -9,7 +9,7 @@ import io.ktor.server.auth.jwt.*
 import io.ktor.server.response.*
 import org.litote.kmongo.json
 import za.co.ilert.core.util.Constants.USER_ID
-import za.co.ilert.data.responses.BasicApiResponse
+import za.co.ilert.core.data.responses.BasicApiResponse
 
 fun Application.configureSecurity() {
 

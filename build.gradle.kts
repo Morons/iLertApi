@@ -26,10 +26,10 @@ tasks.war { archiveFileName.set("ilert.war") }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
 	kotlinOptions {
-		jvmTarget = "17"
+		jvmTarget = "11"
 		freeCompilerArgs = listOf(
 //			"-Xuse-k2",
-			"-Xjdk-release-11",
+//			"-Xjdk-release-11",
 			"-Xcontext-receivers",
 			"-Xbackend-threads=4"
 		)

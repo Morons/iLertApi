@@ -1,4 +1,4 @@
-package za.co.ilert.data.responses
+package za.co.ilert.core.data.responses
 
 data class BasicApiResponse<T>(
 	val successful: Boolean,

@@ -1,4 +1,4 @@
-package za.co.ilert.data.session
+package za.co.ilert.core.data.session
 
 import kotlinx.serialization.Serializable
 
