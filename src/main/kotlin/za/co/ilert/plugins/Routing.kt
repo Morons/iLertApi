@@ -1,20 +1,19 @@
 package za.co.ilert.plugins
 
 import io.ktor.server.application.*
-import io.ktor.server.auth.*
 import io.ktor.server.http.content.*
-import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import io.ktor.server.sessions.*
-import io.ktor.server.websocket.*
-import io.ktor.websocket.*
 import org.koin.ktor.ext.inject
 import za.co.ilert.presentation.routes.*
 import za.co.ilert.presentation.services.UserService
+import za.co.ilert.presentation.services.chat.ChatController
+import za.co.ilert.presentation.services.chat.ChatService
 
 fun Application.configureRouting() {
 
 	val userService: UserService by inject()
+	val chatService: ChatService by inject()
+	val chatController: ChatController by inject()
 
 
 	val jwtIssuer = environment.config.property("jwt.domain").getString()
@@ -25,7 +24,7 @@ fun Application.configureRouting() {
 
 		// Auth Routes
 		authenticate()
-		createUser(userService)
+		createUser(userService = userService)
 		loginUser(
 			userService = userService,
 			jwtIssuer = jwtIssuer,
@@ -33,11 +32,23 @@ fun Application.configureRouting() {
 			jwtSecret = jwtSecret,
 		)
 
+		// User Routes
+		searchUser(userService = userService)
+		getUser(userService = userService)
+		updateUserProfile(userService = userService)
+
 		// Session Routes
 		sessionIncrement()
 
-		// Websocket Session
-		websocketSession()
+		// Websocket Routes
+		chatWebSocket(chatController = chatController)
+		testRoute()
+
+		// Chat Routes
+		getMessagesForChat(chatService = chatService)
+		getChatsForSelfPaged(chatService = chatService)
+		doesChatByUsersExist(chatController = chatController)
+		getChatByUsers(chatController = chatController)
 
 		// Static plugin. Try to access `/static/index.html`
 		static(remotePath = "/static") {

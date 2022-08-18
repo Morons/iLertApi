@@ -41,6 +41,3 @@ fun Application.configureSecurity() {
 		}
 	}
 }
-
-val JWTPrincipal.userId: String?
-	get() = getClaim(name = USER_ID, clazz = String::class)
