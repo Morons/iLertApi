@@ -1,4 +1,4 @@
-package za.co.ilert.core.util
+package za.co.ilert.core.utils
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer

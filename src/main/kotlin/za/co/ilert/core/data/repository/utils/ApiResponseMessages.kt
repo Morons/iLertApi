@@ -1,4 +1,4 @@
-package za.co.ilert.core.data.repository.util
+package za.co.ilert.core.data.repository.utils
 
 
 object ApiResponseMessages {

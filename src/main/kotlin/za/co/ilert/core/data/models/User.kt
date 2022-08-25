@@ -9,6 +9,7 @@ data class User(
 	val password: String,
 	val avatarAsString: String,
 	val security: UserSecurity? = null,
+	val timestamp: Long = System.currentTimeMillis(),
 	@BsonId
 	val userId: String = ObjectId().toString()
 )

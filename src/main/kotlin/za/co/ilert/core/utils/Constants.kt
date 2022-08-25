@@ -1,4 +1,4 @@
-package za.co.ilert.core.util
+package za.co.ilert.core.utils
 
 object Constants {
 
@@ -18,6 +18,9 @@ object Constants {
 	const val USER_LOGIN = "$PATH/user/login"
 	const val USER_AUTHENTICATE = "$PATH/user/authenticate"
 	const val USER_SEARCH = "$PATH/user/search"
+
+	// BlockTest Paths
+	const val BLOCK_TEST = "$PATH/blockTest"
 
 	// Session Paths
 	const val SESSION_INCREMENT = "/session/increment"

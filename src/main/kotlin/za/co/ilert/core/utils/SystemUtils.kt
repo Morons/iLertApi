@@ -1,4 +1,4 @@
-package za.co.ilert.core.util
+package za.co.ilert.core.utils
 
 import io.ktor.util.*
 import java.io.File

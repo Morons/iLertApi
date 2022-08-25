@@ -3,12 +3,12 @@ package za.co.ilert.plugins
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
 import io.ktor.http.*
+import io.ktor.http.HttpStatusCode.Companion.Unauthorized
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.auth.jwt.*
 import io.ktor.server.response.*
 import org.litote.kmongo.json
-import za.co.ilert.core.util.Constants.USER_ID
 import za.co.ilert.core.data.responses.BasicApiResponse
 
 fun Application.configureSecurity() {
@@ -20,7 +20,7 @@ fun Application.configureSecurity() {
 			realm = environment.config.property("jwt.realm").getString()
 			verifier(
 				JWT
-					.require(Algorithm.HMAC256("secret"))
+					.require(Algorithm.HMAC256(/* secret = */ "secret"))
 					.withAudience(jwtAudience)
 					.withIssuer(environment.config.property("jwt.domain").getString())
 					.build()
@@ -32,7 +32,7 @@ fun Application.configureSecurity() {
 						message = "$defaultScheme failed for realm $realm! Unauthorized"
 					).json,
 					contentType = ContentType.Application.Json,
-					status = HttpStatusCode.Unauthorized
+					status = Unauthorized
 				)
 			}
 			validate { credential ->

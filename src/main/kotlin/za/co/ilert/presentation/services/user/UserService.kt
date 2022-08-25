@@ -1,5 +1,6 @@
-package za.co.ilert.presentation.services
+package za.co.ilert.presentation.services.user
 
+import org.bson.types.ObjectId
 import za.co.ilert.core.data.models.User
 import za.co.ilert.core.data.models.UserSecurity
 import za.co.ilert.core.data.repository.user.UserRepository
@@ -7,9 +8,9 @@ import za.co.ilert.core.data.requests.AuthRequest
 import za.co.ilert.core.data.requests.UserRequest
 import za.co.ilert.core.data.responses.UserResponse
 import za.co.ilert.core.data.responses.UserSearchResponse
-import za.co.ilert.core.util.Constants.DEFAULT_PAGE_SIZE
-import za.co.ilert.core.util.Constants.FILE_SOURCE
-import za.co.ilert.core.util.getByteArray
+import za.co.ilert.core.utils.Constants.DEFAULT_PAGE_SIZE
+import za.co.ilert.core.utils.Constants.FILE_SOURCE
+import za.co.ilert.core.utils.getByteArray
 import za.co.ilert.presentation.validation.ValidationEvent
 
 class UserService(
@@ -44,23 +45,19 @@ class UserService(
 	}
 
 	suspend fun createUser(request: AuthRequest): Boolean {
-		val wasAcknowledged = userRepository.createUser(
+		return userRepository.createUser(
 			with(request) {
+				val userId: String = ObjectId().toString()
 				User(
 					email = email,
 					userName = userName,
 					password = password,
 					avatarAsString = getByteArray(filePathName = "$FILE_SOURCE/ic_avatar_default.png"),
-					security = null
+					security = UserSecurity(userId = userId, active = true, roles = "BLOCK MAN"),
+					userId = userId
 				)
 			}
 		)
-		return if (wasAcknowledged) {
-			val user = userRepository.getUserByEmail(request.email)
-			val security = user?.let { UserSecurity(userId = it.userId, active = true, roles = "BLOCK MAN") }
-			user?.let { userRepository.upsertUser(it.copy(security = security)) }
-			true
-		} else false
 	}
 
 	suspend fun upsertUser(user: User): Boolean {
@@ -86,7 +83,7 @@ class UserService(
 			ValidationEvent.ErrorFieldEmpty
 		} else ValidationEvent.Success
 	}
-	
+
 	suspend fun searchForUsers(
 		userSearch: String, userId: String, page: Int, pageSize: Int = DEFAULT_PAGE_SIZE
 	): List<UserSearchResponse> {

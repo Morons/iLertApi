@@ -3,8 +3,7 @@ package za.co.ilert.core.data.util
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.auth.jwt.*
-import za.co.ilert.core.util.Constants
-import za.co.ilert.core.util.Constants.USER_ID
+import za.co.ilert.core.utils.Constants.USER_ID
 
 //suspend fun PipelineContext<Unit, ApplicationCall>.ifEmailBelongsToLoggedInUser(
 //	userId: String, validateEmail: suspend (email: String, userId: String) -> Boolean, onSuccess: suspend () -> Unit

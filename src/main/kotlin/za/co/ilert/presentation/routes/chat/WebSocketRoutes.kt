@@ -1,4 +1,4 @@
-package za.co.ilert.presentation.routes
+package za.co.ilert.presentation.routes.chat
 
 import io.ktor.server.auth.*
 import io.ktor.server.routing.*
@@ -6,10 +6,9 @@ import io.ktor.server.websocket.*
 import io.ktor.websocket.*
 import kotlinx.coroutines.channels.consumeEach
 import za.co.ilert.core.data.util.userId
-import za.co.ilert.core.util.Constants
-import za.co.ilert.core.util.Constants.WEB_SOCKET
-import za.co.ilert.core.util.handleWebSocket
-import za.co.ilert.presentation.routes.authenticate
+import za.co.ilert.core.utils.Constants
+import za.co.ilert.core.utils.Constants.WEB_SOCKET
+import za.co.ilert.core.utils.handleWebSocket
 import za.co.ilert.presentation.services.chat.ChatController
 
 fun Route.chatWebSocket(chatController: ChatController) {

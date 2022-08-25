@@ -1,4 +1,4 @@
-package za.co.ilert.presentation.routes
+package za.co.ilert.presentation.routes.user
 
 import io.ktor.http.HttpStatusCode.Companion.BadRequest
 import io.ktor.http.HttpStatusCode.Companion.OK
@@ -7,17 +7,17 @@ import io.ktor.server.auth.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import za.co.ilert.core.data.repository.util.ApiResponseMessages
-import za.co.ilert.core.data.repository.util.ApiResponseMessages.USER_NOT_FOUND
+import za.co.ilert.core.data.repository.utils.ApiResponseMessages
+import za.co.ilert.core.data.repository.utils.ApiResponseMessages.USER_NOT_FOUND
 import za.co.ilert.core.data.requests.GetUserRequest
 import za.co.ilert.core.data.requests.UserRequest
 import za.co.ilert.core.data.requests.UserSearchRequest
 import za.co.ilert.core.data.responses.BasicApiResponse
 import za.co.ilert.core.data.responses.UserSearchResponse
 import za.co.ilert.core.data.util.userId
-import za.co.ilert.core.util.Constants.USER
-import za.co.ilert.core.util.Constants.USER_SEARCH
-import za.co.ilert.presentation.services.UserService
+import za.co.ilert.core.utils.Constants.USER
+import za.co.ilert.core.utils.Constants.USER_SEARCH
+import za.co.ilert.presentation.services.user.UserService
 
 
 fun Route.searchUser(userService: UserService) {

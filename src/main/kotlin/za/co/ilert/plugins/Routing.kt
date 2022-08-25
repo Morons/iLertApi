@@ -4,14 +4,24 @@ import io.ktor.server.application.*
 import io.ktor.server.http.content.*
 import io.ktor.server.routing.*
 import org.koin.ktor.ext.inject
-import za.co.ilert.presentation.routes.*
-import za.co.ilert.presentation.services.UserService
+import za.co.ilert.presentation.routes.auth.authenticate
+import za.co.ilert.presentation.routes.auth.createUser
+import za.co.ilert.presentation.routes.auth.loginUser
+import za.co.ilert.presentation.routes.blocktest.getBlockTest
+import za.co.ilert.presentation.routes.blocktest.insertBlockTest
+import za.co.ilert.presentation.routes.chat.*
+import za.co.ilert.presentation.routes.user.getUser
+import za.co.ilert.presentation.routes.user.searchUser
+import za.co.ilert.presentation.routes.user.updateUserProfile
+import za.co.ilert.presentation.services.blocktest.BlockTestService
 import za.co.ilert.presentation.services.chat.ChatController
 import za.co.ilert.presentation.services.chat.ChatService
+import za.co.ilert.presentation.services.user.UserService
 
 fun Application.configureRouting() {
 
 	val userService: UserService by inject()
+	val blockTestService: BlockTestService by inject()
 	val chatService: ChatService by inject()
 	val chatController: ChatController by inject()
 
@@ -36,6 +46,10 @@ fun Application.configureRouting() {
 		searchUser(userService = userService)
 		getUser(userService = userService)
 		updateUserProfile(userService = userService)
+
+		// BlockTest Routes
+		getBlockTest(blockTestService = blockTestService)
+		insertBlockTest(blockTestService = blockTestService)
 
 		// Session Routes
 		sessionIncrement()

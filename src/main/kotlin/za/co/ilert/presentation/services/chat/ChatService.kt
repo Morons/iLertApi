@@ -3,7 +3,7 @@ package za.co.ilert.presentation.services.chat
 import za.co.ilert.core.data.models.Message
 import za.co.ilert.core.data.repository.chat.ChatRepository
 import za.co.ilert.core.data.responses.ChatResponse
-import za.co.ilert.core.util.Constants.DEFAULT_PAGE_SIZE
+import za.co.ilert.core.utils.Constants.DEFAULT_PAGE_SIZE
 
 class ChatService(
 	private val chatRepository: ChatRepository

@@ -1,6 +1,6 @@
 package za.co.ilert.core.data.requests
 
-import za.co.ilert.core.util.Constants.DEFAULT_PAGE_SIZE
+import za.co.ilert.core.utils.Constants.DEFAULT_PAGE_SIZE
 
 data class GenericPageRequest(
 	val page: Int = 0,
