@@ -1,6 +1,8 @@
 package za.co.ilert.core.data.requests
 
-data class InsertBlockTestRequest(
-	val blockTestRequest: BlockTestRequest,
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class PrimalCutsRequest(
 	val primalCutsRequest: List<PrimalCutRequest>
 )

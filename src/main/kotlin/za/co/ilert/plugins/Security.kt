@@ -16,13 +16,15 @@ fun Application.configureSecurity() {
 	authentication {
 		jwt {
 			val environment = this@configureSecurity.environment
-			val jwtAudience = environment.config.property("jwt.audience").getString()
-			realm = environment.config.property("jwt.realm").getString()
+			val jwtIssuer = environment.config.property(path = "jwt.domain").getString()
+			val jwtAudience = environment.config.property(path = "jwt.audience").getString()
+			val secret = environment.config.property(path = "jwt.secret").getString()
+			realm = environment.config.property(path = "jwt.realm").getString()
 			verifier(
 				JWT
-					.require(Algorithm.HMAC256(/* secret = */ "secret"))
+					.require(Algorithm.HMAC256(secret))
 					.withAudience(jwtAudience)
-					.withIssuer(environment.config.property("jwt.domain").getString())
+					.withIssuer(jwtIssuer)
 					.build()
 			)
 			challenge { defaultScheme, realm ->

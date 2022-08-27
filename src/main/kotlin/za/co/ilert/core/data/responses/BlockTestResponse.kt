@@ -5,42 +5,42 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class BlockTestResponse(
 	val carcassType: Int, // Beef Front Quarter 1xx, Beef Hind Quarter 2xx, Pork 3xx, Lamb 4xx, Chicken 5xx
-	val carcassKgCostIncl: Long,
-	val carcassWeight: Long,
-	val carcassHangingWeight: Long,
-	val carcassLoss: Long, // Weight after Cutting & W.Loss
-	val carcassKgWeightLoss: Long,
-	val weightLossParameter: Long,
-	val cuttingLossParameter: Long,
-	val waistParameter: Long,
-	val percentDifferenceParameter: Long,
-	val percentGpRequired: Long,
-	val acceptablePriceVariance: Long,
-	val trimmingWaste: Long,
-	val measuredWeightAfterCuts: Long,
+	val carcassKgCostIncl: Double,
+	val carcassWeight: Double,
+	val carcassHangingWeight: Double,
+	val carcassLoss: Double, // Weight after Cutting & W.Loss
+	val carcassKgWeightLoss: Double,
+	val weightLossParameter: Double,
+	val cuttingLossParameter: Double,
+	val waistParameter: Double,
+	val percentDifferenceParameter: Double,
+	val percentGpRequired: Double,
+	val acceptablePriceVariance: Double,
+	val trimmingWaste: Double,
+	val measuredWeightAfterCuts: Double,
 	val primalCuts: List<PrimalCutResponse>,
 	val timestamp: Long,
 	val blockTestId: String
 ) {
-	val carcassCostIncl: Long
+	val carcassCostIncl: Double
 		get() = carcassKgCostIncl * carcassWeight
 
-	val carcassEffectivePrice: Long
+	val carcassEffectivePrice: Double
 		get() = carcassCostIncl / carcassKgWeightLoss // (carcassKgPrice * carcassWeight) / carcassWeightLoss
 
-	val percentCarcassWeightLoss: Long
+	val percentCarcassWeightLoss: Double
 		get() = (carcassWeight - carcassKgWeightLoss) / carcassWeight
 
-	val adjustedKgCostKgIncl: Long
+	val adjustedKgCostKgIncl: Double
 		get() = carcassCostIncl / carcassHangingWeight
 
-	val cuttingLoss: Long = if (measuredWeightAfterCuts >= 0L) carcassHangingWeight - measuredWeightAfterCuts else 0L
+	val cuttingLoss: Double = if (measuredWeightAfterCuts >= 0.0) carcassHangingWeight - measuredWeightAfterCuts else 0.0
 
-	val percentWeightLoss: () -> Long = {
-		if ((measuredWeightAfterCuts >= 0L) && (trimmingWaste >= 0L)) measuredWeightAfterCuts / trimmingWaste else 0L
+	val percentWeightLoss: () -> Double = {
+		if ((measuredWeightAfterCuts >= 0.0) && (trimmingWaste >= 0.0)) measuredWeightAfterCuts / trimmingWaste else 0.0
 	}
 
-	val percentCuttingLoss: () -> Long = {
-		if (carcassHangingWeight >= 0L) cuttingLoss / carcassHangingWeight else 0L
+	val percentCuttingLoss: () -> Double = {
+		if (carcassHangingWeight >= 0.0) cuttingLoss / carcassHangingWeight else 0.0
 	}
 }

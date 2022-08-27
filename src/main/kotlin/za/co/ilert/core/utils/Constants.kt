@@ -21,6 +21,7 @@ object Constants {
 
 	// BlockTest Paths
 	const val BLOCK_TEST = "$PATH/blockTest"
+	const val BLOCK_TEST_PRIMALS = "$PATH/blockTest/primals"
 
 	// Session Paths
 	const val SESSION_INCREMENT = "/session/increment"

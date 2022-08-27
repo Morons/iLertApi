@@ -7,12 +7,12 @@ import za.co.ilert.core.data.models.PrimalCut
 data class PrimalCutResponse(
 	val blockTestId: String,
 	val primalCutType: Int,
-	val actualCutWeight: Long,
-	val marketSellPrice: Long, // Market related sell price, what the local market will pay for this.
+	val actualCutWeight: Double,
+	val marketSellPrice: Double, // Market related sell price, what the local market will pay for this.
 	val timestamp: Long,
 	val primalCutId: String
 ) {
-	val marketRelatedPrice: Long
+	val marketRelatedPrice: Double
 		get() = actualCutWeight * marketSellPrice
 
 	fun toPrimalCut(): PrimalCut {

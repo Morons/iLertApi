@@ -17,13 +17,13 @@ sealed class BeefHqPrimalCutType(val cut: Int) {
 	object Shin : BeefHqPrimalCutType(cut = 210)
 	object Stew : BeefHqPrimalCutType(cut = 211)
 	object MeatyBones : BeefHqPrimalCutType(cut = 212)
-	object BeefBonesType : BeefHqPrimalCutType(cut = 213)
-	object BeefTrimmings9010Type : BeefHqPrimalCutType(cut = 214)
-	object BeefTrimmings8020Type : BeefHqPrimalCutType(cut = 215)
-	object BeefTrimmings7030Type : BeefHqPrimalCutType(cut = 216)
-	object BeefTrimmings6040Type : BeefHqPrimalCutType(cut = 217)
-	object BeefBodyFatType : BeefHqPrimalCutType(cut = 218)
-	object BeefFatType : BeefHqPrimalCutType(cut = 219)
+	object BeefBones : BeefHqPrimalCutType(cut = 213)
+	object BeefTrimmings9010 : BeefHqPrimalCutType(cut = 214)
+	object BeefTrimmings8020 : BeefHqPrimalCutType(cut = 215)
+	object BeefTrimmings7030 : BeefHqPrimalCutType(cut = 216)
+	object BeefTrimmings6040 : BeefHqPrimalCutType(cut = 217)
+	object BeefBodyFat : BeefHqPrimalCutType(cut = 218)
+	object BeefFat : BeefHqPrimalCutType(cut = 219)
 	object None : BeefHqPrimalCutType(cut = 220)
 
 	companion object {
@@ -41,13 +41,13 @@ sealed class BeefHqPrimalCutType(val cut: Int) {
 				210 -> Shin
 				211 -> Stew
 				212 -> MeatyBones
-				213 -> BeefBonesType
-				214 -> BeefTrimmings9010Type
-				215 -> BeefTrimmings8020Type
-				216 -> BeefTrimmings7030Type
-				217 -> BeefTrimmings6040Type
-				218 -> BeefBodyFatType
-				219 -> BeefFatType
+				213 -> BeefBones
+				214 -> BeefTrimmings9010
+				215 -> BeefTrimmings8020
+				216 -> BeefTrimmings7030
+				217 -> BeefTrimmings6040
+				218 -> BeefBodyFat
+				219 -> BeefFat
 				else -> None
 			}
 		}

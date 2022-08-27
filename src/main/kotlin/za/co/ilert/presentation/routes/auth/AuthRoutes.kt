@@ -4,12 +4,15 @@ import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
 import io.ktor.http.HttpStatusCode.Companion.BadRequest
 import io.ktor.http.HttpStatusCode.Companion.OK
+import io.ktor.http.HttpStatusCode.Companion.Unauthorized
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
+import io.ktor.server.auth.jwt.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.FIELDS_BLANK
+import za.co.ilert.core.data.repository.utils.ApiResponseMessages.LOGIN_AUTHENTICATED
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.PASSWORD_NOT_MATCHING
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.UNKNOWN_ERROR_TRY_AGAIN
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.USER_ALREADY_EXIST
@@ -18,45 +21,46 @@ import za.co.ilert.core.data.responses.AuthResponse
 import za.co.ilert.core.data.responses.BasicApiResponse
 import za.co.ilert.core.utils.Constants.USER_AUTHENTICATE
 import za.co.ilert.core.utils.Constants.USER_CREATE
+import za.co.ilert.core.utils.Constants.USER_ID
 import za.co.ilert.core.utils.Constants.USER_LOGIN
 import za.co.ilert.presentation.services.user.UserService
 import za.co.ilert.presentation.validation.ValidationEvent
 import java.util.*
 
-fun Route.authenticate() {
-	authenticate {
-		get(USER_AUTHENTICATE) {
-			call.respond(OK)
-		}
-	}
-}
-
 //fun Route.authenticate() {
 //	authenticate {
 //		get(USER_AUTHENTICATE) {
-//			val principal = call.principal<JWTPrincipal>()
-//			val userId = principal!!.payload.getClaim(USER_ID).asString()
-//			val expiresAt = principal.expiresAt?.time?.minus(System.currentTimeMillis())
-//			if (call.response.status() == Unauthorized) {
-//				call.respond(
-//					status = Unauthorized,
-//					message = BasicApiResponse<Unit>(
-//						successful = false,
-//						message = "userId = $userId, key expires at: ${expiresAt}ms"
-//					)
-//				)
-//			} else {
-//				call.respond(
-//					status = OK,
-//					message = BasicApiResponse<Unit>(
-//						successful = true,
-//						message = "$LOGIN_AUTHENTICATED userId = $userId, key expires at: ${expiresAt}ms"
-//					)
-//				)
-//			}
+//			call.respond(OK)
 //		}
 //	}
 //}
+
+fun Route.authenticate() {
+	authenticate {
+		get(USER_AUTHENTICATE) {
+			val principal = call.principal<JWTPrincipal>()
+			val userId = principal!!.payload.getClaim(USER_ID).asString()
+			val expiresAt = principal.expiresAt?.time?.minus(System.currentTimeMillis())
+			if (call.response.status() == Unauthorized) {
+				call.respond(
+					status = Unauthorized,
+					message = BasicApiResponse<Unit>(
+						successful = false,
+						message = "userId = $userId, key expires at: ${expiresAt}ms"
+					)
+				)
+			} else {
+				call.respond(
+					status = OK,
+					message = BasicApiResponse<Unit>(
+						successful = true,
+						message = "$LOGIN_AUTHENTICATED userId = $userId, key expires at: ${expiresAt}ms"
+					)
+				)
+			}
+		}
+	}
+}
 
 fun Route.createUser(userService: UserService) {
 	post(USER_CREATE) {

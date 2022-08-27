@@ -29,19 +29,32 @@ class BlockTestService(
 	}
 
 	suspend fun insertBlockTest(
-		blockTestRequest: BlockTestRequest,
-		primalCutsRequest: List<PrimalCutRequest>
+		blockTestRequest: BlockTestRequest
 	): Boolean {
 		return blockTestRepository.insertBlockTest(
-			blockTestRequest = blockTestRequest,
+			blockTestRequest = blockTestRequest
+		)
+	}
+
+	suspend fun insertPrimalCuts(
+		primalCutsRequest: PrimalCutsRequest
+	) {
+		blockTestRepository.insertPrimalCuts(
 			primalCutsRequest = primalCutsRequest
 		)
 	}
 
-	fun validateInsertBlockTestRequest(request: InsertBlockTestRequest): ValidationEvent {
+	fun validateInsertBlockTestRequest(request: BlockTestRequest): ValidationEvent {
 		return if (
-			request.blockTestRequest.carcassKgCostIncl <= 0L ||
-			request.blockTestRequest.carcassWeight <= 0L ||
+			request.carcassKgCostIncl <= 0.0 ||
+			request.carcassWeight <= 0.0
+		) {
+			ValidationEvent.ErrorFieldEmpty
+		} else ValidationEvent.Success
+	}
+
+	fun validateInsertPrimalCutsRequest(request: PrimalCutsRequest): ValidationEvent {
+		return if (
 			request.primalCutsRequest.isEmpty()
 		) {
 			ValidationEvent.ErrorFieldEmpty
