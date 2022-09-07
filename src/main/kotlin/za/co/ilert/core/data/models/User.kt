@@ -7,6 +7,7 @@ data class User(
 	val email: String,
 	val userName: String,
 	val password: String,
+	val mobileNumber: String,
 	val avatarAsString: String,
 	val security: UserSecurity? = null,
 	val timestamp: Long = System.currentTimeMillis(),

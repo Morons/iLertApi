@@ -1,69 +1,64 @@
 package za.co.ilert.core.data.repository.blocktest
 
+import org.litote.kmongo.MongoOperator.project
+import org.litote.kmongo.MongoOperator.sum
 import org.litote.kmongo.coroutine.CoroutineDatabase
+import org.litote.kmongo.coroutine.aggregate
 import org.litote.kmongo.eq
+import org.litote.kmongo.json
+import org.litote.kmongo.match
 import za.co.ilert.core.data.models.BlockTest
-import za.co.ilert.core.data.models.PrimalCut
-import za.co.ilert.core.data.requests.*
+import za.co.ilert.core.data.requests.BlockTestRequest
+import za.co.ilert.core.data.requests.DeleteBlockTestRequest
+import za.co.ilert.core.data.requests.GenericPageRequest
 import za.co.ilert.core.data.responses.BlockTestListRequest
-import za.co.ilert.core.data.responses.BlockTestResponse
-import za.co.ilert.core.data.responses.PrimalCutResponse
+import za.co.ilert.core.data.responses.ResultResponse
 
 class BlockTestRepositoryImpl(
 	db: CoroutineDatabase
 ) : BlockTestRepository {
 
 	private val blockTestDb = db.getCollection<BlockTest>()
-	private val primalCutDb = db.getCollection<PrimalCut>()
 
-	override suspend fun getBlockTest(blockTestId: String): BlockTestResponse? {
+	override suspend fun getBlockTest(blockTestId: String): BlockTest? {
 		val blockTest: BlockTest = blockTestDb.findOne(filter = BlockTest::blockTestId eq blockTestId) ?: return null
-		val primalCuts = primalCutDb.find(filter = PrimalCut::blockTestId eq blockTestId)
-			.toList()
-			.map { primalCut ->
-				PrimalCutResponse(
-					primalCut.blockTestId,
-					primalCut.primalCutType,
-					primalCut.actualCutWeight,
-					primalCut.marketSellPrice,
-					primalCut.timestamp,
-					primalCut.primalCutId
-				)
-			}
-		return BlockTestResponse(
+
+		return BlockTest(
+			userId = blockTest.userId,
 			carcassType = blockTest.carcassType,
 			carcassKgCostIncl = blockTest.carcassKgCostIncl,
 			carcassWeight = blockTest.carcassWeight,
 			carcassHangingWeight = blockTest.carcassHangingWeight,
-			carcassLoss = blockTest.cutTrimWeight,
+			cutTrimWeight = blockTest.cutTrimWeight,
 			carcassKgWeightLoss = blockTest.carcassKgWeightLoss,
 			weightLossParameter = blockTest.weightLossParameter,
 			cuttingLossParameter = blockTest.cuttingLossParameter,
-			waistParameter = blockTest.wasteParameter,
+			wasteParameter = blockTest.wasteParameter,
 			percentDifferenceParameter = blockTest.percentDifferenceParameter,
 			percentGpRequired = blockTest.percentGpRequired,
 			acceptablePriceVariance = blockTest.acceptablePriceVariance,
 			trimmingWaste = blockTest.trimmingWaste,
 			measuredWeightAfterCuts = blockTest.measuredWeightAfterCuts,
-			primalCuts = primalCuts,
+			primalCuts = blockTest.primalCuts,
+			sumPrimalsWeight = blockTest.sumPrimalsWeight,
 			timestamp = blockTest.timestamp,
 			blockTestId = blockTest.blockTestId
 		)
 	}
 
-	override suspend fun getPrimalCuts(blockTestId: String): List<PrimalCutResponse> {
-		return primalCutDb.find(filter = PrimalCut::blockTestId eq blockTestId)
-			.toList()
-			.map { primalCut ->
-				PrimalCutResponse(
-					primalCut.blockTestId,
-					primalCut.primalCutType,
-					primalCut.actualCutWeight,
-					primalCut.marketSellPrice,
-					primalCut.timestamp,
-					primalCut.primalCutId
-				)
-			}
+	override suspend fun sumPrimalsWeight(blockTestId: String): Double {
+
+//		val result =  blockTestDb.aggregate<ResultResponse>(
+//			"""[ { ${match()} : { _id: $ blockTestId } }, { $project: { _id: {
+//				|sumOfPrimalsWeight: { $sum: '$ primalCuts.actualCutWeight' } } } } ]""".trimMargin()
+//		).first()?.sumWeight ?: 0.0
+//		println("Result = $result **********")
+//		println("Result.json = ${result.json} **********")
+		return 0.0
+//		return blockTestDb.aggregate<ResultResponse>(
+//			match(BlockTest::blockTestId eq blockTestId),
+//			group(ResultResponse::sumWeight sum listOf(PrimalCut::actualCutWeight))
+//		).first()?.sumWeight ?: 0.0
 	}
 
 	/**
@@ -75,29 +70,8 @@ class BlockTestRepositoryImpl(
 		return blockTestDb.insertOne(blockTestRequest.toBlockTest()).wasAcknowledged()
 	}
 
-	/**
-	 * @param primalCutsRequest the primalCutId must be generated before calling this
-	 * Use the same generated blockTestId in the [primalCutsRequest] and [blockTestRequest]
-	 **/
-	override suspend fun insertPrimalCuts(
-		primalCutsRequest: PrimalCutsRequest
-	) {
-		if (primalCutsRequest.primalCutsRequest.isNotEmpty()) {
-			primalCutsRequest.primalCutsRequest.forEachIndexed { _, primalCutRequest ->
-				val primalCut = primalCutRequest.toPrimalCut()
-				primalCutDb.insertOne(primalCut)
-			}
-		}
-	}
-
 	override suspend fun deleteBlockTest(deleteBlockTestRequest: DeleteBlockTestRequest): Boolean {
-
-		return if (
-			primalCutDb.deleteMany(filter = PrimalCut::blockTestId eq deleteBlockTestRequest.blockTestId)
-				.wasAcknowledged()
-		) {
-			blockTestDb.deleteOneById(deleteBlockTestRequest.blockTestId).wasAcknowledged()
-		} else false
+		return blockTestDb.deleteOneById(deleteBlockTestRequest.blockTestId).wasAcknowledged()
 	}
 
 	override suspend fun getBlockTestsPaged(genericPageRequest: GenericPageRequest): List<BlockTestListRequest> {

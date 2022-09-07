@@ -1,30 +1,29 @@
 package za.co.ilert.core.data.types
 
-import kotlinx.serialization.Serializable
-
 // Beef Front Quarter 1xx, Beef Hind Quarter 2xx, Pork 3xx, Lamb 4xx, Chicken 5xx
-@Serializable
-sealed class BeefHqPrimalCutType(val cut: Int) {
-	object WingRib : BeefHqPrimalCutType(cut = 201)
-	object ThinFlank : BeefHqPrimalCutType(cut = 202)
-	object Rump : BeefHqPrimalCutType(cut = 203)
-	object Aitchbone : BeefHqPrimalCutType(cut = 204)
-	object Topside : BeefHqPrimalCutType(cut = 205)
-	object Silverside : BeefHqPrimalCutType(cut = 206)
-	object Fillet : BeefHqPrimalCutType(cut = 207)
-	object ThickFlank : BeefHqPrimalCutType(cut = 208)
-	object Sirloin : BeefHqPrimalCutType(cut = 209)
-	object Shin : BeefHqPrimalCutType(cut = 210)
-	object Stew : BeefHqPrimalCutType(cut = 211)
-	object MeatyBones : BeefHqPrimalCutType(cut = 212)
-	object BeefBones : BeefHqPrimalCutType(cut = 213)
-	object BeefTrimmings9010 : BeefHqPrimalCutType(cut = 214)
-	object BeefTrimmings8020 : BeefHqPrimalCutType(cut = 215)
-	object BeefTrimmings7030 : BeefHqPrimalCutType(cut = 216)
-	object BeefTrimmings6040 : BeefHqPrimalCutType(cut = 217)
-	object BeefBodyFat : BeefHqPrimalCutType(cut = 218)
-	object BeefFat : BeefHqPrimalCutType(cut = 219)
-	object None : BeefHqPrimalCutType(cut = 220)
+
+sealed class BeefHqPrimalCutType(val cut: Int, val name: String) {
+	object WingRib : BeefHqPrimalCutType(cut = 201, name = "Wing Rib")
+	object ThinFlank : BeefHqPrimalCutType(cut = 202, name = "Thin Flank")
+	object Rump : BeefHqPrimalCutType(cut = 203, name = "Rump")
+	object Aitchbone : BeefHqPrimalCutType(cut = 204, name = "Aitchbone")
+	object Topside : BeefHqPrimalCutType(cut = 205, name = "Topside")
+	object Silverside : BeefHqPrimalCutType(cut = 206, name = "Silverside")
+	object Fillet : BeefHqPrimalCutType(cut = 207, name = "Fillet")
+	object ThickFlank : BeefHqPrimalCutType(cut = 208, name = "Thick Flank")
+	object Sirloin : BeefHqPrimalCutType(cut = 209, name = "Sirloin")
+	object Shin : BeefHqPrimalCutType(cut = 210, name = "Shin")
+	object Stew : BeefHqPrimalCutType(cut = 211, name = "Stew")
+	object MeatyBones : BeefHqPrimalCutType(cut = 212, name = "Meaty Bones")
+	object BeefBones : BeefHqPrimalCutType(cut = 213, name = "Beef Bones")
+	object BeefTrimmings9010 : BeefHqPrimalCutType(cut = 114, name = "Beef Trimmings 90:10")
+	object BeefTrimmings8020 : BeefHqPrimalCutType(cut = 115, name = "Beef Trimmings 80:20")
+	object BeefTrimmings7030 : BeefHqPrimalCutType(cut = 116, name = "Beef Trimmings 70:30")
+	object BeefTrimmings6040 : BeefHqPrimalCutType(cut = 117, name = "Beef Trimmings 60:40")
+	object BeefBodyFat : BeefHqPrimalCutType(cut = 218, name = "Beef Body Fat")
+	object BeefFat : BeefHqPrimalCutType(cut = 219, name = "Beef Fat")
+	object CutTrimWaste : BeefHqPrimalCutType(cut = 220, name = "Cutting & Trimming Waste")
+	object None : BeefHqPrimalCutType(cut = 299, name = "None")
 
 	companion object {
 		fun fromCut(cut: Int): BeefHqPrimalCutType {
@@ -48,6 +47,7 @@ sealed class BeefHqPrimalCutType(val cut: Int) {
 				217 -> BeefTrimmings6040
 				218 -> BeefBodyFat
 				219 -> BeefFat
+				220 -> CutTrimWaste
 				else -> None
 			}
 		}

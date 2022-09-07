@@ -1,12 +1,12 @@
 package za.co.ilert.core.data.requests
 
-import kotlinx.serialization.Serializable
 import org.bson.types.ObjectId
 import za.co.ilert.core.data.models.BlockTest
+import za.co.ilert.core.data.models.PrimalCut
 import java.time.Instant
 import java.time.ZoneOffset
 
-@Serializable
+
 data class BlockTestRequest(
 	val userId: String,
 	val carcassType: Int, // Beef Front Quarter 1xx, Beef Hind Quarter 2xx, Pork 3xx, Lamb 4xx, Chicken 5xx
@@ -21,6 +21,8 @@ data class BlockTestRequest(
 	val percentDifferenceParameter: Double,
 	val percentGpRequired: Double,
 	val acceptablePriceVariance: Double,
+	val primalCuts: List<PrimalCut>,
+	val sumPrimalsWeight: Double = 0.0,
 	val trimmingWaste: Double = 0.0,
 	val measuredWeightAfterCuts: Double = 0.0,
 	val timestamp: Long = Instant.now().atOffset(ZoneOffset.UTC).toEpochSecond(),
@@ -41,6 +43,8 @@ data class BlockTestRequest(
 			percentDifferenceParameter = percentDifferenceParameter,
 			percentGpRequired = percentGpRequired,
 			acceptablePriceVariance = acceptablePriceVariance,
+			primalCuts = primalCuts,
+			sumPrimalsWeight = sumPrimalsWeight,
 			trimmingWaste = trimmingWaste,
 			measuredWeightAfterCuts = measuredWeightAfterCuts,
 			timestamp = timestamp,

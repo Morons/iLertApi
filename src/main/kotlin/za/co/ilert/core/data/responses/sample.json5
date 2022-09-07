@@ -1,0 +1,13 @@
+{
+  "status": 200,
+  "message": {
+    "successful": true,
+    "data": {
+      "valueA": 10.0,
+      "valueB": 2.0,
+      "valueC": 20.0,
+      "valueD": 5.0,
+      "valueE": 5.0
+    }
+  }
+}

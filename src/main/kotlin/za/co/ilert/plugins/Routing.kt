@@ -9,7 +9,6 @@ import za.co.ilert.presentation.routes.auth.createUser
 import za.co.ilert.presentation.routes.auth.loginUser
 import za.co.ilert.presentation.routes.blocktest.getBlockTest
 import za.co.ilert.presentation.routes.blocktest.insertBlockTest
-import za.co.ilert.presentation.routes.blocktest.insertPrimalCuts
 import za.co.ilert.presentation.routes.chat.*
 import za.co.ilert.presentation.routes.user.getUser
 import za.co.ilert.presentation.routes.user.searchUser
@@ -51,7 +50,7 @@ fun Application.configureRouting() {
 		// BlockTest Routes
 		getBlockTest(blockTestService = blockTestService)
 		insertBlockTest(blockTestService = blockTestService)
-		insertPrimalCuts(blockTestService = blockTestService)
+//		insertPrimalCuts(blockTestService = blockTestService)
 
 		// Session Routes
 		sessionIncrement()

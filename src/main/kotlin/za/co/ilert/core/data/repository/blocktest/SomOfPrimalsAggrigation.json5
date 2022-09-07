@@ -1,0 +1,16 @@
+[
+  {
+    $match: {
+      _id: '6307526506444cb043f17dbc'
+    }
+  },
+  {
+    $project: {
+      _id: {
+        sumOfPrimalsWeight: {
+          $sum: '$primalCuts.actualCutWeight'
+        }
+      }
+    }
+  }
+]

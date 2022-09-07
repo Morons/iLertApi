@@ -52,7 +52,8 @@ dependencies {
 	implementation("io.ktor:ktor-server-default-headers-jvm:$ktor_version")
 	implementation("io.ktor:ktor-server-http-redirect-jvm:$ktor_version")
 	implementation("io.ktor:ktor-server-call-logging-jvm:$ktor_version")
-	implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:$ktor_version")
+	implementation("io.ktor:ktor-serialization-gson-jvm:$ktor_version")
+//	implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:$ktor_version")
 	implementation("io.ktor:ktor-server-websockets-jvm:$ktor_version")
 	implementation("io.ktor:ktor-server-tomcat-jvm:$ktor_version")
 

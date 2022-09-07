@@ -1,22 +1,21 @@
 package za.co.ilert.core.data.types
 
-import kotlinx.serialization.Serializable
-
 // Beef Front Quarter 1xx, Beef Hind Quarter 2xx, Pork 3xx, Lamb 4xx, Chicken 5xx
-@Serializable
-sealed class ChickenPrimalCutType(val cut: Int) {
-	object DrumSticks : ChickenPrimalCutType(cut = 501)
-	object Thighs : ChickenPrimalCutType(cut = 502)
-	object BreastsFillet : ChickenPrimalCutType(cut = 503)
-	object Wings : ChickenPrimalCutType(cut = 504)
-	object LegQuarters : ChickenPrimalCutType(cut = 505)
-	object Bones : ChickenPrimalCutType(cut = 506)
-	object Heads : ChickenPrimalCutType(cut = 507)
-	object Feet : ChickenPrimalCutType(cut = 508)
-	object ChickenTrimmingsType : ChickenPrimalCutType(cut = 509)
-	object ChickenFatType : ChickenPrimalCutType(cut = 510)
-	object ChickenSkinFatType : ChickenPrimalCutType(cut = 511)
-	object None : ChickenPrimalCutType(cut = 512)
+
+sealed class ChickenPrimalCutType(val cut: Int, val name: String) {
+	object DrumSticks : ChickenPrimalCutType(cut = 501, name = "Drum Sticks")
+	object Thighs : ChickenPrimalCutType(cut = 502, name = "Thighs")
+	object BreastsFillet : ChickenPrimalCutType(cut = 503, name = "Breasts Fillet")
+	object Wings : ChickenPrimalCutType(cut = 504, name = "Wings")
+	object LegQuarters : ChickenPrimalCutType(cut = 505, name = "Leg Quarters")
+	object Bones : ChickenPrimalCutType(cut = 506, name = "Bones")
+	object Heads : ChickenPrimalCutType(cut = 507, name = "Heads")
+	object Feet : ChickenPrimalCutType(cut = 508, name = "Feet")
+	object ChickenTrimmings : ChickenPrimalCutType(cut = 509, name = "Chicken Trimmings")
+	object ChickenFat : ChickenPrimalCutType(cut = 510, name = "Chicken Fat")
+	object ChickenSkinFat : ChickenPrimalCutType(cut = 511, name = "Chicken Skin Fat")
+	object CutTrimWaste : ChickenPrimalCutType(cut = 512, name = "Cutting & Trimming Waste")
+	object None : ChickenPrimalCutType(cut = 599, name = "")
 
 	companion object {
 		fun fromCut(cut: Int): ChickenPrimalCutType {
@@ -29,10 +28,10 @@ sealed class ChickenPrimalCutType(val cut: Int) {
 				506 -> Bones
 				507 -> Heads
 				508 -> Feet
-				509 -> ChickenTrimmingsType
-				510 -> ChickenFatType
-				511 -> ChickenSkinFatType
-				512 -> Bones
+				509 -> ChickenTrimmings
+				510 -> ChickenFat
+				511 -> ChickenSkinFat
+				512 -> CutTrimWaste
 				else -> None
 			}
 		}

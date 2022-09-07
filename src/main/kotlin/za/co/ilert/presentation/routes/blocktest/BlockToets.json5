@@ -1,0 +1,126 @@
+{
+  "successful": true,
+  "data": {
+    "carcassType": 100,
+    "carcassKgCostIncl": 96.03,
+    "carcassWeight": 75.2,
+    "carcassHangingWeight": 75.2,
+    "cutTrimWeight": 1.0E-8,
+    "carcassKgWeightLoss": 0.0,
+    "weightLossParameter": 2.0,
+    "cuttingLossParameter": 1.0,
+    "waistParameter": 1.0,
+    "percentDifferenceParameter": 10.0,
+    "percentGpRequired": 25.0,
+    "acceptablePriceVariance": 2.0,
+    "trimmingWaste": 0.0,
+    "measuredWeightAfterCuts": 0.0,
+    "primalCuts": [
+      {
+        "primalCutType": 101,
+        "actualCutWeight": 5.8,
+        "marketSellPrice": 139.99,
+        "name": "Prime Rib",
+        "displayName": "Prime Rib",
+        "mutable": false
+      },
+      {
+        "primalCutType": 102,
+        "actualCutWeight": 5.0,
+        "marketSellPrice": 124.99,
+        "name": "Chuck",
+        "displayName": "Chuck",
+        "mutable": false
+      },
+      {
+        "primalCutType": 103,
+        "actualCutWeight": 7.4,
+        "marketSellPrice": 124.99,
+        "name": "Blade",
+        "displayName": "Blade",
+        "mutable": false
+      },
+      {
+        "primalCutType": 104,
+        "actualCutWeight": 9.8,
+        "marketSellPrice": 99.99,
+        "name": "Short Rib",
+        "displayName": "Short Rib",
+        "mutable": false
+      },
+      {
+        "primalCutType": 105,
+        "actualCutWeight": 14.8,
+        "marketSellPrice": 122.99,
+        "name": "Brisket",
+        "displayName": "Brisket",
+        "mutable": false
+      },
+      {
+        "primalCutType": 106,
+        "actualCutWeight": 12.0,
+        "marketSellPrice": 122.99,
+        "name": "Shin",
+        "displayName": "Shin (Bone In)",
+        "mutable": false
+      },
+      {
+        "primalCutType": 117,
+        "actualCutWeight": 7.2,
+        "marketSellPrice": 122.99,
+        "name": "Neck",
+        "displayName": "Neck",
+        "mutable": true
+      },
+      {
+        "primalCutType": 107,
+        "actualCutWeight": 3.34,
+        "marketSellPrice": 122.99,
+        "name": "Stew",
+        "displayName": "Potjiekos",
+        "mutable": true
+      },
+      {
+        "primalCutType": 112,
+        "actualCutWeight": 4.8,
+        "marketSellPrice": 60.0,
+        "name": "Beef Trimmings 80:20",
+        "displayName": "Beef Trimmings 80:20",
+        "mutable": true
+      },
+      {
+        "primalCutType": 110,
+        "actualCutWeight": 0.244,
+        "marketSellPrice": 6.99,
+        "name": "Beef Bones",
+        "displayName": "Bones",
+        "mutable": true
+      },
+      {
+        "primalCutType": 115,
+        "actualCutWeight": 0.414,
+        "marketSellPrice": 23.99,
+        "name": "Beef Body Fat",
+        "displayName": "Kidney Fat",
+        "mutable": true
+      },
+      {
+        "primalCutType": 117,
+        "actualCutWeight": 0.244,
+        "marketSellPrice": 6.99,
+        "name": "None",
+        "displayName": "Pet Mince",
+        "mutable": false
+      }
+    ],
+    "timestamp": 1662455656,
+    "blockTestId": "6307526506444cb043f17dbc",
+    "carcassCostIncl": 7221.456,
+    "carcassEffectivePrice":Infinity,
+    "percentCarcassWeightLoss": 1.0,
+    "adjustedKgCostKgIncl": 96.03,
+    "cuttingLoss": 75.2,
+    "percentWeightLoss":NaN,
+    "percentCuttingLoss": 1.0
+  }
+}

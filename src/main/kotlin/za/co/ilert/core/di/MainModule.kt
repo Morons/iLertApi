@@ -1,6 +1,6 @@
 package za.co.ilert.core.di
 
-import kotlinx.serialization.json.Json
+import com.google.gson.Gson
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
@@ -13,10 +13,10 @@ import za.co.ilert.core.data.repository.chat.ChatRepositoryImpl
 import za.co.ilert.core.data.repository.user.UserRepository
 import za.co.ilert.core.data.repository.user.UserRepositoryImpl
 import za.co.ilert.core.utils.Constants.DATABASE_NAME
-import za.co.ilert.presentation.services.user.UserService
 import za.co.ilert.presentation.services.blocktest.BlockTestService
 import za.co.ilert.presentation.services.chat.ChatController
 import za.co.ilert.presentation.services.chat.ChatService
+import za.co.ilert.presentation.services.user.UserService
 
 val mainModule = module {
 
@@ -36,5 +36,6 @@ val mainModule = module {
 	singleOf(::BlockTestService)
 	singleOf(::ChatController)
 
-	singleOf(::Json)
+//	singleOf(::Json)
+	singleOf(::Gson)
 }

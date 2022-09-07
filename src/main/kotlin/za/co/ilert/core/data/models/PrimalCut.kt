@@ -1,11 +1,5 @@
 package za.co.ilert.core.data.models
 
-import kotlinx.serialization.Serializable
-import org.bson.codecs.pojo.annotations.BsonId
-import org.bson.types.ObjectId
-import java.time.Instant
-import java.time.ZoneOffset
-
 /**
  * @property primalCutType
  *
@@ -17,13 +11,12 @@ import java.time.ZoneOffset
  *
  **/
 
-@Serializable
+
 data class PrimalCut(
-	val blockTestId: String,
 	val primalCutType: Int,
 	val actualCutWeight: Double,
 	val marketSellPrice: Double, // Market related sell price, what the local market will pay for this.
-	val timestamp: Long = Instant.now().atOffset(ZoneOffset.UTC).toEpochSecond(),
-	@BsonId
-	val primalCutId: String = ObjectId().toString()
+	val name: String,
+	val displayName: String,
+	val mutable: Boolean = false
 )

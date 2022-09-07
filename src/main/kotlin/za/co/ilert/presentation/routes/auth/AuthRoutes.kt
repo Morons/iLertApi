@@ -17,6 +17,7 @@ import za.co.ilert.core.data.repository.utils.ApiResponseMessages.PASSWORD_NOT_M
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.UNKNOWN_ERROR_TRY_AGAIN
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.USER_ALREADY_EXIST
 import za.co.ilert.core.data.requests.AuthRequest
+import za.co.ilert.core.data.requests.UserRequest
 import za.co.ilert.core.data.responses.AuthResponse
 import za.co.ilert.core.data.responses.BasicApiResponse
 import za.co.ilert.core.utils.Constants.USER_AUTHENTICATE
@@ -64,7 +65,7 @@ fun Route.authenticate() {
 
 fun Route.createUser(userService: UserService) {
 	post(USER_CREATE) {
-		val request = call.receiveOrNull<AuthRequest>() ?: kotlin.run {
+		val request = call.receiveOrNull<UserRequest>() ?: kotlin.run {
 			call.respond(
 				status = BadRequest,
 				message = BasicApiResponse<Unit>(
@@ -81,7 +82,7 @@ fun Route.createUser(userService: UserService) {
 			)
 			return@post
 		}
-		when (userService.validateCreateAccountRequest(request = request)) {
+		when (userService.validateCreateAccountRequest(userRequest = request)) {
 			ValidationEvent.ErrorFieldEmpty -> {
 				call.respond(
 					status = BadRequest,

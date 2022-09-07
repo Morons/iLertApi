@@ -1,14 +1,14 @@
 package za.co.ilert.core.data.responses
 
-import kotlinx.serialization.Serializable
+import za.co.ilert.core.data.models.PrimalCut
 
-@Serializable
+
 data class BlockTestResponse(
 	val carcassType: Int, // Beef Front Quarter 1xx, Beef Hind Quarter 2xx, Pork 3xx, Lamb 4xx, Chicken 5xx
 	val carcassKgCostIncl: Double,
 	val carcassWeight: Double,
 	val carcassHangingWeight: Double,
-	val carcassLoss: Double, // Weight after Cutting & W.Loss
+	val cutTrimWeight: Double, // Weight after Cutting & W.Loss
 	val carcassKgWeightLoss: Double,
 	val weightLossParameter: Double,
 	val cuttingLossParameter: Double,
@@ -18,29 +18,14 @@ data class BlockTestResponse(
 	val acceptablePriceVariance: Double,
 	val trimmingWaste: Double,
 	val measuredWeightAfterCuts: Double,
-	val primalCuts: List<PrimalCutResponse>,
+	val primalCuts: List<PrimalCut>,
 	val timestamp: Long,
-	val blockTestId: String
-) {
-	val carcassCostIncl: Double
-		get() = carcassKgCostIncl * carcassWeight
-
-	val carcassEffectivePrice: Double
-		get() = carcassCostIncl / carcassKgWeightLoss // (carcassKgPrice * carcassWeight) / carcassWeightLoss
-
-	val percentCarcassWeightLoss: Double
-		get() = (carcassWeight - carcassKgWeightLoss) / carcassWeight
-
-	val adjustedKgCostKgIncl: Double
-		get() = carcassCostIncl / carcassHangingWeight
-
-	val cuttingLoss: Double = if (measuredWeightAfterCuts >= 0.0) carcassHangingWeight - measuredWeightAfterCuts else 0.0
-
-	val percentWeightLoss: () -> Double = {
-		if ((measuredWeightAfterCuts >= 0.0) && (trimmingWaste >= 0.0)) measuredWeightAfterCuts / trimmingWaste else 0.0
-	}
-
-	val percentCuttingLoss: () -> Double = {
-		if (carcassHangingWeight >= 0.0) cuttingLoss / carcassHangingWeight else 0.0
-	}
-}
+	val blockTestId: String,
+	val carcassCostIncl: Double,
+	val carcassEffectivePrice: Double,
+	val percentCarcassWeightLoss: Double,
+	val adjustedKgCostKgIncl: Double,
+	val cuttingLoss: Double,
+	val percentWeightLoss: Double,
+	val percentCuttingLoss: Double
+)

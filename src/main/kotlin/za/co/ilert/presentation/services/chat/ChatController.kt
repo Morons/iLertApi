@@ -1,8 +1,7 @@
 package za.co.ilert.presentation.services.chat
 
+import com.google.gson.Gson
 import io.ktor.websocket.*
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 import za.co.ilert.core.data.models.Chat
 import za.co.ilert.core.data.models.Message
 import za.co.ilert.core.data.repository.chat.ChatRepository
@@ -26,7 +25,7 @@ class ChatController(
 			onlineUsers.remove(userId)
 	}
 
-	suspend fun sendMessage(ownUserId: String, json: Json, message: WsClientMessage): Boolean {
+	suspend fun sendMessage(ownUserId: String, gson: Gson, message: WsClientMessage): Boolean {
 		val messageEntity: Message = message.toMessage(ownUserId)
 		val wsServerMessage = WsServerMessage(
 			fromId = ownUserId,
@@ -35,7 +34,7 @@ class ChatController(
 			timestamp = System.currentTimeMillis(),
 			chatId = message.chatId
 		)
-		val frameText = json.encodeToString(wsServerMessage)
+		val frameText = gson.toJson(wsServerMessage)
 		onlineUsers[ownUserId]?.send(Frame.Text(text = "${MESSAGE.ordinal}#$frameText"))
 		onlineUsers[message.toId]?.send(Frame.Text(text = "${MESSAGE.ordinal}#$frameText"))
 		chatRepository.insertMessage(messageEntity)  // No chatId yet

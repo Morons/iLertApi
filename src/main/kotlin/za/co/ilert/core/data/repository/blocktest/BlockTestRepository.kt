@@ -1,19 +1,18 @@
 package za.co.ilert.core.data.repository.blocktest
 
-import za.co.ilert.core.data.requests.*
+import za.co.ilert.core.data.models.BlockTest
+import za.co.ilert.core.data.requests.BlockTestRequest
+import za.co.ilert.core.data.requests.DeleteBlockTestRequest
+import za.co.ilert.core.data.requests.GenericPageRequest
 import za.co.ilert.core.data.responses.BlockTestListRequest
-import za.co.ilert.core.data.responses.BlockTestResponse
-import za.co.ilert.core.data.responses.PrimalCutResponse
 
 interface BlockTestRepository {
 
-	suspend fun getBlockTest(blockTestId: String): BlockTestResponse?
+	suspend fun getBlockTest(blockTestId: String): BlockTest?
 
-	suspend fun getPrimalCuts(blockTestId: String): List<PrimalCutResponse>
+	suspend fun sumPrimalsWeight(blockTestId: String): Double
 
 	suspend fun insertBlockTest(blockTestRequest: BlockTestRequest): Boolean
-
-	suspend fun insertPrimalCuts(primalCutsRequest: PrimalCutsRequest)
 
 	suspend fun deleteBlockTest(deleteBlockTestRequest: DeleteBlockTestRequest): Boolean
 

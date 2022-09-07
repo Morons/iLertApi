@@ -1,9 +1,8 @@
 package za.co.ilert.core.data.websocket
 
-import kotlinx.serialization.Serializable
 import za.co.ilert.core.data.models.Message
 
-@Serializable
+
 data class WsServerMessage(
 	val fromId: String,
 	val toId: String,

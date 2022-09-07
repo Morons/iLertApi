@@ -1,30 +1,28 @@
 package za.co.ilert.core.data.types
 
-import kotlinx.serialization.Serializable
-
 // Beef Front Quarter 1xx, Beef Hind Quarter 2xx, Pork 3xx, Lamb 4xx, Chicken 5xx
-@Serializable
-sealed class PorkPrimalCutType(val cut: Int) {
-	object ThickRib : PorkPrimalCutType(cut = 301)
-	object Rib : PorkPrimalCutType(cut = 302)
-	object Loin : PorkPrimalCutType(cut = 303)
-	object Leg : PorkPrimalCutType(cut = 304)
-	object Breast : PorkPrimalCutType(cut = 305)
-	object Belly : PorkPrimalCutType(cut = 306)
-	object Chump : PorkPrimalCutType(cut = 307)
-	object Shank : PorkPrimalCutType(cut = 308)
-	object Rinds : PorkPrimalCutType(cut = 309)
-	object Trotters : PorkPrimalCutType(cut = 310)
-	object Stew : PorkPrimalCutType(cut = 311)
-	object MeatyBones : PorkPrimalCutType(cut = 312)
-	object PorkBonesType : PorkPrimalCutType(cut = 313)
-	object PorkTrimmings9010Type : PorkPrimalCutType(cut = 314)
-	object PorkTrimmings8020Type : PorkPrimalCutType(cut = 315)
-	object PorkTrimmings7030Type : PorkPrimalCutType(cut = 316)
-	object PorkTrimmings6040Type : PorkPrimalCutType(cut = 317)
-	object PorkTrimmings5050Type : PorkPrimalCutType(cut = 318)
-	object PorkSpekType : PorkPrimalCutType(cut = 319)
-	object None : PorkPrimalCutType(cut = 320)
+
+sealed class PorkPrimalCutType(val cut: Int, val name: String) {
+	object ThickRib : PorkPrimalCutType(cut = 301, name = "Thick Rib")
+	object Rib : PorkPrimalCutType(cut = 302, name = "Rib")
+	object Loin : PorkPrimalCutType(cut = 303, name = "Loin")
+	object Leg : PorkPrimalCutType(cut = 304, name = "Leg")
+	object Breast : PorkPrimalCutType(cut = 305, name = "Breast")
+	object Belly : PorkPrimalCutType(cut = 306, name = "Belly")
+	object Chump : PorkPrimalCutType(cut = 307, name = "Chump")
+	object Shank : PorkPrimalCutType(cut = 308, name = "Shank")
+	object Rinds : PorkPrimalCutType(cut = 309, name = "Rinds")
+	object Trotters : PorkPrimalCutType(cut = 310, name = "Trotters")
+	object Stew : PorkPrimalCutType(cut = 311, name = "Stew")
+	object MeatyBones : PorkPrimalCutType(cut = 312, name = "Meaty Bones")
+	object PorkBones : PorkPrimalCutType(cut = 313, name = "Pork Bones")
+	object PorkTrimmings9010 : PorkPrimalCutType(cut = 314, name = "Pork Trimmings 90:10")
+	object PorkTrimmings8020 : PorkPrimalCutType(cut = 315, name = "Pork Trimmings 80:20")
+	object PorkTrimmings7030 : PorkPrimalCutType(cut = 316, name = "Pork Trimmings 70:30")
+	object PorkTrimmings6040 : PorkPrimalCutType(cut = 317, name = "Pork Trimmings 60:40")
+	object PorkTrimmings5050 : PorkPrimalCutType(cut = 318, name = "Pork Trimmings 50:50")
+	object PorkSpek : PorkPrimalCutType(cut = 319, name = "Pork Spek")
+	object None : PorkPrimalCutType(cut = 320, name = "None")
 
 
 	companion object {
@@ -42,13 +40,13 @@ sealed class PorkPrimalCutType(val cut: Int) {
 				310 -> Trotters
 				311 -> Stew
 				312 -> MeatyBones
-				313 -> PorkBonesType
-				314 -> PorkTrimmings9010Type
-				315 -> PorkTrimmings8020Type
-				316 -> PorkTrimmings7030Type
-				317 -> PorkTrimmings6040Type
-				318 -> PorkTrimmings5050Type
-				319 -> PorkSpekType
+				313 -> PorkBones
+				314 -> PorkTrimmings9010
+				315 -> PorkTrimmings8020
+				316 -> PorkTrimmings7030
+				317 -> PorkTrimmings6040
+				318 -> PorkTrimmings5050
+				319 -> PorkSpek
 				else -> None
 			}
 		}

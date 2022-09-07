@@ -4,7 +4,6 @@ import org.bson.types.ObjectId
 import za.co.ilert.core.data.models.User
 import za.co.ilert.core.data.models.UserSecurity
 import za.co.ilert.core.data.repository.user.UserRepository
-import za.co.ilert.core.data.requests.AuthRequest
 import za.co.ilert.core.data.requests.UserRequest
 import za.co.ilert.core.data.responses.UserResponse
 import za.co.ilert.core.data.responses.UserSearchResponse
@@ -44,7 +43,7 @@ class UserService(
 		} else false
 	}
 
-	suspend fun createUser(request: AuthRequest): Boolean {
+	suspend fun createUser(request: UserRequest): Boolean {
 		return userRepository.createUser(
 			with(request) {
 				val userId: String = ObjectId().toString()
@@ -52,6 +51,7 @@ class UserService(
 					email = email,
 					userName = userName,
 					password = password,
+					mobileNumber = mobileNumber,
 					avatarAsString = getByteArray(filePathName = "$FILE_SOURCE/ic_avatar_default.png"),
 					security = UserSecurity(userId = userId, active = true, roles = "BLOCK MAN"),
 					userId = userId
@@ -67,6 +67,7 @@ class UserService(
 					email = email,
 					userName = userName,
 					password = password,
+					mobileNumber = mobileNumber,
 					avatarAsString = avatarAsString,
 					security = security
 				)
@@ -78,8 +79,8 @@ class UserService(
 		return userRepository.updateUser(userRequest)
 	}
 
-	fun validateCreateAccountRequest(request: AuthRequest): ValidationEvent {
-		return if (with(request) { email.isBlank() || password.isBlank() || userName.isBlank() }) {
+	fun validateCreateAccountRequest(userRequest: UserRequest): ValidationEvent {
+		return if (with(userRequest) { email.isBlank() || password.isBlank() || userName.isBlank() }) {
 			ValidationEvent.ErrorFieldEmpty
 		} else ValidationEvent.Success
 	}

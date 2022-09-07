@@ -1,12 +1,11 @@
 package za.co.ilert.core.data.models
 
-import kotlinx.serialization.Serializable
 import org.bson.codecs.pojo.annotations.BsonId
 import org.bson.types.ObjectId
 import java.time.Instant.now
 import java.time.ZoneOffset
 
-@Serializable
+
 data class BlockTest(
 	val userId: String,
 	val carcassType: Int, // Beef Front Quarter 1xx, Beef Hind Quarter 2xx, Pork 3xx, Lamb 4xx, Chicken 5xx
@@ -21,6 +20,8 @@ data class BlockTest(
 	val percentDifferenceParameter: Double,
 	val percentGpRequired: Double,
 	val acceptablePriceVariance: Double,
+	val primalCuts: List<PrimalCut>,
+	val sumPrimalsWeight: Double,
 	val trimmingWaste: Double,
 	val measuredWeightAfterCuts: Double,
 	val timestamp: Long = now().atOffset(ZoneOffset.UTC).toEpochSecond(),
