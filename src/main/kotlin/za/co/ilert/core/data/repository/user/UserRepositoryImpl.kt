@@ -30,10 +30,12 @@ class UserRepositoryImpl(
 		val userToSave = UserResponse(
 			userId = userRequest.userId,
 			email = user.email,
+			mobileNumber = user.mobileNumber,
 			userName = user.userName,
 			password = user.password,
 			avatarAsString = user.avatarAsString,
-			security = user.security
+			security = user.security,
+			organizationId = user.organizationId
 		)
 		return usersDb.updateOneById(
 			id = userRequest.userId,

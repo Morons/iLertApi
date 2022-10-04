@@ -12,6 +12,12 @@ object Constants {
 	// API Path
 	private const val PATH = "/v1"
 
+	// Organization Paths
+	const val ORGANIZATION = "$PATH/organization"
+
+	// Addresses Paths
+	const val ADDRESS = "$PATH/address"
+
 	// User Paths
 	const val USER = "$PATH/user"
 	const val USER_CREATE = "$PATH/user/create"

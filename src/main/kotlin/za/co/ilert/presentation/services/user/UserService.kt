@@ -43,9 +43,9 @@ class UserService(
 		} else false
 	}
 
-	suspend fun createUser(request: UserRequest): Boolean {
+	suspend fun createUser(userRequest: UserRequest): Boolean {
 		return userRepository.createUser(
-			with(request) {
+			with(userRequest) {
 				val userId: String = ObjectId().toString()
 				User(
 					email = email,
@@ -54,7 +54,8 @@ class UserService(
 					mobileNumber = mobileNumber,
 					avatarAsString = getByteArray(filePathName = "$FILE_SOURCE/ic_avatar_default.png"),
 					security = UserSecurity(userId = userId, active = true, roles = "BLOCK MAN"),
-					userId = userId
+					userId = userId,
+					organizationId = organizationId
 				)
 			}
 		)
@@ -69,7 +70,8 @@ class UserService(
 					password = password,
 					mobileNumber = mobileNumber,
 					avatarAsString = avatarAsString,
-					security = security
+					security = security,
+					organizationId = organizationId
 				)
 			}
 		)
@@ -104,10 +106,12 @@ class UserService(
 			UserResponse(
 				userId = userId,
 				email = email,
+				mobileNumber = mobileNumber,
 				userName = userName,
 				password = password,
 				avatarAsString = avatarAsString,
-				security = security
+				security = security,
+				organizationId = organizationId
 			)
 		}
 	}

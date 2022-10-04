@@ -92,7 +92,7 @@ fun Route.createUser(userService: UserService) {
 			}
 
 			else -> {
-				userService.createUser(request = request)
+				userService.createUser(userRequest = request)
 				call.respond(
 					status = OK,
 					message = BasicApiResponse<Unit>(successful = true, message = "$OK")

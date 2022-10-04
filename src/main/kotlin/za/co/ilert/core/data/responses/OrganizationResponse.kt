@@ -1,11 +1,9 @@
-package za.co.ilert.core.data.models
+package za.co.ilert.core.data.responses
 
-import org.bson.codecs.pojo.annotations.BsonId
-import org.bson.types.ObjectId
-import java.time.Instant
-import java.time.ZoneOffset
+import za.co.ilert.core.data.models.Addresses
+import za.co.ilert.core.data.models.OrganizationParameters
 
-data class Organization(
+data class OrganizationResponse(
 	val organizationName: String,
 	val organizationPhone: String,
 	val organizationEmail: String,
@@ -17,8 +15,5 @@ data class Organization(
 	val payment: String, // EFT/ VISA/ Crypto etc (tread carefully)
 	val organizationPopi: String = "false",
 	val organizationAddress: Addresses,
-	val parameters: OrganizationParameters,
-	val organizationTimestamp: Long = Instant.now().atOffset(ZoneOffset.UTC).toEpochSecond(),
-	@BsonId
-	val organizationId: String = ObjectId().toString()
+	val parameters: OrganizationParameters
 )

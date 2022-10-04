@@ -1,0 +1,3 @@
+package za.co.ilert.core.data.requests
+
+data class GetOrganizationRequest(val organizationId: String)

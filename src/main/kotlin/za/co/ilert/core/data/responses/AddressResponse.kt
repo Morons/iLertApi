@@ -1,6 +1,6 @@
-package za.co.ilert.core.data.models
+package za.co.ilert.core.data.responses
 
-data class Addresses(
+data class AddressResponse(
 	val label: String,
 	val number: String,
 	val street: String,
@@ -9,5 +9,5 @@ data class Addresses(
 	val region: String,
 	val country: String,
 	val code: String,
-	val googlePlaceId: String,
+	val googlePlaceId: String
 )

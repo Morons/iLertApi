@@ -6,16 +6,22 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 import org.litote.kmongo.coroutine.coroutine
 import org.litote.kmongo.reactivestreams.KMongo
+import za.co.ilert.core.data.repository.address.AddressRepository
+import za.co.ilert.core.data.repository.address.AddressRepositoryImpl
 import za.co.ilert.core.data.repository.blocktest.BlockTestRepository
 import za.co.ilert.core.data.repository.blocktest.BlockTestRepositoryImpl
 import za.co.ilert.core.data.repository.chat.ChatRepository
 import za.co.ilert.core.data.repository.chat.ChatRepositoryImpl
+import za.co.ilert.core.data.repository.organization.OrganizationRepository
+import za.co.ilert.core.data.repository.organization.OrganizationRepositoryImpl
 import za.co.ilert.core.data.repository.user.UserRepository
 import za.co.ilert.core.data.repository.user.UserRepositoryImpl
 import za.co.ilert.core.utils.Constants.DATABASE_NAME
+import za.co.ilert.presentation.services.address.AddressService
 import za.co.ilert.presentation.services.blocktest.BlockTestService
 import za.co.ilert.presentation.services.chat.ChatController
 import za.co.ilert.presentation.services.chat.ChatService
+import za.co.ilert.presentation.services.organization.OrganizationService
 import za.co.ilert.presentation.services.user.UserService
 
 val mainModule = module {
@@ -27,11 +33,15 @@ val mainModule = module {
 
 //	single<BlockTestRepository>{ BlockTestRepositoryImpl(get()) }
 	singleOf(::UserRepositoryImpl) { bind<UserRepository>() }
+	singleOf(::OrganizationRepositoryImpl) { bind<OrganizationRepository>() }
+	singleOf(::AddressRepositoryImpl) { bind<AddressRepository>() }
 	singleOf(::ChatRepositoryImpl) { bind<ChatRepository>() }
 	singleOf(::BlockTestRepositoryImpl) { bind<BlockTestRepository>() }
 
 //	single { BlockTestService(get()) }
 	singleOf(::UserService)
+	singleOf(::OrganizationService)
+	singleOf(::AddressService)
 	singleOf(::ChatService)
 	singleOf(::BlockTestService)
 	singleOf(::ChatController)

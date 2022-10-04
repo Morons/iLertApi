@@ -9,5 +9,6 @@ data class UserRequest(
 	val userName: String,
 	val password: String,
 	val avatarAsString: String,
-	val security: UserSecurity
+	val security: UserSecurity,
+	val organizationId: String
 )
