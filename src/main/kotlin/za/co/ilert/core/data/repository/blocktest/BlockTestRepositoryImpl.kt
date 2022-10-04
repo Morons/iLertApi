@@ -1,13 +1,11 @@
 package za.co.ilert.core.data.repository.blocktest
 
-import org.litote.kmongo.MongoOperator.project
-import org.litote.kmongo.MongoOperator.sum
+import org.litote.kmongo.*
+import org.litote.kmongo.MongoOperator.*
 import org.litote.kmongo.coroutine.CoroutineDatabase
 import org.litote.kmongo.coroutine.aggregate
-import org.litote.kmongo.eq
-import org.litote.kmongo.json
-import org.litote.kmongo.match
 import za.co.ilert.core.data.models.BlockTest
+import za.co.ilert.core.data.models.PrimalCut
 import za.co.ilert.core.data.requests.BlockTestRequest
 import za.co.ilert.core.data.requests.DeleteBlockTestRequest
 import za.co.ilert.core.data.requests.GenericPageRequest
@@ -22,6 +20,7 @@ class BlockTestRepositoryImpl(
 
 	override suspend fun getBlockTest(blockTestId: String): BlockTest? {
 		val blockTest: BlockTest = blockTestDb.findOne(filter = BlockTest::blockTestId eq blockTestId) ?: return null
+		val sumPrimalsWeight = sumPrimalsWeight(blockTestId)
 
 		return BlockTest(
 			userId = blockTest.userId,
@@ -40,7 +39,7 @@ class BlockTestRepositoryImpl(
 			trimmingWaste = blockTest.trimmingWaste,
 			measuredWeightAfterCuts = blockTest.measuredWeightAfterCuts,
 			primalCuts = blockTest.primalCuts,
-			sumPrimalsWeight = blockTest.sumPrimalsWeight,
+			sumPrimalsWeight = sumPrimalsWeight,
 			timestamp = blockTest.timestamp,
 			blockTestId = blockTest.blockTestId
 		)
@@ -48,17 +47,11 @@ class BlockTestRepositoryImpl(
 
 	override suspend fun sumPrimalsWeight(blockTestId: String): Double {
 
-//		val result =  blockTestDb.aggregate<ResultResponse>(
-//			"""[ { ${match()} : { _id: $ blockTestId } }, { $project: { _id: {
-//				|sumOfPrimalsWeight: { $sum: '$ primalCuts.actualCutWeight' } } } } ]""".trimMargin()
-//		).first()?.sumWeight ?: 0.0
-//		println("Result = $result **********")
-//		println("Result.json = ${result.json} **********")
-		return 0.0
-//		return blockTestDb.aggregate<ResultResponse>(
-//			match(BlockTest::blockTestId eq blockTestId),
-//			group(ResultResponse::sumWeight sum listOf(PrimalCut::actualCutWeight))
-//		).first()?.sumWeight ?: 0.0
+		return blockTestDb.aggregate<ResultResponse>(
+			match(BlockTest::blockTestId eq blockTestId),
+			project(ResultResponse::sumWeight to sum.from(
+				(BlockTest::primalCuts / PrimalCut::actualCutWeight).projection))
+		).first()?.sumWeight ?: 0.0
 	}
 
 	/**

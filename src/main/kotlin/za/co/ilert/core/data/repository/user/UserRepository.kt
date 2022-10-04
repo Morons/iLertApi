@@ -7,7 +7,7 @@ interface UserRepository {
 
 	suspend fun createUser(user: User): Boolean
 
-	suspend fun getUser(loginValue: String): User?
+	suspend fun getUser(userId: String): User?
 
 	suspend fun upsertUser(user: User): Boolean
 

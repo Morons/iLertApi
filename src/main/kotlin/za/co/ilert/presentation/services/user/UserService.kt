@@ -25,8 +25,8 @@ class UserService(
 	}
 
 
-	suspend fun getUser(loginValue: String): User? {
-		return userRepository.getUser(loginValue)
+	suspend fun getUser(userId: String): User? {
+		return userRepository.getUser(userId)
 	}
 
 	private fun isValidPassword(enteredPassword: String, actualPassword: String?): Boolean {

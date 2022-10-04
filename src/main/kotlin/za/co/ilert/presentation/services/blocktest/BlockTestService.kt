@@ -23,10 +23,7 @@ class BlockTestService(
 
 	suspend fun getBlockTest(blockTestId: String): BlockTest? {
 
-		val totalPrimalAndTrimmings = blockTestRepository.sumPrimalsWeight(blockTestId = blockTestId)
 		return blockTestRepository.getBlockTest(blockTestId = blockTestId)
-			?.copy(sumPrimalsWeight = totalPrimalAndTrimmings)
-
 	}
 
 	suspend fun insertBlockTest(

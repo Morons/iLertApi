@@ -21,7 +21,7 @@ import java.time.ZoneOffset
 fun Route.getBlockTest(blockTestService: BlockTestService) {
 	authenticate {
 		get(BLOCK_TEST) {
-			val request = call.receiveOrNull<GetBlockTestRequest>() ?: kotlin.run {
+			val request = kotlin.runCatching { call.receiveNullable<GetBlockTestRequest>() }.getOrNull() ?: kotlin.run {
 				call.respond(
 					status = BadRequest, message = BasicApiResponse<Unit>(successful = false, message = "$BadRequest")
 				)
@@ -49,6 +49,7 @@ fun Route.getBlockTest(blockTestService: BlockTestService) {
 					trimmingWaste = blockTest.trimmingWaste,
 					measuredWeightAfterCuts = blockTest.measuredWeightAfterCuts,
 					primalCuts = blockTest.primalCuts,
+					sumPrimalsWeight = blockTest.sumPrimalsWeight,
 					timestamp = blockTest.timestamp,
 					blockTestId = blockTest.blockTestId,
 					carcassCostIncl = blockTest.carcassKgCostIncl * blockTest.carcassWeight,

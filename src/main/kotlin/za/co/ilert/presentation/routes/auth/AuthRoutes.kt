@@ -65,7 +65,7 @@ fun Route.authenticate() {
 
 fun Route.createUser(userService: UserService) {
 	post(USER_CREATE) {
-		val request = call.receiveOrNull<UserRequest>() ?: kotlin.run {
+		val request = kotlin.runCatching { call.receiveNullable<UserRequest>() }.getOrNull() ?: kotlin.run {
 			call.respond(
 				status = BadRequest,
 				message = BasicApiResponse<Unit>(
@@ -107,7 +107,7 @@ fun Route.loginUser(
 	userService: UserService, jwtIssuer: String, jwtAudience: String, jwtSecret: String
 ) {
 	post(USER_LOGIN) {
-		val request = call.receiveOrNull<AuthRequest>() ?: kotlin.run {
+		val request = kotlin.runCatching { call.receiveNullable<AuthRequest>() }.getOrNull() ?: kotlin.run {
 			call.respond(
 				status = BadRequest,
 				message = BasicApiResponse<Unit>(successful = false, message = "$BadRequest")

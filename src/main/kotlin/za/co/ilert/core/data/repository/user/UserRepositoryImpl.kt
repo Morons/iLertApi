@@ -16,13 +16,8 @@ class UserRepositoryImpl(
 		return usersDb.insertOne(user).wasAcknowledged()
 	}
 
-	override suspend fun getUser(loginValue: String): User? {
-		return usersDb.findOne(
-			or(
-				User::email eq loginValue,
-				User::userName eq loginValue
-			)
-		)
+	override suspend fun getUser(userId: String): User? {
+		return usersDb.findOne(User::userId eq userId)
 	}
 
 	override suspend fun upsertUser(user: User): Boolean {

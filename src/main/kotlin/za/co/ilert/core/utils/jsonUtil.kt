@@ -1,7 +1,6 @@
 package za.co.ilert.core.utils
 
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 import com.google.gson.JsonSyntaxException
 

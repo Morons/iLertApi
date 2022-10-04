@@ -11,6 +11,7 @@ import za.co.ilert.presentation.routes.blocktest.getBlockTest
 import za.co.ilert.presentation.routes.blocktest.insertBlockTest
 import za.co.ilert.presentation.routes.chat.*
 import za.co.ilert.presentation.routes.user.getUser
+import za.co.ilert.presentation.routes.user.getUserByPost
 import za.co.ilert.presentation.routes.user.searchUser
 import za.co.ilert.presentation.routes.user.updateUserProfile
 import za.co.ilert.presentation.services.blocktest.BlockTestService
@@ -45,6 +46,7 @@ fun Application.configureRouting() {
 		// User Routes
 		searchUser(userService = userService)
 		getUser(userService = userService)
+		getUserByPost(userService = userService)
 		updateUserProfile(userService = userService)
 
 		// BlockTest Routes

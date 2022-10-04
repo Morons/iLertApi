@@ -19,6 +19,7 @@ data class BlockTestResponse(
 	val trimmingWaste: Double,
 	val measuredWeightAfterCuts: Double,
 	val primalCuts: List<PrimalCut>,
+	val sumPrimalsWeight: Double,
 	val timestamp: Long,
 	val blockTestId: String,
 	val carcassCostIncl: Double,

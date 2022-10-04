@@ -11,9 +11,9 @@ data class UserSecurity(
 	@BsonId
 	val securityId: String = ObjectId().toString()
 ) {
-//	
-//	val roleList: List<String>
-//		get() = if (this.roles?.isNotEmpty()!!) {
-//			listOf(*this.roles?.split(",".toRegex())?.dropLastWhile { it.isEmpty() }?.toTypedArray()!!)
-//		} else ArrayList()
+
+	val roleList: List<String>
+		get() = if (this.roles?.isNotEmpty()!!) {
+			listOf(*this.roles?.split(",".toRegex())?.dropLastWhile { it.isEmpty() }?.toTypedArray()!!)
+		} else ArrayList()
 }
