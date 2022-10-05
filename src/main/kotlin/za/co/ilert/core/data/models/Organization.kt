@@ -16,6 +16,9 @@ data class Organization(
 	val organizationPreferredIM: String = "WhatsApp",
 	val payment: String, // EFT/ VISA/ Crypto etc (tread carefully)
 	val organizationPopi: String = "false",
+	val coRegistrationNumber: String,
+	val VATNumber: String,
+	val VATValuePercent: Double,
 	val organizationAddress: Addresses,
 	val parameters: OrganizationParameters,
 	val organizationTimestamp: Long = Instant.now().atOffset(ZoneOffset.UTC).toEpochSecond(),

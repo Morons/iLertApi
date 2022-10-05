@@ -10,10 +10,12 @@ class OrganizationService(
 ) {
 
 	suspend fun createOrganization(organizationRequest: OrganizationRequest): Boolean {
+		var organizationId = organizationRequest.organizationId
 		return organizationRepository.createOrganization(
 			with(organizationRequest){
-				val organizationId: String = ObjectId().toString()
+				if(organizationId.isEmpty()) organizationId = ObjectId().toString()
 				Organization(
+					organizationId = organizationId,
 					organizationName = organizationName,
 					organizationPhone = organizationPhone,
 					organizationEmail = organizationEmail,
@@ -24,9 +26,11 @@ class OrganizationService(
 					organizationPreferredIM = organizationPreferredIM,
 					payment = payment,
 					organizationPopi = organizationPopi,
+					coRegistrationNumber = coRegistrationNumber,
+					VATNumber = VATNumber,
+					VATValuePercent = VATValuePercent,
 					organizationAddress = organizationAddress,
-					parameters = parameters,
-					organizationId = organizationId
+					parameters = parameters
 				)
 			}
 		)

@@ -8,6 +8,5 @@ data class AddressResponse(
 	val locality: String,
 	val region: String,
 	val country: String,
-	val code: String,
-	val googlePlaceId: String
+	val code: String
 )

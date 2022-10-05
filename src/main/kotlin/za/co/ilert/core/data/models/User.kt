@@ -11,7 +11,7 @@ data class User(
 	val password: String,
 	val mobileNumber: String,
 	val avatarAsString: String,
-	val security: UserSecurity? = null,
+	val security: UserSecurity,
 	val organizationId: String,
 	val timestamp: Long	= Instant.now().atOffset(ZoneOffset.UTC).toEpochSecond(),
 	@BsonId

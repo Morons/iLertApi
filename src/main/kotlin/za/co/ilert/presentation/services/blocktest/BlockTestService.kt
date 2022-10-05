@@ -26,9 +26,7 @@ class BlockTestService(
 		return blockTestRepository.getBlockTest(blockTestId = blockTestId)
 	}
 
-	suspend fun insertBlockTest(
-		blockTestRequest: BlockTestRequest
-	): Boolean {
+	suspend fun insertBlockTest(blockTestRequest: BlockTestRequest): Boolean {
 		return blockTestRepository.insertBlockTest(
 			blockTestRequest = blockTestRequest
 		)

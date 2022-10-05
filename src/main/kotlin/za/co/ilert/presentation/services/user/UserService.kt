@@ -44,9 +44,10 @@ class UserService(
 	}
 
 	suspend fun createUser(userRequest: UserRequest): Boolean {
+		var userId = userRequest.userId
 		return userRepository.createUser(
 			with(userRequest) {
-				val userId: String = ObjectId().toString()
+				if (userId.isEmpty()) userId = ObjectId().toString()
 				User(
 					email = email,
 					userName = userName,
