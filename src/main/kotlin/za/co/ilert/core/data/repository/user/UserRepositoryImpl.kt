@@ -5,6 +5,8 @@ import org.litote.kmongo.coroutine.CoroutineDatabase
 import za.co.ilert.core.data.models.User
 import za.co.ilert.core.data.requests.UserRequest
 import za.co.ilert.core.data.responses.UserResponse
+import za.co.ilert.core.utils.Constants
+import za.co.ilert.core.utils.getByteArray
 
 class UserRepositoryImpl(
 	db: CoroutineDatabase
@@ -26,17 +28,22 @@ class UserRepositoryImpl(
 	}
 
 	override suspend fun updateUser(userRequest: UserRequest): Boolean {
-		val user = getUserById(userRequest.userId) ?: return false
-		val userToSave = UserResponse(
-			userId = userRequest.userId,
-			email = user.email,
-			mobileNumber = user.mobileNumber,
-			userName = user.userName,
-			password = user.password,
-			avatarAsString = user.avatarAsString,
-			security = user.security,
-			organizationId = user.organizationId
-		)
+		val userToSave = if (!userRequest.userId.isNullOrBlank()) {
+			val user = getUserById(userRequest.userId) ?: return false
+			UserResponse(
+				userId = userRequest.userId,
+				email = user.email,
+				mobileNumber = user.mobileNumber ?: "",
+				userName = user.userName,
+				password = user.password,
+				avatarAsString = user.avatarAsString
+					?: getByteArray(filePathName = "${Constants.FILE_SOURCE}/ic_avatar_default.png"),
+				security = user.security,
+				organizationId = user.organizationId
+			)
+		} else {
+			return false
+		}
 		return usersDb.updateOneById(
 			id = userRequest.userId,
 			update = userToSave,

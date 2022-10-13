@@ -19,8 +19,8 @@ data class Organization(
 	val coRegistrationNumber: String,
 	val VATNumber: String,
 	val VATValuePercent: Double,
-	val organizationAddress: Addresses,
-	val parameters: OrganizationParameters,
+	val organizationAddress: Address,
+	val parameters: Parameters,
 	val organizationTimestamp: Long = Instant.now().atOffset(ZoneOffset.UTC).toEpochSecond(),
 	@BsonId
 	val organizationId: String = ObjectId().toString()

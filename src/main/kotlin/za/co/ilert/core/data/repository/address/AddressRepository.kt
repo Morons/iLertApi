@@ -1,8 +1,8 @@
 package za.co.ilert.core.data.repository.address
 
-import za.co.ilert.core.data.models.Addresses
+import za.co.ilert.core.data.models.Address
 
 interface AddressRepository {
 
-	suspend fun createAddress(addresses: Addresses): Boolean
+	suspend fun createAddress(address: Address): Boolean
 }

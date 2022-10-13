@@ -2,14 +2,13 @@ package za.co.ilert.core.data.requests
 
 import za.co.ilert.core.data.models.Address
 import za.co.ilert.core.data.models.Parameters
-import za.co.ilert.core.data.models.User
 
-data class OrganizationRequest(
+data class CreateOrganizationRequest(
 	val organizationId: String,
 	val organizationName: String,
 	val organizationPhone: String,
 	val organizationEmail: String,
-	val owner: User,
+	val organizationOwnerId: String,
 	val industry: String, // Consumer Goods
 	val sector: String, // Retail
 	val organizationMobile: String,
@@ -20,6 +19,5 @@ data class OrganizationRequest(
 	val VATNumber: String,
 	val VATValuePercent: Double,
 	val organizationAddress: Address,
-	val parameters: Parameters,
-	val organizationTimestamp: Long
+	val parameters: Parameters
 )

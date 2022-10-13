@@ -1,7 +1,7 @@
 package za.co.ilert.core.data.responses
 
-import za.co.ilert.core.data.models.Addresses
-import za.co.ilert.core.data.models.OrganizationParameters
+import za.co.ilert.core.data.models.Address
+import za.co.ilert.core.data.models.Parameters
 
 data class OrganizationResponse(
 	val organizationName: String,
@@ -14,6 +14,6 @@ data class OrganizationResponse(
 	val organizationPreferredIM: String = "WhatsApp",
 	val payment: String, // EFT/ VISA/ Crypto etc (tread carefully)
 	val organizationPopi: String = "false",
-	val organizationAddress: Addresses,
-	val parameters: OrganizationParameters
+	val organizationAddress: Address,
+	val parameters: Parameters
 )

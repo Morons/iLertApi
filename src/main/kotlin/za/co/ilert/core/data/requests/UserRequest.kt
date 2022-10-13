@@ -1,14 +1,16 @@
 package za.co.ilert.core.data.requests
 
 import za.co.ilert.core.data.models.UserSecurity
+import za.co.ilert.core.utils.Constants
+import za.co.ilert.core.utils.getByteArray
 
 data class UserRequest(
-	val userId: String,
+	val userId: String?,
 	val email: String,
-	val mobileNumber: String,
+	val mobileNumber: String? = "",
 	val userName: String,
 	val password: String,
-	val avatarAsString: String,
-	val security: UserSecurity,
+	val avatarAsString: String? = getByteArray(filePathName = "${Constants.FILE_SOURCE}/ic_avatar_default.png"),
+	val security: UserSecurity? = UserSecurity(active = true, roles = "BLOCK MAN"),
 	val organizationId: String
 )

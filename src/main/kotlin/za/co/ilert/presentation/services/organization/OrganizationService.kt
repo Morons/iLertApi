@@ -3,16 +3,16 @@ package za.co.ilert.presentation.services.organization
 import org.bson.types.ObjectId
 import za.co.ilert.core.data.models.Organization
 import za.co.ilert.core.data.repository.organization.OrganizationRepository
-import za.co.ilert.core.data.requests.OrganizationRequest
+import za.co.ilert.core.data.requests.CreateOrganizationRequest
 
 class OrganizationService(
 	private val organizationRepository: OrganizationRepository
 ) {
 
-	suspend fun createOrganization(organizationRequest: OrganizationRequest): Boolean {
-		var organizationId = organizationRequest.organizationId
+	suspend fun createOrganization(createOrganizationRequest: CreateOrganizationRequest): Boolean {
+		var organizationId = createOrganizationRequest.organizationId
 		return organizationRepository.createOrganization(
-			with(organizationRequest){
+			with(createOrganizationRequest){
 				if(organizationId.isEmpty()) organizationId = ObjectId().toString()
 				Organization(
 					organizationId = organizationId,
@@ -34,5 +34,9 @@ class OrganizationService(
 				)
 			}
 		)
+	}
+
+	suspend fun getOrganization(organizationId: String): Organization? {
+		return organizationRepository.getOrganization(organizationId)
 	}
 }

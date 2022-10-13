@@ -7,7 +7,6 @@ import io.ktor.server.auth.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import org.litote.kmongo.json
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.USER_NOT_FOUND
 import za.co.ilert.core.data.requests.GetUserRequest
@@ -48,26 +47,12 @@ fun Route.searchUser(userService: UserService) {
 fun Route.getUser(userService: UserService) {
 	authenticate {
 		get(USER) {
-			val request = call.receiveOrNull<GetUserRequest>().also {
-				println("getUser request received = ${it?.json} **********")
-			} ?: kotlin.run {
+			val request = kotlin.runCatching { call.receiveNullable<GetUserRequest>() }.getOrNull() ?: kotlin.run {
 				call.respond(
 					status = BadRequest, message = BasicApiResponse<Unit>(successful = false, message = "$BadRequest")
 				)
 				return@get
 			}
-//			val request = kotlin.runCatching {
-//				call.receiveNullable<GetUserRequest>().also {
-//					println("getUser request received = ${it?.json} **********")
-//				}
-//			}.getOrNull() ?: kotlin.run {
-//				println("getUser User Id = null **********")
-//				call.respond(
-//					status = BadRequest, message = BasicApiResponse<Unit>(successful = false, message = "$BadRequest")
-//				)
-//				return@get
-//			}
-			println("getUser User Id = ${request.userId} **********")
 			val user = userService.getUser(request.userId)
 			if (user == null) {
 				call.respond(
@@ -77,12 +62,11 @@ fun Route.getUser(userService: UserService) {
 				return@get
 			}
 			call.respond(status = OK, message = BasicApiResponse(successful = true, data = user))
-			println("getUser user(message) = ${user.json} **********")
 		}
 	}
 }
 
-fun Route.getUserByPost(userService: UserService) {
+fun Route.getUserUsePost(userService: UserService) {
 	authenticate {
 		post(USER) {
 			val request = kotlin.runCatching {

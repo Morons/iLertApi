@@ -9,6 +9,7 @@ object ApiResponseMessages {
 	const val UNKNOWN_ERROR_TRY_AGAIN = "Unknown Error, Try Again"
 	const val USER_ALREADY_EXIST = "User with this email already exist!"
 	const val USER_NOT_FOUND = "User not found"
+	const val ORGANIZATION_NOT_FOUND = "Organization not found"
 	const val LOGIN_AUTHENTICATED = "Login Authenticated"
 
 }

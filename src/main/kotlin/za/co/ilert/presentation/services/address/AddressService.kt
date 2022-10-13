@@ -1,6 +1,6 @@
 package za.co.ilert.presentation.services.address
 
-import za.co.ilert.core.data.models.Addresses
+import za.co.ilert.core.data.models.Address
 import za.co.ilert.core.data.repository.address.AddressRepository
 import za.co.ilert.core.data.requests.AddressRequest
 
@@ -11,7 +11,7 @@ class AddressService(
 	suspend fun createAddress(addressRequest: AddressRequest): Boolean {
 		return addressRepository.createAddress(
 			with(addressRequest) {
-				Addresses(
+				Address(
 					label = label,
 					premiseNumber = premiseNumber,
 					premise = premise,

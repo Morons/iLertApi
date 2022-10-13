@@ -28,14 +28,6 @@ import za.co.ilert.presentation.services.user.UserService
 import za.co.ilert.presentation.validation.ValidationEvent
 import java.util.*
 
-//fun Route.authenticate() {
-//	authenticate {
-//		get(USER_AUTHENTICATE) {
-//			call.respond(OK)
-//		}
-//	}
-//}
-
 fun Route.authenticate() {
 	authenticate {
 		get(USER_AUTHENTICATE) {

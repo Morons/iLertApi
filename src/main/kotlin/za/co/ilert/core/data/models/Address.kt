@@ -1,6 +1,6 @@
 package za.co.ilert.core.data.models
 
-data class Addresses(
+data class Address(
 	val label: String,
 	val premiseNumber: String,
 	val premise: String,

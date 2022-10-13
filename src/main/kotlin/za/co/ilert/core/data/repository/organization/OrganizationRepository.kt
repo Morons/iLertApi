@@ -5,4 +5,6 @@ import za.co.ilert.core.data.models.Organization
 interface OrganizationRepository {
 
 	suspend fun createOrganization(organization: Organization): Boolean
+	suspend fun getOrganization(organizationId: String): Organization?
+
 }

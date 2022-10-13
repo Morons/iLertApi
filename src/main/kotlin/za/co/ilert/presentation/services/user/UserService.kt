@@ -5,8 +5,8 @@ import za.co.ilert.core.data.models.User
 import za.co.ilert.core.data.models.UserSecurity
 import za.co.ilert.core.data.repository.user.UserRepository
 import za.co.ilert.core.data.requests.UserRequest
-import za.co.ilert.core.data.responses.UserResponse
 import za.co.ilert.core.data.responses.UserSearchResponse
+import za.co.ilert.core.utils.Constants
 import za.co.ilert.core.utils.Constants.DEFAULT_PAGE_SIZE
 import za.co.ilert.core.utils.Constants.FILE_SOURCE
 import za.co.ilert.core.utils.getByteArray
@@ -23,7 +23,6 @@ class UserService(
 	suspend fun getUserByEmail(email: String): User? {
 		return userRepository.getUserByEmail(email)
 	}
-
 
 	suspend fun getUser(userId: String): User? {
 		return userRepository.getUser(userId)
@@ -45,20 +44,20 @@ class UserService(
 
 	suspend fun createUser(userRequest: UserRequest): Boolean {
 		var userId = userRequest.userId
+		if (userId.isNullOrBlank()) userId = ObjectId().toString()
 		return userRepository.createUser(
-			with(userRequest) {
-				if (userId.isEmpty()) userId = ObjectId().toString()
-				User(
-					email = email,
-					userName = userName,
-					password = password,
-					mobileNumber = mobileNumber,
-					avatarAsString = getByteArray(filePathName = "$FILE_SOURCE/ic_avatar_default.png"),
-					security = UserSecurity(userId = userId, active = true, roles = "BLOCK MAN"),
-					userId = userId,
-					organizationId = organizationId
-				)
-			}
+			User(
+				email = userRequest.email,
+				userName = userRequest.userName,
+				password = userRequest.password,
+				mobileNumber = userRequest.mobileNumber ?: "",
+				avatarAsString = userRequest.avatarAsString
+					?: getByteArray(filePathName = "$FILE_SOURCE/ic_avatar_default.png"),
+				security = userRequest.security ?: UserSecurity(active = true, roles = "BLOCK MAN"),
+				userId = userId,
+				// FIXME: Hardcoded - just testing
+				organizationId = "633d39337b38656a92bed453" // userRequest.organizationId
+			)
 		)
 	}
 
@@ -96,24 +95,9 @@ class UserService(
 			UserSearchResponse(
 				userId = user.userId,
 				userName = user.userName,
-				avatarAsString = user.avatarAsString,
+				avatarAsString = user.avatarAsString
+					?: getByteArray(filePathName = "${Constants.FILE_SOURCE}/ic_avatar_default.png"),
 			)
 		}.filter { it.userId != userId }
-	}
-
-	suspend fun getUserProfile(userId: String): UserResponse? {
-		val user = userRepository.getUserById(userId = userId) ?: return null
-		return with(user) {
-			UserResponse(
-				userId = userId,
-				email = email,
-				mobileNumber = mobileNumber,
-				userName = userName,
-				password = password,
-				avatarAsString = avatarAsString,
-				security = security,
-				organizationId = organizationId
-			)
-		}
 	}
 }

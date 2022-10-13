@@ -12,8 +12,9 @@ import za.co.ilert.presentation.routes.blocktest.getBlockTest
 import za.co.ilert.presentation.routes.blocktest.insertBlockTest
 import za.co.ilert.presentation.routes.chat.*
 import za.co.ilert.presentation.routes.organization.createOrganization
+import za.co.ilert.presentation.routes.organization.getOrganization
 import za.co.ilert.presentation.routes.user.getUser
-import za.co.ilert.presentation.routes.user.getUserByPost
+import za.co.ilert.presentation.routes.user.getUserUsePost
 import za.co.ilert.presentation.routes.user.searchUser
 import za.co.ilert.presentation.routes.user.updateUserProfile
 import za.co.ilert.presentation.services.address.AddressService
@@ -50,7 +51,8 @@ fun Application.configureRouting() {
 		)
 
 		// Organization Routes
-		createOrganization(organizationService = organizationService)
+		createOrganization(organizationService = organizationService, userService = userService)
+		getOrganization(organizationService = organizationService)
 
 		// Address Routes
 		createAddress(addressService = addressService)
@@ -58,7 +60,7 @@ fun Application.configureRouting() {
 		// User Routes
 		searchUser(userService = userService)
 		getUser(userService = userService)
-		getUserByPost(userService = userService)
+		getUserUsePost(userService = userService)
 		updateUserProfile(userService = userService)
 
 		// BlockTest Routes
