@@ -10,14 +10,17 @@ import io.ktor.server.routing.*
 import org.bson.types.ObjectId
 import za.co.ilert.core.data.models.UserSecurity
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages
+import za.co.ilert.core.data.repository.utils.ApiResponseMessages.FIELDS_BLANK
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.ORGANIZATION_NOT_FOUND
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.UNKNOWN_ERROR_TRY_AGAIN
+import za.co.ilert.core.data.repository.utils.ApiResponseMessages.USER_ALREADY_EXIST
 import za.co.ilert.core.data.requests.CreateOrganizationRequest
 import za.co.ilert.core.data.requests.GetOrganizationRequest
 import za.co.ilert.core.data.requests.OrganizationRequest
 import za.co.ilert.core.data.requests.UserRequest
 import za.co.ilert.core.data.responses.BasicApiResponse
 import za.co.ilert.core.utils.Constants
+import za.co.ilert.core.utils.Constants.FILE_SOURCE
 import za.co.ilert.core.utils.Constants.ORGANIZATION
 import za.co.ilert.core.utils.getByteArray
 import za.co.ilert.presentation.services.organization.OrganizationService
@@ -48,7 +51,7 @@ fun Route.createOrganization(organizationService: OrganizationService, userServi
 				userName = userName,
 				password = password,
 				avatarAsString = avatarAsString
-					?: getByteArray(filePathName = "${Constants.FILE_SOURCE}/ic_avatar_default.png"),
+					?: getByteArray(filePathName = "$FILE_SOURCE/ic_avatar_default.png"),
 				security = security ?: UserSecurity(active = true, roles = "BLOCK MAN"),
 				organizationId = organizationId
 			)
@@ -56,7 +59,7 @@ fun Route.createOrganization(organizationService: OrganizationService, userServi
 		if (userService.doesUserWithEmailExist(email = userRequest.email)) {
 			call.respond(
 				status = OK,
-				message = BasicApiResponse<Unit>(successful = false, message = ApiResponseMessages.USER_ALREADY_EXIST)
+				message = BasicApiResponse<Unit>(successful = false, message = USER_ALREADY_EXIST)
 			)
 			return@post
 		}
@@ -64,7 +67,7 @@ fun Route.createOrganization(organizationService: OrganizationService, userServi
 			ValidationEvent.ErrorFieldEmpty -> {
 				call.respond(
 					status = BadRequest,
-					message = BasicApiResponse<Unit>(successful = false, message = ApiResponseMessages.FIELDS_BLANK)
+					message = BasicApiResponse<Unit>(successful = false, message = FIELDS_BLANK)
 				)
 				return@post
 			}

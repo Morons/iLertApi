@@ -55,8 +55,7 @@ class UserService(
 					?: getByteArray(filePathName = "$FILE_SOURCE/ic_avatar_default.png"),
 				security = userRequest.security ?: UserSecurity(active = true, roles = "BLOCK MAN"),
 				userId = userId,
-				// FIXME: Hardcoded - just testing
-				organizationId = "633d39337b38656a92bed453" // userRequest.organizationId
+				organizationId = userRequest.organizationId
 			)
 		)
 	}

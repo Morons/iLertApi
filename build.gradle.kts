@@ -1,10 +1,10 @@
-val ktorVersion: String by project
-val kotlinVersion: String by project
-val logbackVersion: String by project
-val koinVersion: String by project
-val kmongoVersion: String by project
-val kotlinCssVersion: String by project
-val jqueryVersion: String by project
+val ktor_version: String by project
+val kotlin_version: String by project
+val logback_version: String by project
+val koin_version: String by project
+val kmongo_version: String by project
+val kotlin_css_version: String by project
+val jquery_version: String by project
 
 plugins {
 	application
@@ -42,34 +42,34 @@ repositories {
 }
 
 dependencies {
-	implementation("io.ktor:ktor-server-core-jvm:$ktorVersion")
-	implementation("io.ktor:ktor-server-auth-jvm:$ktorVersion")
-	implementation("io.ktor:ktor-server-auth-jwt-jvm:$ktorVersion")
-	implementation("io.ktor:ktor-server-sessions-jvm:$ktorVersion")
-	implementation("io.ktor:ktor-server-host-common-jvm:$ktorVersion")
-	implementation("io.ktor:ktor-server-content-negotiation-jvm:$ktorVersion")
-	implementation("io.ktor:ktor-server-cors-jvm:$ktorVersion")
-	implementation("io.ktor:ktor-server-default-headers-jvm:$ktorVersion")
-	implementation("io.ktor:ktor-server-http-redirect-jvm:$ktorVersion")
-	implementation("io.ktor:ktor-server-call-logging-jvm:$ktorVersion")
-	implementation("io.ktor:ktor-serialization-gson-jvm:$ktorVersion")
-	implementation("io.ktor:ktor-server-websockets-jvm:$ktorVersion")
-	implementation("io.ktor:ktor-server-tomcat-jvm:$ktorVersion")
+	implementation("io.ktor:ktor-server-core-jvm:$ktor_version")
+	implementation("io.ktor:ktor-server-auth-jvm:$ktor_version")
+	implementation("io.ktor:ktor-server-auth-jwt-jvm:$ktor_version")
+	implementation("io.ktor:ktor-server-sessions-jvm:$ktor_version")
+	implementation("io.ktor:ktor-server-host-common-jvm:$ktor_version")
+	implementation("io.ktor:ktor-server-content-negotiation-jvm:$ktor_version")
+	implementation("io.ktor:ktor-server-cors-jvm:$ktor_version")
+	implementation("io.ktor:ktor-server-default-headers-jvm:$ktor_version")
+	implementation("io.ktor:ktor-server-http-redirect-jvm:$ktor_version")
+	implementation("io.ktor:ktor-server-call-logging-jvm:$ktor_version")
+	implementation("io.ktor:ktor-serialization-gson-jvm:$ktor_version")
+	implementation("io.ktor:ktor-server-websockets-jvm:$ktor_version")
+	implementation("io.ktor:ktor-server-tomcat-jvm:$ktor_version")
 
-	implementation("ch.qos.logback:logback-classic:$logbackVersion")
+	implementation("ch.qos.logback:logback-classic:$logback_version")
 
-	implementation("org.webjars:jquery:$jqueryVersion")
+	implementation("org.webjars:jquery:$jquery_version")
 
 	// KMongo
-	implementation("org.litote.kmongo:kmongo:$kmongoVersion")
-	implementation("org.litote.kmongo:kmongo-coroutine:$kmongoVersion")
+	implementation("org.litote.kmongo:kmongo:$kmongo_version")
+	implementation("org.litote.kmongo:kmongo-coroutine:$kmongo_version")
 
 	// Koin core features
-	implementation("io.insert-koin:koin-core:$koinVersion")
-	implementation("io.insert-koin:koin-ktor:$koinVersion")
-	implementation("io.insert-koin:koin-logger-slf4j:$koinVersion")
+	implementation("io.insert-koin:koin-core:$koin_version")
+	implementation("io.insert-koin:koin-ktor:$koin_version")
+	implementation("io.insert-koin:koin-logger-slf4j:$koin_version")
 
 	// Test dependencies
-	testImplementation("io.ktor:ktor-server-tests-jvm:$ktorVersion")
-	testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
+	testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
+	testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }
