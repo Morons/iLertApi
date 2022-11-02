@@ -9,7 +9,6 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.bson.types.ObjectId
 import za.co.ilert.core.data.models.UserSecurity
-import za.co.ilert.core.data.repository.utils.ApiResponseMessages
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.FIELDS_BLANK
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.ORGANIZATION_NOT_FOUND
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.UNKNOWN_ERROR_TRY_AGAIN
@@ -19,7 +18,6 @@ import za.co.ilert.core.data.requests.GetOrganizationRequest
 import za.co.ilert.core.data.requests.OrganizationRequest
 import za.co.ilert.core.data.requests.UserRequest
 import za.co.ilert.core.data.responses.BasicApiResponse
-import za.co.ilert.core.utils.Constants
 import za.co.ilert.core.utils.Constants.FILE_SOURCE
 import za.co.ilert.core.utils.Constants.ORGANIZATION
 import za.co.ilert.core.utils.getByteArray
@@ -46,7 +44,7 @@ fun Route.createOrganization(organizationService: OrganizationService, userServi
 		val userRequest = with(request.owner) {
 			UserRequest(
 				userId = ownerId,
-				email = email,
+				email = userEmail,
 				mobileNumber = mobileNumber ?: "",
 				userName = userName,
 				password = password,
@@ -56,6 +54,7 @@ fun Route.createOrganization(organizationService: OrganizationService, userServi
 				organizationId = organizationId
 			)
 		}
+		println("userRequest.email = ${userRequest.email} **********")
 		if (userService.doesUserWithEmailExist(email = userRequest.email)) {
 			call.respond(
 				status = OK,

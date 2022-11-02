@@ -8,14 +8,13 @@ import java.time.Instant
 import java.time.ZoneOffset
 
 data class User(
-	val email: String,
+	val userEmail: String,
 	val userName: String,
 	val password: String,
 	val mobileNumber: String? = "",
 	val avatarAsString: String? = getByteArray(filePathName = "${Constants.FILE_SOURCE}/ic_avatar_default.png"),
 	val security: UserSecurity? = UserSecurity(active = true, roles = "BLOCK MAN"),
-	// FIXME: Hardcoded - just testing
-	val organizationId: String = "633d39337b38656a92bed453",
+	val organizationId: String,
 	val timestamp: Long	= Instant.now().atOffset(ZoneOffset.UTC).toEpochSecond(),
 	@BsonId
 	val userId: String = ObjectId().toString()

@@ -47,7 +47,7 @@ class UserService(
 		if (userId.isNullOrBlank()) userId = ObjectId().toString()
 		return userRepository.createUser(
 			User(
-				email = userRequest.email,
+				userEmail = userRequest.email,
 				userName = userRequest.userName,
 				password = userRequest.password,
 				mobileNumber = userRequest.mobileNumber ?: "",
@@ -64,7 +64,7 @@ class UserService(
 		return userRepository.upsertUser(
 			with(user) {
 				User(
-					email = email,
+					userEmail = userEmail,
 					userName = userName,
 					password = password,
 					mobileNumber = mobileNumber,

@@ -32,7 +32,7 @@ class UserRepositoryImpl(
 			val user = getUserById(userRequest.userId) ?: return false
 			UserResponse(
 				userId = userRequest.userId,
-				email = user.email,
+				email = user.userEmail,
 				mobileNumber = user.mobileNumber ?: "",
 				userName = user.userName,
 				password = user.password,
@@ -60,7 +60,7 @@ class UserRepositoryImpl(
 	}
 
 	override suspend fun getUserByEmail(email: String): User? {
-		return usersDb.findOne(filter = User::email eq email)
+		return usersDb.findOne(filter = User::userEmail eq email)
 	}
 
 	override suspend fun getUserByUsername(userName: String): User? {
@@ -73,15 +73,15 @@ class UserRepositoryImpl(
 	}
 
 	override suspend fun doesEmailBelongToUserId(email: String, userId: String): Boolean {
-		return usersDb.findOneById(userId)?.email == email
+		return usersDb.findOneById(userId)?.userEmail == email
 	}
 
 	override suspend fun searchForUsers(userSearch: String, page: Int, pageSize: Int): List<User> {
 		return usersDb.find(
 			filter = or(
 				User::userName regex Regex(pattern = ".*$userSearch.*", option = RegexOption.IGNORE_CASE),
-				User::email eq userSearch
+				User::userEmail eq userSearch
 			)
-		).skip(page * pageSize).limit(pageSize).descendingSort(User::email).toList()
+		).skip(page * pageSize).limit(pageSize).descendingSort(User::userEmail).toList()
 	}
 }
