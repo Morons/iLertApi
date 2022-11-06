@@ -44,8 +44,8 @@ fun Route.createOrganization(organizationService: OrganizationService, userServi
 		val userRequest = with(request.owner) {
 			UserRequest(
 				userId = ownerId,
-				email = userEmail,
-				mobileNumber = mobileNumber ?: "",
+				userEmail = userEmail,
+				mobileNumber = mobileNumber.orEmpty(),
 				userName = userName,
 				password = password,
 				avatarAsString = avatarAsString
@@ -54,8 +54,7 @@ fun Route.createOrganization(organizationService: OrganizationService, userServi
 				organizationId = organizationId
 			)
 		}
-		println("userRequest.email = ${userRequest.email} **********")
-		if (userService.doesUserWithEmailExist(email = userRequest.email)) {
+		if (userService.doesUserWithEmailExist(email = userRequest.userEmail)) {
 			call.respond(
 				status = OK,
 				message = BasicApiResponse<Unit>(successful = false, message = USER_ALREADY_EXIST)

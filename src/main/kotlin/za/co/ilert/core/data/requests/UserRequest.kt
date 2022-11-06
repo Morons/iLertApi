@@ -6,7 +6,7 @@ import za.co.ilert.core.utils.getByteArray
 
 data class UserRequest(
 	val userId: String?,
-	val email: String,
+	val userEmail: String,
 	val mobileNumber: String? = "",
 	val userName: String,
 	val password: String,

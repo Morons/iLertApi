@@ -67,7 +67,7 @@ fun Route.createUser(userService: UserService) {
 			)
 			return@post
 		}
-		if (userService.doesUserWithEmailExist(email = request.email)) {
+		if (userService.doesUserWithEmailExist(email = request.userEmail)) {
 			call.respond(
 				status = OK,
 				message = BasicApiResponse<Unit>(successful = false, message = USER_ALREADY_EXIST)

@@ -47,7 +47,7 @@ class UserService(
 		if (userId.isNullOrBlank()) userId = ObjectId().toString()
 		return userRepository.createUser(
 			User(
-				userEmail = userRequest.email,
+				userEmail = userRequest.userEmail,
 				userName = userRequest.userName,
 				password = userRequest.password,
 				mobileNumber = userRequest.mobileNumber ?: "",
@@ -81,7 +81,7 @@ class UserService(
 	}
 
 	fun validateCreateAccountRequest(userRequest: UserRequest): ValidationEvent {
-		return if (with(userRequest) { email.isBlank() || password.isBlank() || userName.isBlank() }) {
+		return if (with(userRequest) { userEmail.isBlank() || password.isBlank() || userName.isBlank() }) {
 			ValidationEvent.ErrorFieldEmpty
 		} else ValidationEvent.Success
 	}
