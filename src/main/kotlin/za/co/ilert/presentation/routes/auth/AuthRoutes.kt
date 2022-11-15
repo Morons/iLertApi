@@ -130,7 +130,14 @@ fun Route.loginUser(
 				.sign(Algorithm.HMAC256(jwtSecret))
 			call.respond(
 				status = OK,
-				message = BasicApiResponse(successful = true, data = AuthResponse(token = token, userId = user.userId))
+				message = BasicApiResponse(
+					successful = true,
+					data = AuthResponse(
+						userId = user.userId,
+						organizationId = user.organizationId,
+						token = token
+					)
+				)
 			)
 		} else {
 			call.respond(

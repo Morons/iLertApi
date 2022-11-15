@@ -2,7 +2,7 @@ package za.co.ilert.core.data.requests
 
 import org.bson.types.ObjectId
 import za.co.ilert.core.data.models.BlockTest
-import za.co.ilert.core.data.models.PrimalCut
+import za.co.ilert.core.data.models.Cuts
 import java.time.Instant
 import java.time.ZoneOffset
 
@@ -21,7 +21,7 @@ data class BlockTestRequest(
 	val percentDifferenceParameter: Double,
 	val percentGpRequired: Double,
 	val acceptablePriceVariance: Double,
-	val primalCuts: List<PrimalCut>,
+	val cuts: List<Cuts>,
 	val sumPrimalsWeight: Double = 0.0,
 	val trimmingWaste: Double = 0.0,
 	val measuredWeightAfterCuts: Double = 0.0,
@@ -36,17 +36,11 @@ data class BlockTestRequest(
 			carcassWeight = carcassWeight,
 			carcassHangingWeight = carcassHangingWeight,
 			cutTrimWeight = cutTrimWeight,
-			carcassKgWeightLoss = carcassKgWeightLoss,
 			weightLossParameter = weightLossParameter,
 			cuttingLossParameter = cuttingLossParameter,
 			wasteParameter = wasteParameter,
-			percentDifferenceParameter = percentDifferenceParameter,
 			percentGpRequired = percentGpRequired,
-			acceptablePriceVariance = acceptablePriceVariance,
-			primalCuts = primalCuts,
-			sumPrimalsWeight = sumPrimalsWeight,
-			trimmingWaste = trimmingWaste,
-			measuredWeightAfterCuts = measuredWeightAfterCuts,
+			cuts = cuts,
 			timestamp = timestamp,
 			blockTestId = blockTestId
 		)

@@ -5,16 +5,16 @@ import za.co.ilert.core.data.repository.blocktest.BlockTestRepository
 import za.co.ilert.core.data.requests.BlockTestRequest
 import za.co.ilert.core.data.requests.DeleteBlockTestRequest
 import za.co.ilert.core.data.requests.GenericPageRequest
-import za.co.ilert.core.data.responses.BlockTestListRequest
+import za.co.ilert.core.data.responses.BlockTestListResponse
 import za.co.ilert.presentation.validation.ValidationEvent
 
 
 /**
  * suspend fun getBlockTest(blockTestId: String): BlockTest?
- * suspend fun getPrimalCuts(blockTestId: String): List<PrimalCutResponse>
+ * suspend fun getCuts(blockTestId: String): List<PrimalCutResponse>
  * suspend fun insertBlockTest(blockTestRequest: BlockTestRequest, primalCutsRequest: List<PrimalCutRequest>): Boolean
  * suspend fun deleteBlockTest(deleteBlockTestRequest: DeleteBlockTestRequest): Boolean
- * suspend fun getBlockTestsPaged(genericPageRequest: GenericPageRequest):List<BlockTestListRequest>
+ * suspend fun getBlockTestsPaged(genericPageRequest: GenericPageRequest):List<BlockTestListResponse>
  **/
 
 class BlockTestService(
@@ -36,7 +36,7 @@ class BlockTestService(
 		return if (
 			request.carcassKgCostIncl <= 0.0 ||
 			request.carcassWeight <= 0.0 ||
-			request.primalCuts.isEmpty()
+			request.cuts.isEmpty()
 		) {
 			ValidationEvent.ErrorFieldEmpty
 		} else ValidationEvent.Success
@@ -46,7 +46,7 @@ class BlockTestService(
 		return blockTestRepository.deleteBlockTest(deleteBlockTestRequest = deleteBlockTestRequest)
 	}
 
-	suspend fun getBlockTestsPaged(genericPageRequest: GenericPageRequest): List<BlockTestListRequest> {
+	suspend fun getBlockTestsPaged(genericPageRequest: GenericPageRequest): List<BlockTestListResponse> {
 		return blockTestRepository.getBlockTestsPaged(genericPageRequest = genericPageRequest)
 	}
 

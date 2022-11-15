@@ -1,0 +1,30 @@
+[
+  {
+    "userEmail": "jana@test.com",
+    "userName": "Jana",
+    "password": "password_",
+    "mobileNumber": "98679696986",
+    "avatarAsString": "/9j/4AAQSkZJRgABAQAAAQABAAD",
+    "security": {
+      "active": true,
+      "roles": "OWNER, MANAGER"
+    },
+    "organizationId": "63679943e4da416141ce8d15",
+    "timestamp": 1667733827,
+    "_id": "63679943e4da416141ce8d16"
+  },
+  {
+    "userEmail": "jan@test.com",
+    "userName": "Jan Smith",
+    "password": "password_",
+    "mobileNumber": "8758758757",
+    "avatarAsString": "iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAACXBIWXMAAA7=",
+    "security": {
+      "active": true,
+      "roles": "BLOCK MAN"
+    },
+    "organizationId": "63679943e4da416141ce8d15",
+    "timestamp": 1668514264,
+    "_id": "637381d8d82aff24722cc4da"
+  }
+]

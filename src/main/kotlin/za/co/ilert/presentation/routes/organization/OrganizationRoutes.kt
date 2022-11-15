@@ -8,18 +8,20 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.bson.types.ObjectId
+import org.litote.kmongo.json
 import za.co.ilert.core.data.models.UserSecurity
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.FIELDS_BLANK
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.ORGANIZATION_NOT_FOUND
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.UNKNOWN_ERROR_TRY_AGAIN
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.USER_ALREADY_EXIST
 import za.co.ilert.core.data.requests.CreateOrganizationRequest
-import za.co.ilert.core.data.requests.GetOrganizationRequest
+import za.co.ilert.core.data.requests.OrganizationIdRequest
 import za.co.ilert.core.data.requests.OrganizationRequest
 import za.co.ilert.core.data.requests.UserRequest
 import za.co.ilert.core.data.responses.BasicApiResponse
 import za.co.ilert.core.utils.Constants.FILE_SOURCE
 import za.co.ilert.core.utils.Constants.ORGANIZATION
+import za.co.ilert.core.utils.Constants.ORGANIZATION_GET
 import za.co.ilert.core.utils.getByteArray
 import za.co.ilert.presentation.services.organization.OrganizationService
 import za.co.ilert.presentation.services.user.UserService
@@ -91,9 +93,9 @@ fun Route.createOrganization(organizationService: OrganizationService, userServi
 				payment = payment,
 				organizationPopi = organizationPopi,
 				coRegistrationNumber = coRegistrationNumber,
-				VATNumber = VATNumber,
-				VATValuePercent = VATValuePercent,
-				organizationAddress = organizationAddress,
+				numberVAT = numberVAT,
+				valueVATPercent = valueVATPercent,
+				address = address,
 				parameters = parameters
 			)
 		}
@@ -110,7 +112,8 @@ fun Route.getOrganization(organizationService: OrganizationService) {
 	authenticate {
 		get(ORGANIZATION) {
 			val request =
-				kotlin.runCatching { call.receiveNullable<GetOrganizationRequest>() }.getOrNull() ?: kotlin.run {
+				kotlin.runCatching { call.receiveNullable<OrganizationIdRequest>() }.getOrNull() ?: kotlin.run {
+					println("BadRequest call.receiveNullable **********")
 					call.respond(
 						status = BadRequest,
 						message = BasicApiResponse<Unit>(successful = false, message = "$BadRequest")
@@ -118,12 +121,41 @@ fun Route.getOrganization(organizationService: OrganizationService) {
 					return@get
 				}
 			val organization = organizationService.getOrganization(request.organizationId)
+			println("organization = ${organization?.json} **********")
 			if (organization == null) {
+				println("BadRequest organization == null **********")
 				call.respond(
 					status = BadRequest,
 					message = BasicApiResponse<Unit>(successful = false, message = ORGANIZATION_NOT_FOUND)
 				)
 				return@get
+			}
+			call.respond(status = OK, message = BasicApiResponse(successful = true, data = organization))
+		}
+	}
+}
+
+fun Route.getOrganizationUsePost(organizationService: OrganizationService) {
+	authenticate {
+		post(ORGANIZATION_GET) {
+			val request =
+				kotlin.runCatching { call.receiveNullable<OrganizationIdRequest>() }.getOrNull() ?: kotlin.run {
+					println("BadRequest call.receiveNullable **********")
+					call.respond(
+						status = BadRequest,
+						message = BasicApiResponse<Unit>(successful = false, message = "$BadRequest")
+					)
+					return@post
+				}
+			val organization = organizationService.getOrganization(request.organizationId)
+			println("organization = ${organization?.json} **********")
+			if (organization == null) {
+				println("BadRequest organization == null **********")
+				call.respond(
+					status = BadRequest,
+					message = BasicApiResponse<Unit>(successful = false, message = ORGANIZATION_NOT_FOUND)
+				)
+				return@post
 			}
 			call.respond(status = OK, message = BasicApiResponse(successful = true, data = organization))
 		}

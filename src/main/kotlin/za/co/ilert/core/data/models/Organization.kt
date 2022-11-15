@@ -17,9 +17,9 @@ data class Organization(
 	val payment: String, // EFT/ VISA/ Crypto etc (tread carefully)
 	val organizationPopi: String = "false",
 	val coRegistrationNumber: String,
-	val VATNumber: String,
-	val VATValuePercent: Double,
-	val organizationAddress: Address,
+	val numberVAT: String,
+	val valueVATPercent: Double,
+	val address: Address,
 	val parameters: Parameters,
 	val organizationTimestamp: Long = Instant.now().atOffset(ZoneOffset.UTC).toEpochSecond(),
 	@BsonId

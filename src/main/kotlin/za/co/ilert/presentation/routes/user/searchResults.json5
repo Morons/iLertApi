@@ -1,0 +1,16 @@
+[
+  {
+    "userEmail": "jana@test.com",
+    "userName": "Jana",
+    "password": "password_",
+    "mobileNumber": "98679696986",
+    "avatarAsString": "/9j/4AAQSkZJRgABAQAAAQABAAD/4gIoSUNDX1BST0ZJTEUAAQEAAAIYAAAAAAQwAABtbnRyUkdCIFhZWi",
+    "security": {
+      "active": true,
+      "roles": "OWNER, MANAGER"
+    },
+    "organizationId": "63679943e4da416141ce8d15",
+    "timestamp": 1667733827,
+    "_id": "63679943e4da416141ce8d16"
+  }
+]

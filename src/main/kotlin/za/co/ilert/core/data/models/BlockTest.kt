@@ -13,17 +13,11 @@ data class BlockTest(
 	val carcassWeight: Double,
 	val carcassHangingWeight: Double,
 	val cutTrimWeight: Double = 0.0, // Weight after Cutting & W.Loss
-	val carcassKgWeightLoss: Double = 0.0,
 	val weightLossParameter: Double,
 	val cuttingLossParameter: Double,
 	val wasteParameter: Double,
-	val percentDifferenceParameter: Double,
 	val percentGpRequired: Double,
-	val acceptablePriceVariance: Double,
-	val primalCuts: List<PrimalCut>,
-	val sumPrimalsWeight: Double,
-	val trimmingWaste: Double,
-	val measuredWeightAfterCuts: Double,
+	val cuts: List<Cuts>,
 	val timestamp: Long = now().atOffset(ZoneOffset.UTC).toEpochSecond(),
 	@BsonId
 	val blockTestId: String = ObjectId().toString()

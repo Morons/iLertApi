@@ -1,12 +1,11 @@
 package za.co.ilert.presentation.services.user
 
 import org.bson.types.ObjectId
+import org.litote.kmongo.json
 import za.co.ilert.core.data.models.User
 import za.co.ilert.core.data.models.UserSecurity
 import za.co.ilert.core.data.repository.user.UserRepository
 import za.co.ilert.core.data.requests.UserRequest
-import za.co.ilert.core.data.responses.UserSearchResponse
-import za.co.ilert.core.utils.Constants
 import za.co.ilert.core.utils.Constants.DEFAULT_PAGE_SIZE
 import za.co.ilert.core.utils.Constants.FILE_SOURCE
 import za.co.ilert.core.utils.getByteArray
@@ -81,22 +80,15 @@ class UserService(
 	}
 
 	fun validateCreateAccountRequest(userRequest: UserRequest): ValidationEvent {
+		println("userRequest = ${userRequest.json} **********")
 		return if (with(userRequest) { userEmail.isBlank() || password.isBlank() || userName.isBlank() }) {
 			ValidationEvent.ErrorFieldEmpty
 		} else ValidationEvent.Success
 	}
 
 	suspend fun searchForUsers(
-		userSearch: String, userId: String, page: Int, pageSize: Int = DEFAULT_PAGE_SIZE
-	): List<UserSearchResponse> {
-		val users = userRepository.searchForUsers(userSearch, page, pageSize)
-		return users.map { user ->
-			UserSearchResponse(
-				userId = user.userId,
-				userName = user.userName,
-				avatarAsString = user.avatarAsString
-					?: getByteArray(filePathName = "${Constants.FILE_SOURCE}/ic_avatar_default.png"),
-			)
-		}.filter { it.userId != userId }
+		userQuery: String, page: Int, pageSize: Int = DEFAULT_PAGE_SIZE
+	): List<User> {
+		return userRepository.searchForUsers(userQuery, page, pageSize)
 	}
 }

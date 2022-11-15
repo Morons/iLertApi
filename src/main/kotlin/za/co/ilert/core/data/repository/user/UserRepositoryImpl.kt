@@ -76,12 +76,12 @@ class UserRepositoryImpl(
 		return usersDb.findOneById(userId)?.userEmail == email
 	}
 
-	override suspend fun searchForUsers(userSearch: String, page: Int, pageSize: Int): List<User> {
+	override suspend fun searchForUsers(userQuery: String, page: Int, pageSize: Int): List<User> {
 		return usersDb.find(
 			filter = or(
-				User::userName regex Regex(pattern = ".*$userSearch.*", option = RegexOption.IGNORE_CASE),
-				User::userEmail eq userSearch
+				User::userName regex Regex(pattern = ".*$userQuery.*", option = RegexOption.IGNORE_CASE),
+				User::userEmail eq userQuery
 			)
-		).skip(page * pageSize).limit(pageSize).descendingSort(User::userEmail).toList()
+		).skip(page * pageSize).limit(pageSize).descendingSort(User::userName).toList()
 	}
 }

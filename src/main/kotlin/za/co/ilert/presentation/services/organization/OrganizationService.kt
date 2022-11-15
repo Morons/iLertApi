@@ -27,9 +27,9 @@ class OrganizationService(
 					payment = payment,
 					organizationPopi = organizationPopi,
 					coRegistrationNumber = coRegistrationNumber,
-					VATNumber = VATNumber,
-					VATValuePercent = VATValuePercent,
-					organizationAddress = organizationAddress,
+					numberVAT = numberVAT,
+					valueVATPercent = valueVATPercent,
+					address = address,
 					parameters = parameters
 				)
 			}

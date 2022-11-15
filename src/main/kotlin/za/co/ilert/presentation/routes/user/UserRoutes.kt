@@ -7,38 +7,55 @@ import io.ktor.server.auth.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import org.litote.kmongo.json
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.USER_NOT_FOUND
 import za.co.ilert.core.data.requests.GetUserRequest
 import za.co.ilert.core.data.requests.UserRequest
 import za.co.ilert.core.data.requests.UserSearchRequest
 import za.co.ilert.core.data.responses.BasicApiResponse
-import za.co.ilert.core.data.responses.UserSearchResponse
 import za.co.ilert.core.data.util.userId
 import za.co.ilert.core.utils.Constants.USER
 import za.co.ilert.core.utils.Constants.USER_SEARCH
 import za.co.ilert.presentation.services.user.UserService
 
 
-fun Route.searchUser(userService: UserService) {
+fun Route.searchUsers(userService: UserService) {
 	authenticate {
 		get(USER_SEARCH) {
 			val request = kotlin.runCatching { call.receiveNullable<UserSearchRequest>() }.getOrNull() ?: kotlin.run {
-				call.respond(
-					status = BadRequest, message = BasicApiResponse<Unit>(successful = false, message = "$BadRequest")
-				)
-				return@get
-			}
-			if (request.userSearch.isBlank()) {
-				call.respond(status = OK, message = listOf<UserSearchResponse>())
-				return@get
-			}
+					call.respond(
+						status = BadRequest,
+						message = BasicApiResponse<Unit>(successful = false, message = "$BadRequest")
+					)
+					return@get
+				}
 			val searchResults = userService.searchForUsers(
-				request.userSearch,
-				call.userId,
+				userQuery = request.userQuery,
 				page = request.page,
 				pageSize = request.pageSize
 			)
+			call.respond(status = OK, message = searchResults)
+		}
+	}
+}
+
+fun Route.searchUsersUsePost(userService: UserService) {
+	authenticate {
+		post(USER_SEARCH) {
+			val request = kotlin.runCatching { call.receiveNullable<UserSearchRequest>() }.getOrNull() ?: kotlin.run {
+					call.respond(
+						status = BadRequest,
+						message = BasicApiResponse<Unit>(successful = false, message = "$BadRequest")
+					)
+					return@post
+				}
+			val searchResults = userService.searchForUsers(
+				userQuery = request.userQuery,
+				page = request.page,
+				pageSize = request.pageSize
+			)
+			println("searchUsersUsePost searchResults = ${searchResults.json} **********")
 			call.respond(status = OK, message = searchResults)
 		}
 	}
@@ -69,9 +86,7 @@ fun Route.getUser(userService: UserService) {
 fun Route.getUserUsePost(userService: UserService) {
 	authenticate {
 		post(USER) {
-			val request = kotlin.runCatching {
-				call.receiveNullable<GetUserRequest>()
-			}.getOrNull() ?: kotlin.run {
+			val request = kotlin.runCatching { call.receiveNullable<GetUserRequest>() }.getOrNull() ?: kotlin.run {
 				call.respond(
 					status = BadRequest, message = BasicApiResponse<Unit>(successful = false, message = "$BadRequest")
 				)

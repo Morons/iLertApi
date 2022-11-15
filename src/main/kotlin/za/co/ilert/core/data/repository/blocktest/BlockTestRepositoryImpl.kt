@@ -5,11 +5,11 @@ import org.litote.kmongo.MongoOperator.*
 import org.litote.kmongo.coroutine.CoroutineDatabase
 import org.litote.kmongo.coroutine.aggregate
 import za.co.ilert.core.data.models.BlockTest
-import za.co.ilert.core.data.models.PrimalCut
+import za.co.ilert.core.data.models.Cuts
 import za.co.ilert.core.data.requests.BlockTestRequest
 import za.co.ilert.core.data.requests.DeleteBlockTestRequest
 import za.co.ilert.core.data.requests.GenericPageRequest
-import za.co.ilert.core.data.responses.BlockTestListRequest
+import za.co.ilert.core.data.responses.BlockTestListResponse
 import za.co.ilert.core.data.responses.ResultResponse
 
 class BlockTestRepositoryImpl(
@@ -29,17 +29,11 @@ class BlockTestRepositoryImpl(
 			carcassWeight = blockTest.carcassWeight,
 			carcassHangingWeight = blockTest.carcassHangingWeight,
 			cutTrimWeight = blockTest.cutTrimWeight,
-			carcassKgWeightLoss = blockTest.carcassKgWeightLoss,
 			weightLossParameter = blockTest.weightLossParameter,
 			cuttingLossParameter = blockTest.cuttingLossParameter,
 			wasteParameter = blockTest.wasteParameter,
-			percentDifferenceParameter = blockTest.percentDifferenceParameter,
 			percentGpRequired = blockTest.percentGpRequired,
-			acceptablePriceVariance = blockTest.acceptablePriceVariance,
-			trimmingWaste = blockTest.trimmingWaste,
-			measuredWeightAfterCuts = blockTest.measuredWeightAfterCuts,
-			primalCuts = blockTest.primalCuts,
-			sumPrimalsWeight = sumPrimalsWeight,
+			cuts = blockTest.cuts,
 			timestamp = blockTest.timestamp,
 			blockTestId = blockTest.blockTestId
 		)
@@ -50,7 +44,7 @@ class BlockTestRepositoryImpl(
 		return blockTestDb.aggregate<ResultResponse>(
 			match(BlockTest::blockTestId eq blockTestId),
 			project(ResultResponse::sumWeight to sum.from(
-				(BlockTest::primalCuts / PrimalCut::actualCutWeight).projection))
+				(BlockTest::cuts / Cuts::actualCutWeight).projection))
 		).first()?.sumWeight ?: 0.0
 	}
 
@@ -67,14 +61,14 @@ class BlockTestRepositoryImpl(
 		return blockTestDb.deleteOneById(deleteBlockTestRequest.blockTestId).wasAcknowledged()
 	}
 
-	override suspend fun getBlockTestsPaged(genericPageRequest: GenericPageRequest): List<BlockTestListRequest> {
+	override suspend fun getBlockTestsPaged(genericPageRequest: GenericPageRequest): List<BlockTestListResponse> {
 		return blockTestDb.find()
 			.skip(genericPageRequest.page * genericPageRequest.pageSize)
 			.limit(genericPageRequest.pageSize)
 			.descendingSort(BlockTest::timestamp)
 			.toList()
 			.map { blockTest ->
-				BlockTestListRequest(
+				BlockTestListResponse(
 					carcassType = blockTest.carcassType,
 					timestamp = blockTest.timestamp,
 					blockTestId = blockTest.blockTestId

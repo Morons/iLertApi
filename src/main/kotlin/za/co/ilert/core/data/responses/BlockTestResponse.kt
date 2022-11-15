@@ -1,6 +1,6 @@
 package za.co.ilert.core.data.responses
 
-import za.co.ilert.core.data.models.PrimalCut
+import za.co.ilert.core.data.models.Cuts
 
 
 data class BlockTestResponse(
@@ -9,24 +9,11 @@ data class BlockTestResponse(
 	val carcassWeight: Double,
 	val carcassHangingWeight: Double,
 	val cutTrimWeight: Double, // Weight after Cutting & W.Loss
-	val carcassKgWeightLoss: Double,
 	val weightLossParameter: Double,
 	val cuttingLossParameter: Double,
 	val waistParameter: Double,
-	val percentDifferenceParameter: Double,
 	val percentGpRequired: Double,
-	val acceptablePriceVariance: Double,
-	val trimmingWaste: Double,
-	val measuredWeightAfterCuts: Double,
-	val primalCuts: List<PrimalCut>,
-	val sumPrimalsWeight: Double,
+	val cuts: List<Cuts>,
 	val timestamp: Long,
-	val blockTestId: String,
-	val carcassCostIncl: Double,
-	val carcassEffectivePrice: Double,
-	val percentCarcassWeightLoss: Double,
-	val adjustedKgCostKgIncl: Double,
-	val cuttingLoss: Double,
-	val percentWeightLoss: Double,
-	val percentCuttingLoss: Double
+	val blockTestId: String
 )

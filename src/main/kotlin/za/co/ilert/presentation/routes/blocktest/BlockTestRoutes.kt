@@ -39,44 +39,13 @@ fun Route.getBlockTest(blockTestService: BlockTestService) {
 					carcassWeight = blockTest.carcassWeight,
 					carcassHangingWeight = blockTest.carcassHangingWeight,
 					cutTrimWeight = blockTest.cutTrimWeight,
-					carcassKgWeightLoss = blockTest.carcassKgWeightLoss,
 					weightLossParameter = blockTest.weightLossParameter,
 					cuttingLossParameter = blockTest.cuttingLossParameter,
 					waistParameter = blockTest.wasteParameter,
-					percentDifferenceParameter = blockTest.percentDifferenceParameter,
 					percentGpRequired = blockTest.percentGpRequired,
-					acceptablePriceVariance = blockTest.acceptablePriceVariance,
-					trimmingWaste = blockTest.trimmingWaste,
-					measuredWeightAfterCuts = blockTest.measuredWeightAfterCuts,
-					primalCuts = blockTest.primalCuts,
-					sumPrimalsWeight = blockTest.sumPrimalsWeight,
+					cuts = blockTest.cuts,
 					timestamp = blockTest.timestamp,
-					blockTestId = blockTest.blockTestId,
-					carcassCostIncl = blockTest.carcassKgCostIncl * blockTest.carcassWeight,
-					carcassEffectivePrice =
-					if (blockTest.carcassKgWeightLoss > 0.0) {
-						(blockTest.carcassKgCostIncl * blockTest.carcassWeight) / blockTest.carcassKgWeightLoss
-					} else 0.0,
-					percentCarcassWeightLoss =
-					if (blockTest.carcassWeight > 0.0) {
-						(blockTest.carcassWeight - blockTest.carcassKgWeightLoss) / blockTest.carcassWeight
-					} else 0.0,
-					adjustedKgCostKgIncl =
-					if (blockTest.carcassHangingWeight > 0.0) {
-						(blockTest.carcassKgCostIncl * blockTest.carcassWeight) / blockTest.carcassHangingWeight
-					} else 0.0,
-					cuttingLoss =
-					if (blockTest.measuredWeightAfterCuts > 0.0) {
-						blockTest.carcassHangingWeight - blockTest.measuredWeightAfterCuts
-					} else 0.0,
-					percentWeightLoss =
-					if ((blockTest.trimmingWaste > 0.0)) {
-						blockTest.measuredWeightAfterCuts / blockTest.trimmingWaste
-					} else 0.0,
-					percentCuttingLoss =
-					if (blockTest.carcassHangingWeight > 0.0) {
-						blockTest.carcassHangingWeight - blockTest.measuredWeightAfterCuts / blockTest.carcassHangingWeight
-					} else 0.0
+					blockTestId = blockTest.blockTestId
 				)
 				call.respond(status = OK, message = BasicApiResponse(successful = true, data = blockTestResponse))
 			} else {
@@ -87,16 +56,16 @@ fun Route.getBlockTest(blockTestService: BlockTestService) {
 	}
 }
 
-//getPrimalCuts
+//getCuts
 
-fun Route.insertBlockTest(blockTestService: BlockTestService) {
+fun Route.upsertBlockTest(blockTestService: BlockTestService) {
 	authenticate {
-		post(BLOCK_TEST) {
-			val request = call.receiveOrNull<BlockTestRequest>() ?: kotlin.run {
+		put(BLOCK_TEST) {
+			val request = kotlin.runCatching { call.receiveNullable<BlockTestRequest>() }.getOrNull() ?: kotlin.run {
 				call.respond(
 					status = BadRequest, message = BasicApiResponse<Unit>(successful = false, message = "$BadRequest")
 				)
-				return@post
+				return@put
 			}
 			when (blockTestService.validateInsertBlockTestRequest(request = request)) {
 				ValidationEvent.ErrorFieldEmpty -> {
@@ -104,7 +73,7 @@ fun Route.insertBlockTest(blockTestService: BlockTestService) {
 						status = BadRequest,
 						message = BasicApiResponse<Unit>(successful = false, message = FIELDS_BLANK)
 					)
-					return@post
+					return@put
 				}
 
 				else -> {
@@ -116,7 +85,7 @@ fun Route.insertBlockTest(blockTestService: BlockTestService) {
 						status = OK,
 						message = BasicApiResponse<Unit>(successful = true, message = "$OK")
 					)
-					return@post
+					return@put
 				}
 			}
 		}

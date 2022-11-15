@@ -4,7 +4,7 @@ import za.co.ilert.core.utils.Constants.DEFAULT_PAGE_SIZE
 
 
 data class UserSearchRequest(
-	val userSearch: String,
+	val userQuery: String,
 	val page: Int = 0,
 	val pageSize: Int = DEFAULT_PAGE_SIZE
 )

@@ -14,6 +14,7 @@ object Constants {
 
 	// Organization Paths
 	const val ORGANIZATION = "$PATH/organization"
+	const val ORGANIZATION_GET = "$PATH/organization/get"
 
 	// Address Paths
 	const val ADDRESS = "$PATH/address"

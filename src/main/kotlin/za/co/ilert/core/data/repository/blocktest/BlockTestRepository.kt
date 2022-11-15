@@ -4,7 +4,7 @@ import za.co.ilert.core.data.models.BlockTest
 import za.co.ilert.core.data.requests.BlockTestRequest
 import za.co.ilert.core.data.requests.DeleteBlockTestRequest
 import za.co.ilert.core.data.requests.GenericPageRequest
-import za.co.ilert.core.data.responses.BlockTestListRequest
+import za.co.ilert.core.data.responses.BlockTestListResponse
 
 interface BlockTestRepository {
 
@@ -16,6 +16,6 @@ interface BlockTestRepository {
 
 	suspend fun deleteBlockTest(deleteBlockTestRequest: DeleteBlockTestRequest): Boolean
 
-	suspend fun getBlockTestsPaged(genericPageRequest: GenericPageRequest):List<BlockTestListRequest>
+	suspend fun getBlockTestsPaged(genericPageRequest: GenericPageRequest):List<BlockTestListResponse>
 
 }

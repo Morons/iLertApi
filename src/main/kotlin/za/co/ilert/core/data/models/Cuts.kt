@@ -12,11 +12,11 @@ package za.co.ilert.core.data.models
  **/
 
 
-data class PrimalCut(
+data class Cuts(
 	val primalCutType: Int,
 	val actualCutWeight: Double,
 	val marketSellPrice: Double, // Market related sell price, what the local market will pay for this.
-	val name: String,
+	val cutName: String,
 	val displayName: String,
-	val mutable: Boolean = false
+	val isMutable: Boolean = false
 )
