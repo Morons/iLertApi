@@ -3,7 +3,7 @@ package za.co.ilert.core.data.repository.user
 import org.litote.kmongo.*
 import org.litote.kmongo.coroutine.CoroutineDatabase
 import za.co.ilert.core.data.models.User
-import za.co.ilert.core.data.requests.UserRequest
+import za.co.ilert.core.data.requests.UpdateUserRequest
 import za.co.ilert.core.data.responses.UserResponse
 import za.co.ilert.core.utils.Constants
 import za.co.ilert.core.utils.getByteArray
@@ -27,11 +27,11 @@ class UserRepositoryImpl(
 			.wasAcknowledged()
 	}
 
-	override suspend fun updateUser(userRequest: UserRequest): Boolean {
-		val userToSave = if (!userRequest.userId.isNullOrBlank()) {
-			val user = getUserById(userRequest.userId) ?: return false
+	override suspend fun updateUser(updateUserRequest: UpdateUserRequest): Boolean {
+		val userToSave = if (!updateUserRequest.userId.isNullOrBlank()) {
+			val user = getUserById(updateUserRequest.userId) ?: return false
 			UserResponse(
-				userId = userRequest.userId,
+				userId = updateUserRequest.userId,
 				email = user.userEmail,
 				mobileNumber = user.mobileNumber ?: "",
 				userName = user.userName,
@@ -45,7 +45,7 @@ class UserRepositoryImpl(
 			return false
 		}
 		return usersDb.updateOneById(
-			id = userRequest.userId,
+			id = updateUserRequest.userId,
 			update = userToSave,
 			updateOnlyNotNullProperties = true
 		).wasAcknowledged()

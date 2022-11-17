@@ -1,7 +1,7 @@
 package za.co.ilert.core.data.repository.user
 
 import za.co.ilert.core.data.models.User
-import za.co.ilert.core.data.requests.UserRequest
+import za.co.ilert.core.data.requests.UpdateUserRequest
 
 interface UserRepository {
 
@@ -11,7 +11,7 @@ interface UserRepository {
 
 	suspend fun upsertUser(user: User): Boolean
 
-	suspend fun updateUser(userRequest: UserRequest): Boolean
+	suspend fun updateUser(updateUserRequest: UpdateUserRequest): Boolean
 
 	suspend fun getUserById(userId: String): User?
 

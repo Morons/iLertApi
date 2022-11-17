@@ -11,7 +11,7 @@ import org.litote.kmongo.json
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.USER_NOT_FOUND
 import za.co.ilert.core.data.requests.GetUserRequest
-import za.co.ilert.core.data.requests.UserRequest
+import za.co.ilert.core.data.requests.UpdateUserRequest
 import za.co.ilert.core.data.requests.UserSearchRequest
 import za.co.ilert.core.data.responses.BasicApiResponse
 import za.co.ilert.core.data.util.userId
@@ -108,7 +108,7 @@ fun Route.getUserUsePost(userService: UserService) {
 fun Route.updateUserProfile(userService: UserService) {
 	authenticate {
 		put(USER) {
-			val request = kotlin.runCatching { call.receiveNullable<UserRequest>() }.getOrNull() ?: kotlin.run {
+			val request = kotlin.runCatching { call.receiveNullable<UpdateUserRequest>() }.getOrNull() ?: kotlin.run {
 				call.respond(
 					status = BadRequest,
 					message = BasicApiResponse<Unit>(
@@ -118,7 +118,7 @@ fun Route.updateUserProfile(userService: UserService) {
 				)
 				return@put
 			}
-			if (userService.updateUser(userRequest = request.copy(userId = call.userId))
+			if (userService.updateUser(updateUserRequest = request.copy(userId = call.userId))
 			) {
 				call.respond(status = OK, message = BasicApiResponse<Unit>(successful = true))
 			} else {

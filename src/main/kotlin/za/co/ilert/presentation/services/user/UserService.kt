@@ -5,6 +5,7 @@ import org.litote.kmongo.json
 import za.co.ilert.core.data.models.User
 import za.co.ilert.core.data.models.UserSecurity
 import za.co.ilert.core.data.repository.user.UserRepository
+import za.co.ilert.core.data.requests.UpdateUserRequest
 import za.co.ilert.core.data.requests.UserRequest
 import za.co.ilert.core.utils.Constants.DEFAULT_PAGE_SIZE
 import za.co.ilert.core.utils.Constants.FILE_SOURCE
@@ -75,8 +76,8 @@ class UserService(
 		)
 	}
 
-	suspend fun updateUser(userRequest: UserRequest): Boolean {
-		return userRepository.updateUser(userRequest)
+	suspend fun updateUser(updateUserRequest: UpdateUserRequest): Boolean {
+		return userRepository.updateUser(updateUserRequest)
 	}
 
 	fun validateCreateAccountRequest(userRequest: UserRequest): ValidationEvent {
