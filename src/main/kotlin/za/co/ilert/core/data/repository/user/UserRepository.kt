@@ -11,7 +11,7 @@ interface UserRepository {
 
 	suspend fun upsertUser(user: User): Boolean
 
-	suspend fun updateUser(updateUserRequest: UpdateUserRequest): Boolean
+	suspend fun updateUser(isOwnProfile: Boolean, updateUserRequest: UpdateUserRequest): Boolean
 
 	suspend fun getUserById(userId: String): User?
 

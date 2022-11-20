@@ -27,19 +27,21 @@ class UserRepositoryImpl(
 			.wasAcknowledged()
 	}
 
-	override suspend fun updateUser(updateUserRequest: UpdateUserRequest): Boolean {
+	override suspend fun updateUser(isOwnProfile: Boolean, updateUserRequest: UpdateUserRequest): Boolean {
+		println("UserRepository updateUserRequest = $updateUserRequest **********")
 		val userToSave = if (!updateUserRequest.userId.isNullOrBlank()) {
 			val user = getUserById(updateUserRequest.userId) ?: return false
 			UserResponse(
 				userId = updateUserRequest.userId,
-				email = user.userEmail,
-				mobileNumber = user.mobileNumber ?: "",
-				userName = user.userName,
+				email = updateUserRequest.userEmail,
+				mobileNumber = updateUserRequest.mobileNumber ?: "",
+				userName = updateUserRequest.userName,
 				password = user.password,
-				avatarAsString = user.avatarAsString
+				avatarAsString = updateUserRequest.avatarAsString
 					?: getByteArray(filePathName = "${Constants.FILE_SOURCE}/ic_avatar_default.png"),
-				security = user.security,
-				organizationId = user.organizationId
+				security = updateUserRequest.security,
+				organizationId = updateUserRequest.organizationId,
+				isOwnProfile = isOwnProfile
 			)
 		} else {
 			return false

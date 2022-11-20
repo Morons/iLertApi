@@ -10,5 +10,6 @@ data class UpdateUserRequest(
 	val mobileNumber: String? = "",
 	val userName: String,
 	val avatarAsString: String? = getByteArray(filePathName = "${Constants.FILE_SOURCE}/ic_avatar_default.png"),
-	val security: UserSecurity? = UserSecurity(active = true, roles = "BLOCK MAN")
+	val security: UserSecurity? = UserSecurity(active = true, roles = "BLOCK MAN"),
+	val organizationId: String
 )

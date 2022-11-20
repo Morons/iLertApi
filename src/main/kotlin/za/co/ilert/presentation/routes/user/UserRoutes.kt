@@ -24,12 +24,12 @@ fun Route.searchUsers(userService: UserService) {
 	authenticate {
 		get(USER_SEARCH) {
 			val request = kotlin.runCatching { call.receiveNullable<UserSearchRequest>() }.getOrNull() ?: kotlin.run {
-					call.respond(
-						status = BadRequest,
-						message = BasicApiResponse<Unit>(successful = false, message = "$BadRequest")
-					)
-					return@get
-				}
+				call.respond(
+					status = BadRequest,
+					message = BasicApiResponse<Unit>(successful = false, message = "$BadRequest")
+				)
+				return@get
+			}
 			val searchResults = userService.searchForUsers(
 				userQuery = request.userQuery,
 				page = request.page,
@@ -44,12 +44,12 @@ fun Route.searchUsersUsePost(userService: UserService) {
 	authenticate {
 		post(USER_SEARCH) {
 			val request = kotlin.runCatching { call.receiveNullable<UserSearchRequest>() }.getOrNull() ?: kotlin.run {
-					call.respond(
-						status = BadRequest,
-						message = BasicApiResponse<Unit>(successful = false, message = "$BadRequest")
-					)
-					return@post
-				}
+				call.respond(
+					status = BadRequest,
+					message = BasicApiResponse<Unit>(successful = false, message = "$BadRequest")
+				)
+				return@post
+			}
 			val searchResults = userService.searchForUsers(
 				userQuery = request.userQuery,
 				page = request.page,
@@ -107,8 +107,8 @@ fun Route.getUserUsePost(userService: UserService) {
 
 fun Route.updateUserProfile(userService: UserService) {
 	authenticate {
-		put(USER) {
-			val request = kotlin.runCatching { call.receiveNullable<UpdateUserRequest>() }.getOrNull() ?: kotlin.run {
+		patch(USER) {
+			val updateUserRequest = kotlin.runCatching { call.receiveNullable<UpdateUserRequest>() }.getOrNull() ?: kotlin.run {
 				call.respond(
 					status = BadRequest,
 					message = BasicApiResponse<Unit>(
@@ -116,16 +116,18 @@ fun Route.updateUserProfile(userService: UserService) {
 						message = ApiResponseMessages.UNKNOWN_ERROR_TRY_AGAIN
 					)
 				)
-				return@put
+				return@patch
 			}
-			if (userService.updateUser(updateUserRequest = request.copy(userId = call.userId))
-			) {
-				call.respond(status = OK, message = BasicApiResponse<Unit>(successful = true))
-			} else {
+			val isOwnProfile = call.userId == updateUserRequest.userId
+			val user = userService.updateUserProfile(isOwnProfile = isOwnProfile, updateUserRequest = updateUserRequest)
+
+			if (user == null) {
 				call.respond(
 					status = BadRequest,
-					message = BasicApiResponse<Unit>(successful = false)
+					message = BasicApiResponse<Unit>(successful = false, message = USER_NOT_FOUND)
 				)
+			} else {
+				call.respond(status = OK, message = BasicApiResponse(successful = true, data = user))
 			}
 		}
 	}

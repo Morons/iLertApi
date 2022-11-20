@@ -76,8 +76,10 @@ class UserService(
 		)
 	}
 
-	suspend fun updateUser(updateUserRequest: UpdateUserRequest): Boolean {
-		return userRepository.updateUser(updateUserRequest)
+	suspend fun updateUserProfile(isOwnProfile: Boolean, updateUserRequest: UpdateUserRequest): User? {
+		println("UserService updateUserRequest = $updateUserRequest **********")
+		val wasAcknowledged = userRepository.updateUser(isOwnProfile, updateUserRequest)
+		return if (wasAcknowledged) getUser(updateUserRequest.userId!!) else null
 	}
 
 	fun validateCreateAccountRequest(userRequest: UserRequest): ValidationEvent {

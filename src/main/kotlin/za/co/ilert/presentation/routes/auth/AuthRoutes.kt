@@ -31,10 +31,12 @@ import java.util.*
 fun Route.authenticate() {
 	authenticate {
 		get(USER_AUTHENTICATE) {
+			println("Route.authenticate()")
 			val principal = call.principal<JWTPrincipal>()
-			val userId = principal!!.payload.getClaim(USER_ID).asString()
-			val expiresAt = principal.expiresAt?.time?.minus(System.currentTimeMillis())
+			val userId = principal?.payload?.getClaim(USER_ID)?.asString()
+			val expiresAt = principal?.expiresAt?.time?.minus(System.currentTimeMillis())
 			if (call.response.status() == Unauthorized) {
+				println("userId = $userId, key expires at: ${expiresAt}ms")
 				call.respond(
 					status = Unauthorized,
 					message = BasicApiResponse<Unit>(
@@ -43,6 +45,7 @@ fun Route.authenticate() {
 					)
 				)
 			} else {
+				println("$LOGIN_AUTHENTICATED userId = $userId, key expires at: ${expiresAt}ms")
 				call.respond(
 					status = OK,
 					message = BasicApiResponse<Unit>(

@@ -10,5 +10,6 @@ data class UserResponse(
 	val password: String,
 	val avatarAsString: String,
 	val security: UserSecurity?,
-	val organizationId: String
+	val organizationId: String,
+	val isOwnProfile: Boolean
 )
