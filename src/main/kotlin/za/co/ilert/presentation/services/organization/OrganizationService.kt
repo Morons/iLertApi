@@ -12,8 +12,8 @@ class OrganizationService(
 	suspend fun createOrganization(createOrganizationRequest: CreateOrganizationRequest): Boolean {
 		var organizationId = createOrganizationRequest.organizationId
 		return organizationRepository.createOrganization(
-			with(createOrganizationRequest){
-				if(organizationId.isEmpty()) organizationId = ObjectId().toString()
+			with(createOrganizationRequest) {
+				if (organizationId.isEmpty()) organizationId = ObjectId().toString()
 				Organization(
 					organizationId = organizationId,
 					organizationName = organizationName,

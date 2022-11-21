@@ -12,6 +12,10 @@ import za.co.ilert.core.data.repository.blocktest.BlockTestRepository
 import za.co.ilert.core.data.repository.blocktest.BlockTestRepositoryImpl
 import za.co.ilert.core.data.repository.chat.ChatRepository
 import za.co.ilert.core.data.repository.chat.ChatRepositoryImpl
+import za.co.ilert.core.data.repository.meat.CarcassRepository
+import za.co.ilert.core.data.repository.meat.CarcassRepositoryImpl
+import za.co.ilert.core.data.repository.meat.CutRepository
+import za.co.ilert.core.data.repository.meat.CutRepositoryImpl
 import za.co.ilert.core.data.repository.organization.OrganizationRepository
 import za.co.ilert.core.data.repository.organization.OrganizationRepositoryImpl
 import za.co.ilert.core.data.repository.user.UserRepository
@@ -21,6 +25,7 @@ import za.co.ilert.presentation.services.address.AddressService
 import za.co.ilert.presentation.services.blocktest.BlockTestService
 import za.co.ilert.presentation.services.chat.ChatController
 import za.co.ilert.presentation.services.chat.ChatService
+import za.co.ilert.presentation.services.meat.MeatService
 import za.co.ilert.presentation.services.organization.OrganizationService
 import za.co.ilert.presentation.services.user.UserService
 
@@ -37,6 +42,8 @@ val mainModule = module {
 	singleOf(::AddressRepositoryImpl) { bind<AddressRepository>() }
 	singleOf(::ChatRepositoryImpl) { bind<ChatRepository>() }
 	singleOf(::BlockTestRepositoryImpl) { bind<BlockTestRepository>() }
+	singleOf(::CarcassRepositoryImpl) { bind<CarcassRepository>() }
+	singleOf(::CutRepositoryImpl) { bind<CutRepository>() }
 
 //	single { BlockTestService(get()) }
 	singleOf(::UserService)
@@ -45,6 +52,7 @@ val mainModule = module {
 	singleOf(::ChatService)
 	singleOf(::BlockTestService)
 	singleOf(::ChatController)
+	singleOf(::MeatService)
 
 //	singleOf(::Json)
 	singleOf(::Gson)

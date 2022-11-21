@@ -21,14 +21,14 @@ import za.co.ilert.core.data.requests.UserRequest
 import za.co.ilert.core.data.responses.BasicApiResponse
 import za.co.ilert.core.utils.Constants.FILE_SOURCE
 import za.co.ilert.core.utils.Constants.ORGANIZATION
-import za.co.ilert.core.utils.Constants.ORGANIZATION_GET
+import za.co.ilert.core.utils.Constants.ORGANIZATION_CREATE
 import za.co.ilert.core.utils.getByteArray
 import za.co.ilert.presentation.services.organization.OrganizationService
 import za.co.ilert.presentation.services.user.UserService
 import za.co.ilert.presentation.validation.ValidationEvent
 
 fun Route.createOrganization(organizationService: OrganizationService, userService: UserService) {
-	post(ORGANIZATION) {
+	post(ORGANIZATION_CREATE) {
 		val request = kotlin.runCatching { call.receiveNullable<OrganizationRequest>() }.getOrNull() ?: kotlin.run {
 			call.respond(
 				status = BadRequest,
@@ -71,6 +71,7 @@ fun Route.createOrganization(organizationService: OrganizationService, userServi
 				)
 				return@post
 			}
+
 			else -> {
 				userService.createUser(userRequest = userRequest)
 				call.respond(
@@ -137,7 +138,7 @@ fun Route.getOrganization(organizationService: OrganizationService) {
 
 fun Route.getOrganizationUsePost(organizationService: OrganizationService) {
 	authenticate {
-		post(ORGANIZATION_GET) {
+		post(ORGANIZATION) {
 			val request =
 				kotlin.runCatching { call.receiveNullable<OrganizationIdRequest>() }.getOrNull() ?: kotlin.run {
 					println("BadRequest call.receiveNullable **********")

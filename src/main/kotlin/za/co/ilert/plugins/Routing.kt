@@ -11,6 +11,7 @@ import za.co.ilert.presentation.routes.auth.loginUser
 import za.co.ilert.presentation.routes.blocktest.getBlockTest
 import za.co.ilert.presentation.routes.blocktest.upsertBlockTest
 import za.co.ilert.presentation.routes.chat.*
+import za.co.ilert.presentation.routes.meat.*
 import za.co.ilert.presentation.routes.organization.createOrganization
 import za.co.ilert.presentation.routes.organization.getOrganization
 import za.co.ilert.presentation.routes.organization.getOrganizationUsePost
@@ -19,6 +20,7 @@ import za.co.ilert.presentation.services.address.AddressService
 import za.co.ilert.presentation.services.blocktest.BlockTestService
 import za.co.ilert.presentation.services.chat.ChatController
 import za.co.ilert.presentation.services.chat.ChatService
+import za.co.ilert.presentation.services.meat.MeatService
 import za.co.ilert.presentation.services.organization.OrganizationService
 import za.co.ilert.presentation.services.user.UserService
 
@@ -29,6 +31,7 @@ fun Application.configureRouting() {
 	val addressService: AddressService by inject()
 	val blockTestService: BlockTestService by inject()
 	val chatService: ChatService by inject()
+	val meatService: MeatService by inject()
 	val chatController: ChatController by inject()
 
 
@@ -67,6 +70,17 @@ fun Application.configureRouting() {
 		getBlockTest(blockTestService = blockTestService)
 		upsertBlockTest(blockTestService = blockTestService)
 //		insertPrimalCuts(blockTestService = blockTestService)
+
+		// Meat Routes
+		createCarcassType(meatService = meatService)
+		createCarcassTypes(meatService = meatService)
+		getCarcassTypeById(meatService = meatService)
+		getCarcassTypeList(meatService = meatService)
+		createCutType(meatService = meatService)
+		createCutTypes(meatService = meatService)
+		getCutTypeById(meatService = meatService)
+		getCutTypeList(meatService = meatService)
+		getCutTypeListByOrganizationId(meatService = meatService)
 
 		// Session Routes
 		sessionIncrement()

@@ -14,7 +14,7 @@ object Constants {
 
 	// Organization Paths
 	const val ORGANIZATION = "$PATH/organization"
-	const val ORGANIZATION_GET = "$PATH/organization/get"
+	const val ORGANIZATION_CREATE = "$PATH/organization/create"
 
 	// Address Paths
 	const val ADDRESS = "$PATH/address"
@@ -29,6 +29,15 @@ object Constants {
 	// BlockTest Paths
 	const val BLOCK_TEST = "$PATH/blockTest"
 	const val BLOCK_TEST_PRIMALS = "$PATH/blockTest/primals"
+
+	// Meat
+	const val CARCASS = "$PATH/carcass"
+	const val CARCASS_CREATE = "$PATH/carcass/create"
+	const val CARCASSES_CREATE = "$PATH/carcasses/create"
+	const val CUTS = "$PATH/cuts"
+	const val CUT_CREATE = "$PATH/cut/create"
+	const val CUTS_CREATE = "$PATH/cuts/create"
+	const val PRIVATE_CUTS = "$PATH/private/cuts"
 
 	// Session Paths
 	const val SESSION_INCREMENT = "/session/increment"
