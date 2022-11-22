@@ -1,7 +1,7 @@
 package za.co.ilert.core.data.models
 
 /**
- * @property primalCutType
+ * @property cutType
  *
  * Beef Front Quarter 1xx
  * Beef Hind Quarter 2xx
@@ -13,7 +13,7 @@ package za.co.ilert.core.data.models
 
 
 data class Cuts(
-	val primalCutType: Int,
+	val cutType: String,
 	val actualCutWeight: Double,
 	val marketSellPrice: Double, // Market related sell price, what the local market will pay for this.
 	val cutName: String,

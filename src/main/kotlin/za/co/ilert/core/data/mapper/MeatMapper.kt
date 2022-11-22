@@ -7,8 +7,8 @@ import za.co.ilert.core.data.responses.CutTypeResponse
 
 fun CarcassType.toCarcassTypeResponse(): CarcassTypeResponse {
 	return CarcassTypeResponse(
-		displayName = displayName,
-		carcassTypeId = carcassTypeId
+		carcassTypeId = carcassTypeId,
+		displayName = displayName
 	)
 }
 

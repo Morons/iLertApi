@@ -46,8 +46,8 @@ class MeatService(
 		val carcassType = carcassRepository.getCarcassTypeById(carcassTypeId) ?: return null
 		return with(carcassType) {
 			CarcassTypeResponse(
-				displayName = displayName,
-				carcassTypeId = carcassTypeId
+				carcassTypeId = carcassTypeId,
+				displayName = displayName
 			)
 		}
 	}
