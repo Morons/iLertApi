@@ -35,6 +35,7 @@ object Constants {
 	const val CARCASS_CREATE = "$PATH/carcass/create"
 	const val CARCASSES_CREATE = "$PATH/carcasses/create"
 	const val CUTS = "$PATH/cuts"
+	const val CARCASS_CUTS = "$PATH/carcass/cuts"
 	const val CUT_CREATE = "$PATH/cut/create"
 	const val CUTS_CREATE = "$PATH/cuts/create"
 	const val PRIVATE_CUTS = "$PATH/private/cuts"

@@ -41,7 +41,7 @@ fun Route.createOrganization(organizationService: OrganizationService, userServi
 		}
 
 		val organizationId = ObjectId().toString()
-		val ownerId: String = ObjectId().toString()
+		val ownerId = ObjectId().toString()
 
 		val userRequest = with(request.owner) {
 			UserRequest(
@@ -114,7 +114,6 @@ fun Route.getOrganization(organizationService: OrganizationService) {
 		get(ORGANIZATION) {
 			val request =
 				kotlin.runCatching { call.receiveNullable<OrganizationIdRequest>() }.getOrNull() ?: kotlin.run {
-					println("BadRequest call.receiveNullable **********")
 					call.respond(
 						status = BadRequest,
 						message = BasicApiResponse<Unit>(successful = false, message = "$BadRequest")
@@ -122,9 +121,7 @@ fun Route.getOrganization(organizationService: OrganizationService) {
 					return@get
 				}
 			val organization = organizationService.getOrganization(request.organizationId)
-			println("organization = ${organization?.json} **********")
 			if (organization == null) {
-				println("BadRequest organization == null **********")
 				call.respond(
 					status = BadRequest,
 					message = BasicApiResponse<Unit>(successful = false, message = ORGANIZATION_NOT_FOUND)
@@ -141,7 +138,6 @@ fun Route.getOrganizationUsePost(organizationService: OrganizationService) {
 		post(ORGANIZATION) {
 			val request =
 				kotlin.runCatching { call.receiveNullable<OrganizationIdRequest>() }.getOrNull() ?: kotlin.run {
-					println("BadRequest call.receiveNullable **********")
 					call.respond(
 						status = BadRequest,
 						message = BasicApiResponse<Unit>(successful = false, message = "$BadRequest")
@@ -149,9 +145,7 @@ fun Route.getOrganizationUsePost(organizationService: OrganizationService) {
 					return@post
 				}
 			val organization = organizationService.getOrganization(request.organizationId)
-			println("organization = ${organization?.json} **********")
 			if (organization == null) {
-				println("BadRequest organization == null **********")
 				call.respond(
 					status = BadRequest,
 					message = BasicApiResponse<Unit>(successful = false, message = ORGANIZATION_NOT_FOUND)

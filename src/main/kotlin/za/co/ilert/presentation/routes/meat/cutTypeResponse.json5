@@ -1,0 +1,98 @@
+[
+	{
+		"cutName": "Wings",
+		"displayName": "Wings",
+		"organizationId": "",
+		"isMutable": false,
+		"carcassTypeId": "637b6edea9d276641318f3ca",
+		"cutTypeId": "637b7cb7d1ba9d3729891414"
+	},
+	{
+		"cutName": "Thighs",
+		"displayName": "Thighs",
+		"organizationId": "",
+		"isMutable": false,
+		"carcassTypeId": "637b6edea9d276641318f3ca",
+		"cutTypeId": "637b7cb7d1ba9d3729891412"
+	},
+	{
+		"cutName": "Leg Quarters",
+		"displayName": "Leg Quarters",
+		"organizationId": "",
+		"isMutable": false,
+		"carcassTypeId": "637b6edea9d276641318f3ca",
+		"cutTypeId": "637b7cb7d1ba9d3729891415"
+	},
+	{
+		"cutName": "Heads",
+		"displayName": "Heads",
+		"organizationId": "",
+		"isMutable": false,
+		"carcassTypeId": "637b6edea9d276641318f3ca",
+		"cutTypeId": "637b7cb7d1ba9d3729891417"
+	},
+	{
+		"cutName": "Feet",
+		"displayName": "Feet",
+		"organizationId": "",
+		"isMutable": false,
+		"carcassTypeId": "637b6edea9d276641318f3ca",
+		"cutTypeId": "637b7cb7d1ba9d3729891418"
+	},
+	{
+		"cutName": "Drum Sticks",
+		"displayName": "Drum Sticks",
+		"organizationId": "",
+		"isMutable": false,
+		"carcassTypeId": "637b6edea9d276641318f3ca",
+		"cutTypeId": "637b7cb7d1ba9d3729891411"
+	},
+	{
+		"cutName": "Cutting and Trimming Waste",
+		"displayName": "Cutting and Trimming Waste",
+		"organizationId": "",
+		"isMutable": false,
+		"carcassTypeId": "637b6edea9d276641318f3ca",
+		"cutTypeId": "637b7cb7d1ba9d372989141c"
+	},
+	{
+		"cutName": "Chicken Trimmings",
+		"displayName": "Chicken Trimmings",
+		"organizationId": "",
+		"isMutable": false,
+		"carcassTypeId": "637b6edea9d276641318f3ca",
+		"cutTypeId": "637b7cb7d1ba9d3729891419"
+	},
+	{
+		"cutName": "Chicken Skin Fat",
+		"displayName": "Chicken Skin Fat",
+		"organizationId": "",
+		"isMutable": false,
+		"carcassTypeId": "637b6edea9d276641318f3ca",
+		"cutTypeId": "637b7cb7d1ba9d372989141b"
+	},
+	{
+		"cutName": "Chicken Fat",
+		"displayName": "Chicken Fat",
+		"organizationId": "",
+		"isMutable": false,
+		"carcassTypeId": "637b6edea9d276641318f3ca",
+		"cutTypeId": "637b7cb7d1ba9d372989141a"
+	},
+	{
+		"cutName": "Breasts Fillet",
+		"displayName": "Breasts Fillet",
+		"organizationId": "",
+		"isMutable": false,
+		"carcassTypeId": "637b6edea9d276641318f3ca",
+		"cutTypeId": "637b7cb7d1ba9d3729891413"
+	},
+	{
+		"cutName": "Bones",
+		"displayName": "Bones",
+		"organizationId": "",
+		"isMutable": false,
+		"carcassTypeId": "637b6edea9d276641318f3ca",
+		"cutTypeId": "637b7cb7d1ba9d3729891416"
+	}
+]

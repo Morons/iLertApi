@@ -77,13 +77,11 @@ class UserService(
 	}
 
 	suspend fun updateUserProfile(isOwnProfile: Boolean, updateUserRequest: UpdateUserRequest): User? {
-		println("UserService updateUserRequest = $updateUserRequest **********")
 		val wasAcknowledged = userRepository.updateUser(isOwnProfile, updateUserRequest)
 		return if (wasAcknowledged) getUser(updateUserRequest.userId!!) else null
 	}
 
 	fun validateCreateAccountRequest(userRequest: UserRequest): ValidationEvent {
-		println("userRequest = ${userRequest.json} **********")
 		return if (with(userRequest) { userEmail.isBlank() || password.isBlank() || userName.isBlank() }) {
 			ValidationEvent.ErrorFieldEmpty
 		} else ValidationEvent.Success

@@ -7,6 +7,7 @@ import io.ktor.server.auth.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import org.bson.types.ObjectId
 import za.co.ilert.core.data.mapper.toCarcassTypeResponse
 import za.co.ilert.core.data.mapper.toCutTypeResponse
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.CARCASS_TYPE_NOT_FOUND
@@ -17,6 +18,7 @@ import za.co.ilert.core.data.responses.BasicApiResponse
 import za.co.ilert.core.utils.Constants.CARCASS
 import za.co.ilert.core.utils.Constants.CARCASSES_CREATE
 import za.co.ilert.core.utils.Constants.CARCASS_CREATE
+import za.co.ilert.core.utils.Constants.CARCASS_CUTS
 import za.co.ilert.core.utils.Constants.CUTS
 import za.co.ilert.core.utils.Constants.CUTS_CREATE
 import za.co.ilert.core.utils.Constants.CUT_CREATE
@@ -105,7 +107,19 @@ fun Route.getCarcassTypeById(meatService: MeatService) {
 fun Route.getCarcassTypeList(meatService: MeatService) {
 	authenticate {
 		get(CARCASS) {
-			call.respond(status = OK, message = meatService.getCarcassTypeList().map { it.toCarcassTypeResponse() })
+			val carcassTypes = meatService.getCarcassTypeList()
+			if (carcassTypes.isNotEmpty()) {
+				call.respond(
+					status = OK,
+					message = carcassTypes.map { it.toCarcassTypeResponse() }
+				)
+				return@get
+			} else {
+				call.respond(
+					status = BadRequest,
+					message = BasicApiResponse<Unit>(successful = false, message = CARCASS_TYPE_NOT_FOUND)
+				)
+			}
 		}
 	}
 }
@@ -122,7 +136,8 @@ fun Route.createCutType(meatService: MeatService) {
 					)
 					return@post
 				}
-			if (meatService.createCutType(cutTypeRequest = cutTypeRequest)) {
+			val cutTypeId = ObjectId().toString()
+			if (meatService.createCutType(cutTypeRequest = cutTypeRequest.copy(cutTypeId = cutTypeId))) {
 				call.respond(
 					status = OK,
 					message = BasicApiResponse<Unit>(successful = true, message = "$OK")
@@ -194,16 +209,43 @@ fun Route.getCutTypeById(meatService: MeatService) {
 	}
 }
 
-//getCutTypeList(): List<CutType>
-fun Route.getCutTypeList(meatService: MeatService) {
+fun Route.loadCutTypes(meatService: MeatService) {
 	authenticate {
-		get(CUTS) {
-			call.respond(status = OK, message = meatService.getCutTypeList().map { it.toCutTypeResponse() })
+		post(CUTS) {
+			val cutTypeIdRequest =
+				kotlin.runCatching { call.receiveNullable<CutTypeIdRequest>() }.getOrNull() ?: kotlin.run {
+					call.respond(
+						status = BadRequest,
+						message = BasicApiResponse<Unit>(
+							successful = false,
+							message = UNKNOWN_ERROR_TRY_AGAIN
+						)
+					)
+					return@post
+				}
+			val cutTypeResponse = meatService.getCutTypeById(cutTypeIdRequest.cutTypeId)
+			if (cutTypeResponse == null) {
+				call.respond(
+					status = BadRequest,
+					message = BasicApiResponse<Unit>(successful = false, message = CUT_TYPE_NOT_FOUND)
+				)
+				return@post
+			} else {
+				call.respond(status = OK, message = BasicApiResponse(successful = true, data = cutTypeResponse))
+			}
 		}
 	}
 }
 
-//getCutTypeListByOrganizationId(organizationId: String): List<CutType>
+//getCutTypeList(): List<CutType>
+fun Route.getCutTypes(meatService: MeatService) {
+	authenticate {
+		get(CUTS) {
+			call.respond(status = OK, message = meatService.getCutTypes().map { it.toCutTypeResponse() })
+		}
+	}
+}
+
 fun Route.getCutTypeListByOrganizationId(meatService: MeatService) {
 	authenticate {
 		post(PRIVATE_CUTS) {
@@ -227,6 +269,37 @@ fun Route.getCutTypeListByOrganizationId(meatService: MeatService) {
 				return@post
 			} else {
 				call.respond(status = OK, message = BasicApiResponse(successful = true, data = cutTypeResponse))
+			}
+		}
+	}
+}
+
+
+fun Route.getCutTypesByCarcassTypeId(meatService: MeatService) {
+	authenticate {
+		post(CARCASS_CUTS) {
+			val carcassTypeIdRequest =
+				kotlin.runCatching { call.receiveNullable<CarcassTypeIdRequest>() }.getOrNull() ?: kotlin.run {
+					call.respond(
+						status = BadRequest,
+						message = BasicApiResponse<Unit>(
+							successful = false,
+							message = UNKNOWN_ERROR_TRY_AGAIN
+						)
+					)
+					return@post
+				}
+			val cutTypesResponse = meatService.getCutTypesByCarcassTypeId(carcassTypeIdRequest.carcassTypeId)
+			if (cutTypesResponse.isEmpty()) {
+				call.respond(
+					status = BadRequest,
+					message = BasicApiResponse<Unit>(successful = false, message = CUT_TYPE_NOT_FOUND)
+				)
+				return@post
+			} else {
+				call.respond(
+					status = OK, message = BasicApiResponse(successful = true, data = cutTypesResponse)
+				)
 			}
 		}
 	}

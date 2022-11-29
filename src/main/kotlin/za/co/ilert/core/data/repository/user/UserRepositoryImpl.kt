@@ -28,7 +28,6 @@ class UserRepositoryImpl(
 	}
 
 	override suspend fun updateUser(isOwnProfile: Boolean, updateUserRequest: UpdateUserRequest): Boolean {
-		println("UserRepository updateUserRequest = $updateUserRequest **********")
 		val userToSave = if (!updateUserRequest.userId.isNullOrBlank()) {
 			val user = getUserById(updateUserRequest.userId) ?: return false
 			UserResponse(

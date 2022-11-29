@@ -79,8 +79,9 @@ fun Application.configureRouting() {
 		createCutType(meatService = meatService)
 		createCutTypes(meatService = meatService)
 		getCutTypeById(meatService = meatService)
-		getCutTypeList(meatService = meatService)
+		getCutTypes(meatService = meatService)
 		getCutTypeListByOrganizationId(meatService = meatService)
+		getCutTypesByCarcassTypeId(meatService = meatService)
 
 		// Session Routes
 		sessionIncrement()

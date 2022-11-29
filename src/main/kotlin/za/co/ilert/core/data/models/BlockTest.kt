@@ -8,7 +8,7 @@ import java.time.ZoneOffset
 
 data class BlockTest(
 	val userId: String,
-	val carcassType: Int, // Beef Front Quarter 1xx, Beef Hind Quarter 2xx, Pork 3xx, Lamb 4xx, Chicken 5xx
+	val carcassTypeId: String, // Beef Front Quarter 1xx, Beef Hind Quarter 2xx, Pork 3xx, Lamb 4xx, Chicken 5xx
 	val carcassKgCostIncl: Double,
 	val carcassWeight: Double,
 	val carcassHangingWeight: Double,
@@ -17,7 +17,7 @@ data class BlockTest(
 	val cuttingLossParameter: Double,
 	val wasteParameter: Double,
 	val percentGpRequired: Double,
-	val cuts: List<Cuts>,
+	val cuts: List<Cut>,
 	val timestamp: Long = now().atOffset(ZoneOffset.UTC).toEpochSecond(),
 	@BsonId
 	val blockTestId: String = ObjectId().toString()

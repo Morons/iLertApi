@@ -12,7 +12,7 @@ package za.co.ilert.core.data.models
  **/
 
 
-data class Cuts(
+data class Cut(
 	val cutType: String,
 	val actualCutWeight: Double,
 	val marketSellPrice: Double, // Market related sell price, what the local market will pay for this.

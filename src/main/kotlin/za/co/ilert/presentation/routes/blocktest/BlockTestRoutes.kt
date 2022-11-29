@@ -34,7 +34,7 @@ fun Route.getBlockTest(blockTestService: BlockTestService) {
 			val blockTest = blockTestService.getBlockTest(request.blockTestId)
 			if (blockTest != null) {
 				val blockTestResponse = BlockTestResponse(
-					carcassType = blockTest.carcassType,
+					carcassTypeId = blockTest.carcassTypeId,
 					carcassKgCostIncl = blockTest.carcassKgCostIncl,
 					carcassWeight = blockTest.carcassWeight,
 					carcassHangingWeight = blockTest.carcassHangingWeight,

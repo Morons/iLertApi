@@ -55,7 +55,6 @@ fun Route.searchUsersUsePost(userService: UserService) {
 				page = request.page,
 				pageSize = request.pageSize
 			)
-			println("searchUsersUsePost searchResults = ${searchResults.json} **********")
 			call.respond(status = OK, message = searchResults)
 		}
 	}

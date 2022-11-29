@@ -102,6 +102,7 @@ fun Route.loginUser(
 	userService: UserService, jwtIssuer: String, jwtAudience: String, jwtSecret: String
 ) {
 	post(USER_LOGIN) {
+
 		val request = kotlin.runCatching { call.receiveNullable<AuthRequest>() }.getOrNull() ?: kotlin.run {
 			call.respond(
 				status = BadRequest,
@@ -109,6 +110,7 @@ fun Route.loginUser(
 			)
 			return@post
 		}
+
 		if (with(request) { email.isBlank() && userName.isBlank() }) {
 			call.respond(
 				status = BadRequest,
@@ -116,6 +118,7 @@ fun Route.loginUser(
 			)
 			return@post
 		}
+
 		val loginValue = with(request) { email.ifBlank { userName } }
 		val user = userService.getUserByEmail(request.email) ?: kotlin.run {
 			call.respond(
@@ -127,6 +130,7 @@ fun Route.loginUser(
 			)
 			return@post
 		}
+
 		if (userService.doesLoginValueMatchForUser(loginValue, request.password, user.password)) {
 			val token = JWT.create().withClaim("userId", user.userId).withIssuer(jwtIssuer)
 				.withExpiresAt(Date(System.currentTimeMillis().plus(31557600000L))).withAudience(jwtAudience)
@@ -136,8 +140,7 @@ fun Route.loginUser(
 				message = BasicApiResponse(
 					successful = true,
 					data = AuthResponse(
-						userId = user.userId,
-						organizationId = user.organizationId,
+						user = user,
 						token = token
 					)
 				)

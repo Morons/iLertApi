@@ -8,7 +8,8 @@ interface CutRepository {
 	suspend fun createCutTypes(cutTypes: List<CutType>): Boolean
 	suspend fun upsertCutType(cutType: CutType): Boolean
 	suspend fun getCutTypeById(cutTypeId: String) : CutType?
-	suspend fun getCutTypeList(): List<CutType>
+	suspend fun getCutTypes(): List<CutType>
 	suspend fun getCutTypeListByOrganizationId(organizationId: String): List<CutType>?
+	suspend fun getCutTypesByCarcassTypeId(carcassTypeId: String): List<CutType>
 
 }

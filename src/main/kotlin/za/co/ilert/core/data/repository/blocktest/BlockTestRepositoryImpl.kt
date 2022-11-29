@@ -5,7 +5,7 @@ import org.litote.kmongo.MongoOperator.*
 import org.litote.kmongo.coroutine.CoroutineDatabase
 import org.litote.kmongo.coroutine.aggregate
 import za.co.ilert.core.data.models.BlockTest
-import za.co.ilert.core.data.models.Cuts
+import za.co.ilert.core.data.models.Cut
 import za.co.ilert.core.data.requests.BlockTestRequest
 import za.co.ilert.core.data.requests.DeleteBlockTestRequest
 import za.co.ilert.core.data.requests.GenericPageRequest
@@ -24,7 +24,7 @@ class BlockTestRepositoryImpl(
 
 		return BlockTest(
 			userId = blockTest.userId,
-			carcassType = blockTest.carcassType,
+			carcassTypeId = blockTest.carcassTypeId,
 			carcassKgCostIncl = blockTest.carcassKgCostIncl,
 			carcassWeight = blockTest.carcassWeight,
 			carcassHangingWeight = blockTest.carcassHangingWeight,
@@ -44,7 +44,7 @@ class BlockTestRepositoryImpl(
 		return blockTestDb.aggregate<ResultResponse>(
 			match(BlockTest::blockTestId eq blockTestId),
 			project(ResultResponse::sumWeight to sum.from(
-				(BlockTest::cuts / Cuts::actualCutWeight).projection))
+				(BlockTest::cuts / Cut::actualCutWeight).projection))
 		).first()?.sumWeight ?: 0.0
 	}
 
@@ -69,7 +69,7 @@ class BlockTestRepositoryImpl(
 			.toList()
 			.map { blockTest ->
 				BlockTestListResponse(
-					carcassType = blockTest.carcassType,
+					carcassTypeId = blockTest.carcassTypeId,
 					timestamp = blockTest.timestamp,
 					blockTestId = blockTest.blockTestId
 				)

@@ -2,14 +2,14 @@ package za.co.ilert.core.data.requests
 
 import org.bson.types.ObjectId
 import za.co.ilert.core.data.models.BlockTest
-import za.co.ilert.core.data.models.Cuts
+import za.co.ilert.core.data.models.Cut
 import java.time.Instant
 import java.time.ZoneOffset
 
 
 data class BlockTestRequest(
 	val userId: String,
-	val carcassType: Int, // Beef Front Quarter 1xx, Beef Hind Quarter 2xx, Pork 3xx, Lamb 4xx, Chicken 5xx
+	val carcassTypeId: String, // Beef Front Quarter 1xx, Beef Hind Quarter 2xx, Pork 3xx, Lamb 4xx, Chicken 5xx
 	val carcassKgCostIncl: Double,
 	val carcassWeight: Double,
 	val carcassHangingWeight: Double,
@@ -21,7 +21,7 @@ data class BlockTestRequest(
 	val percentDifferenceParameter: Double,
 	val percentGpRequired: Double,
 	val acceptablePriceVariance: Double,
-	val cuts: List<Cuts>,
+	val cuts: List<Cut>,
 	val sumPrimalsWeight: Double = 0.0,
 	val trimmingWaste: Double = 0.0,
 	val measuredWeightAfterCuts: Double = 0.0,
@@ -31,7 +31,7 @@ data class BlockTestRequest(
 	fun toBlockTest(): BlockTest {
 		return BlockTest(
 			userId = userId,
-			carcassType = carcassType,
+			carcassTypeId = carcassTypeId,
 			carcassKgCostIncl = carcassKgCostIncl,
 			carcassWeight = carcassWeight,
 			carcassHangingWeight = carcassHangingWeight,
