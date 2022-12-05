@@ -49,7 +49,7 @@ fun Route.getMessagesForChat(chatService: ChatService) {
 fun Route.getChatsForSelfPaged(chatService: ChatService) {
 	authenticate {
 		post(CHATS) {
-			val request = call.receiveOrNull<GenericPageRequest>() ?: kotlin.run {
+			val request = kotlin.runCatching { call.receiveNullable<GenericPageRequest>() }.getOrNull() ?: kotlin.run {
 				call.respond(
 					status = BadRequest, message = BasicApiResponse<Unit>(
 						successful = false, message = UNKNOWN_ERROR_TRY_AGAIN

@@ -12,6 +12,7 @@ object ApiResponseMessages {
 	const val ORGANIZATION_NOT_FOUND = "Organization not found"
 	const val LOGIN_AUTHENTICATED = "Login Authenticated"
 	const val CARCASS_TYPE_NOT_FOUND = "Carcass Type not found"
+	const val BLOCK_TESTS_NOT_FOUND = "Block Tests not found"
 	const val CUT_TYPE_NOT_FOUND = "Cut Type not found"
 
 }

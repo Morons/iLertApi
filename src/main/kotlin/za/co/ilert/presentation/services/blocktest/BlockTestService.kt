@@ -5,7 +5,6 @@ import za.co.ilert.core.data.repository.blocktest.BlockTestRepository
 import za.co.ilert.core.data.requests.BlockTestRequest
 import za.co.ilert.core.data.requests.DeleteBlockTestRequest
 import za.co.ilert.core.data.requests.GenericPageRequest
-import za.co.ilert.core.data.responses.BlockTestListResponse
 import za.co.ilert.presentation.validation.ValidationEvent
 
 
@@ -22,15 +21,19 @@ class BlockTestService(
 ) {
 
 	suspend fun getBlockTest(blockTestId: String): BlockTest? {
-
 		return blockTestRepository.getBlockTest(blockTestId = blockTestId)
 	}
 
-	suspend fun insertBlockTest(blockTestRequest: BlockTestRequest): Boolean {
-		return blockTestRepository.insertBlockTest(
-			blockTestRequest = blockTestRequest
-		)
+	suspend fun getBlockTests(): List<BlockTest> {
+		return blockTestRepository.getBlockTestList()
 	}
+
+	suspend fun getBlockTestsPaged(genericPageRequest: GenericPageRequest): List<BlockTest> {
+		return blockTestRepository.getBlockTestListPaged(genericPageRequest = genericPageRequest)
+	}
+
+	suspend fun insertBlockTest(blockTestRequest: BlockTestRequest): Boolean =
+		blockTestRepository.insertBlockTest(blockTest = blockTestRequest.toBlockTest())
 
 	fun validateInsertBlockTestRequest(request: BlockTestRequest): ValidationEvent {
 		return if (
@@ -45,9 +48,4 @@ class BlockTestService(
 	suspend fun deleteBlockTest(deleteBlockTestRequest: DeleteBlockTestRequest): Boolean {
 		return blockTestRepository.deleteBlockTest(deleteBlockTestRequest = deleteBlockTestRequest)
 	}
-
-	suspend fun getBlockTestsPaged(genericPageRequest: GenericPageRequest): List<BlockTestListResponse> {
-		return blockTestRepository.getBlockTestsPaged(genericPageRequest = genericPageRequest)
-	}
-
 }

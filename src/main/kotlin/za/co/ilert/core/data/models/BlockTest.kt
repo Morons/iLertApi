@@ -1,13 +1,13 @@
 package za.co.ilert.core.data.models
 
 import org.bson.codecs.pojo.annotations.BsonId
-import org.bson.types.ObjectId
-import java.time.Instant.now
-import java.time.ZoneOffset
 
 
 data class BlockTest(
+	@BsonId
+	val blockTestId: String,
 	val userId: String,
+	val organizationId: String,
 	val carcassTypeId: String, // Beef Front Quarter 1xx, Beef Hind Quarter 2xx, Pork 3xx, Lamb 4xx, Chicken 5xx
 	val carcassKgCostIncl: Double,
 	val carcassWeight: Double,
@@ -17,8 +17,9 @@ data class BlockTest(
 	val cuttingLossParameter: Double,
 	val wasteParameter: Double,
 	val percentGpRequired: Double,
+	val accumulatedFairValueMarketRelated: Double = 0.0,
 	val cuts: List<Cut>,
-	val timestamp: Long = now().atOffset(ZoneOffset.UTC).toEpochSecond(),
-	@BsonId
-	val blockTestId: String = ObjectId().toString()
+	val notBalancingReason: String,
+	val locked: Boolean,
+	val timestamp: Long
 )

@@ -7,12 +7,19 @@ import io.ktor.server.auth.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import org.bson.types.ObjectId
+import org.litote.kmongo.json
+import za.co.ilert.core.data.models.BlockTest
+import za.co.ilert.core.data.repository.utils.ApiResponseMessages.BLOCK_TESTS_NOT_FOUND
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.FIELDS_BLANK
+import za.co.ilert.core.data.repository.utils.ApiResponseMessages.UNKNOWN_ERROR_TRY_AGAIN
 import za.co.ilert.core.data.requests.BlockTestRequest
+import za.co.ilert.core.data.requests.GenericPageRequest
 import za.co.ilert.core.data.requests.GetBlockTestRequest
 import za.co.ilert.core.data.responses.BasicApiResponse
 import za.co.ilert.core.data.responses.BlockTestResponse
 import za.co.ilert.core.utils.Constants.BLOCK_TEST
+import za.co.ilert.core.utils.Constants.BLOCK_TESTS
 import za.co.ilert.presentation.services.blocktest.BlockTestService
 import za.co.ilert.presentation.validation.ValidationEvent
 import java.time.Instant
@@ -33,24 +40,75 @@ fun Route.getBlockTest(blockTestService: BlockTestService) {
 			}
 			val blockTest = blockTestService.getBlockTest(request.blockTestId)
 			if (blockTest != null) {
-				val blockTestResponse = BlockTestResponse(
-					carcassTypeId = blockTest.carcassTypeId,
-					carcassKgCostIncl = blockTest.carcassKgCostIncl,
-					carcassWeight = blockTest.carcassWeight,
-					carcassHangingWeight = blockTest.carcassHangingWeight,
-					cutTrimWeight = blockTest.cutTrimWeight,
-					weightLossParameter = blockTest.weightLossParameter,
-					cuttingLossParameter = blockTest.cuttingLossParameter,
-					waistParameter = blockTest.wasteParameter,
-					percentGpRequired = blockTest.percentGpRequired,
-					cuts = blockTest.cuts,
-					timestamp = blockTest.timestamp,
-					blockTestId = blockTest.blockTestId
-				)
+
+				val blockTestResponse = with(blockTest) {
+					BlockTestResponse(
+						blockTestId = blockTestId,
+						userId = userId,
+						organizationId = organizationId,
+						carcassTypeId = carcassTypeId,
+						carcassKgCostIncl = carcassKgCostIncl,
+						carcassWeight = carcassWeight,
+						carcassHangingWeight = carcassHangingWeight,
+						cutTrimWeight = cutTrimWeight,
+						weightLossParameter = weightLossParameter,
+						cuttingLossParameter = cuttingLossParameter,
+						wasteParameter = wasteParameter,
+						percentGpRequired = percentGpRequired,
+						cuts = cuts,
+						timestamp = timestamp
+					)
+				}
 				call.respond(status = OK, message = BasicApiResponse(successful = true, data = blockTestResponse))
 			} else {
 				call.respond(status = BadRequest, message = BasicApiResponse<Unit>(successful = false))
 				return@get
+			}
+		}
+	}
+}
+
+fun Route.getBlockTests(blockTestService: BlockTestService) {
+	authenticate {
+		get(BLOCK_TESTS) {
+			val blockTests: List<BlockTest> = blockTestService.getBlockTests()
+				.also { println("getBlockTests BlockTestList = ${it.json} **********") }
+			if (blockTests.isNotEmpty()) {
+				call.respond(status = OK, message = BasicApiResponse(successful = true, data = blockTests))
+				return@get
+			} else {
+				call.respond(
+					status = BadRequest,
+					message = BasicApiResponse<Unit>(successful = false, message = BLOCK_TESTS_NOT_FOUND)
+				)
+			}
+		}
+	}
+}
+
+fun Route.getBlockTestsPaged(blockTestService: BlockTestService) {
+	authenticate {
+		post(BLOCK_TESTS) {
+			val request = kotlin.runCatching { call.receiveNullable<GenericPageRequest>() }.getOrNull() ?: kotlin.run {
+				call.respond(
+					status = BadRequest, message = BasicApiResponse<Unit>(
+						successful = false, message = UNKNOWN_ERROR_TRY_AGAIN
+					)
+				)
+				return@post
+			}
+			val carcassTypes = blockTestService.getBlockTestsPaged(request)
+			if (carcassTypes.isNotEmpty()) {
+				call.respond(status = OK, message = BasicApiResponse(successful = true, data = carcassTypes))
+				return@post
+			} else {
+				call.respond(
+					status = BadRequest,
+					message = BasicApiResponse<Unit>(
+						successful = false,
+						message = BLOCK_TESTS_NOT_FOUND
+					)
+				)
 			}
 		}
 	}
@@ -77,10 +135,12 @@ fun Route.upsertBlockTest(blockTestService: BlockTestService) {
 				}
 
 				else -> {
-					val blockTest = request.copy(timestamp = Instant.now().atOffset(ZoneOffset.UTC).toEpochSecond())
-					val wasAcknowledged = blockTestService.insertBlockTest(
-						blockTestRequest = request
-					)
+					val blockTestId = ObjectId().toString()
+					val timestamp = Instant.now().atOffset(ZoneOffset.UTC).toEpochSecond()
+					val cutsToSave = request.cuts.map { it.copy(blockTestId = blockTestId) }
+					val blockTestToSave =
+						request.copy(blockTestId = blockTestId, cuts = cutsToSave, timestamp = timestamp)
+					val wasAcknowledged = blockTestService.insertBlockTest(blockTestRequest = blockTestToSave)
 					if (wasAcknowledged) call.respond(
 						status = OK,
 						message = BasicApiResponse<Unit>(successful = true, message = "$OK")
@@ -93,5 +153,3 @@ fun Route.upsertBlockTest(blockTestService: BlockTestService) {
 }
 
 //deleteBlockTest
-
-//getBlockTestsPaged

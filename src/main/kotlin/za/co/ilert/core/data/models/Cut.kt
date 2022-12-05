@@ -1,22 +1,11 @@
 package za.co.ilert.core.data.models
 
-/**
- * @property cutType
- *
- * Beef Front Quarter 1xx
- * Beef Hind Quarter 2xx
- * Pork 3xx
- * Lamb 4xx
- * Chicken 5xx
- *
- **/
-
-
 data class Cut(
-	val cutType: String,
+	val cutTypeId: String,
+	val blockTestId: String,
 	val actualCutWeight: Double,
 	val marketSellPrice: Double, // Market related sell price, what the local market will pay for this.
+	val salesPrice: Double,  // Overridden Sales Price or Suggested Sales Price Incl VAT
 	val cutName: String,
-	val displayName: String,
-	val isMutable: Boolean = false
+	val displayName: String
 )

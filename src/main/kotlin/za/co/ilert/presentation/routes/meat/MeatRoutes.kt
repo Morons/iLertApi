@@ -25,7 +25,6 @@ import za.co.ilert.core.utils.Constants.CUT_CREATE
 import za.co.ilert.core.utils.Constants.PRIVATE_CUTS
 import za.co.ilert.presentation.services.meat.MeatService
 
-//createCarcassType(carcassTypeRequest: CarcassTypeRequest): Boolean
 fun Route.createCarcassType(meatService: MeatService) {
 	authenticate {
 		post(CARCASS_CREATE) {
@@ -74,7 +73,6 @@ fun Route.createCarcassTypes(meatService: MeatService) {
 	}
 }
 
-//getCarcassTypeById(carcassTypeId: String): CarcassType?
 fun Route.getCarcassTypeById(meatService: MeatService) {
 	authenticate {
 		post(CARCASS) {
@@ -103,7 +101,6 @@ fun Route.getCarcassTypeById(meatService: MeatService) {
 	}
 }
 
-//getCarcassTypeList(): List<CarcassType>
 fun Route.getCarcassTypeList(meatService: MeatService) {
 	authenticate {
 		get(CARCASS) {
@@ -124,7 +121,6 @@ fun Route.getCarcassTypeList(meatService: MeatService) {
 	}
 }
 
-//createCutType(cutTypeRequest: CutTypeRequest): Boolean
 fun Route.createCutType(meatService: MeatService) {
 	authenticate {
 		post(CUT_CREATE) {
@@ -180,7 +176,6 @@ fun Route.createCutTypes(meatService: MeatService) {
 	}
 }
 
-//getCutTypeById(cutTypeId: String): CutType?
 fun Route.getCutTypeById(meatService: MeatService) {
 	authenticate {
 		post(CUTS) {
@@ -237,7 +232,6 @@ fun Route.loadCutTypes(meatService: MeatService) {
 	}
 }
 
-//getCutTypeList(): List<CutType>
 fun Route.getCutTypes(meatService: MeatService) {
 	authenticate {
 		get(CUTS) {
