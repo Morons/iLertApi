@@ -6,7 +6,8 @@ import za.co.ilert.plugins.*
 fun main(args: Array<String>): Unit =
 	io.ktor.server.tomcat.EngineMain.main(args)
 
-@Suppress("unused") // application.conf references the main function. This annotation prevents the IDE from marking it as unused.
+// application.conf references the main function. This annotation prevents the IDE from marking it as unused.
+@Suppress("unused")
 fun Application.module() {
 	configureKoin()
 	configureSecurity()

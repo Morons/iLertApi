@@ -6,6 +6,7 @@ import za.co.ilert.core.data.models.User
 import za.co.ilert.core.data.requests.UpdateUserRequest
 import za.co.ilert.core.data.responses.UserResponse
 import za.co.ilert.core.utils.Constants
+import za.co.ilert.core.utils.Constants.FILE_SOURCE
 import za.co.ilert.core.utils.getByteArray
 
 class UserRepositoryImpl(
@@ -37,7 +38,7 @@ class UserRepositoryImpl(
 				userName = updateUserRequest.userName,
 				password = user.password,
 				avatarAsString = updateUserRequest.avatarAsString
-					?: getByteArray(filePathName = "${Constants.FILE_SOURCE}/ic_avatar_default.png"),
+					?: getByteArray(filePathName = "$FILE_SOURCE/ic_avatar_default.png"),
 				security = updateUserRequest.security,
 				organizationId = updateUserRequest.organizationId,
 				isOwnProfile = isOwnProfile

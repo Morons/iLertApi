@@ -19,7 +19,6 @@ class BlockTestRepositoryImpl(
 
 	override suspend fun getBlockTest(blockTestId: String): BlockTest? {
 		val blockTest: BlockTest = blockTestDb.findOne(filter = BlockTest::blockTestId eq blockTestId) ?: return null
-		val sumPrimalsWeight = sumPrimalsWeight(blockTestId)
 
 		return with(blockTest) {
 			BlockTest(
@@ -35,7 +34,6 @@ class BlockTestRepositoryImpl(
 				cuttingLossParameter = cuttingLossParameter,
 				wasteParameter = wasteParameter,
 				percentGpRequired = percentGpRequired,
-				accumulatedFairValueMarketRelated = accumulatedFairValueMarketRelated,
 				cuts = cuts,
 				notBalancingReason = notBalancingReason,
 				locked = locked,

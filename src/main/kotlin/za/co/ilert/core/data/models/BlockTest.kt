@@ -17,7 +17,6 @@ data class BlockTest(
 	val cuttingLossParameter: Double,
 	val wasteParameter: Double,
 	val percentGpRequired: Double,
-	val accumulatedFairValueMarketRelated: Double = 0.0,
 	val cuts: List<Cut>,
 	val notBalancingReason: String,
 	val locked: Boolean,

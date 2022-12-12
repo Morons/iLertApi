@@ -35,7 +35,7 @@ fun Route.searchUsers(userService: UserService) {
 				page = request.page,
 				pageSize = request.pageSize
 			)
-			call.respond(status = OK, message = searchResults)
+			call.respond(status = OK, message = BasicApiResponse(successful = true, data = searchResults))
 		}
 	}
 }
@@ -55,7 +55,7 @@ fun Route.searchUsersUsePost(userService: UserService) {
 				page = request.page,
 				pageSize = request.pageSize
 			)
-			call.respond(status = OK, message = searchResults)
+			call.respond(status = OK, message = BasicApiResponse(successful = true, data = searchResults))
 		}
 	}
 }
@@ -107,16 +107,17 @@ fun Route.getUserUsePost(userService: UserService) {
 fun Route.updateUserProfile(userService: UserService) {
 	authenticate {
 		patch(USER) {
-			val updateUserRequest = kotlin.runCatching { call.receiveNullable<UpdateUserRequest>() }.getOrNull() ?: kotlin.run {
-				call.respond(
-					status = BadRequest,
-					message = BasicApiResponse<Unit>(
-						successful = false,
-						message = ApiResponseMessages.UNKNOWN_ERROR_TRY_AGAIN
+			val updateUserRequest =
+				kotlin.runCatching { call.receiveNullable<UpdateUserRequest>() }.getOrNull() ?: kotlin.run {
+					call.respond(
+						status = BadRequest,
+						message = BasicApiResponse<Unit>(
+							successful = false,
+							message = ApiResponseMessages.UNKNOWN_ERROR_TRY_AGAIN
+						)
 					)
-				)
-				return@patch
-			}
+					return@patch
+				}
 			val isOwnProfile = call.userId == updateUserRequest.userId
 			val user = userService.updateUserProfile(isOwnProfile = isOwnProfile, updateUserRequest = updateUserRequest)
 

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Server>
+	<Listener className="org.apache.catalina.startup.VersionLoggerListener" />
+	<Listener className="org.apache.catalina.core.AprLifecycleListener" />
+	<Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener" />
+	<Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
+	<Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener" />
+	<Listener className="org.apache.catalina.storeconfig.StoreConfigLifecycleListener" />
+	<GlobalNamingResources>
+		<Resource auth="Container"
+			description="User database that can be updated and saved" name="UserDatabase" type="org.apache.catalina.UserDatabase"
+			factory="org.apache.catalina.users.MemoryUserDatabaseFactory" pathname="conf/tomcat-users.xml" />
+	</GlobalNamingResources>
+	<Service name="Catalina">
+		<Connector port="8443" SSLEnabled="true"
+			defaultSSLHostConfigName="zonemail.co.za" maxThreads="150">
+			<SSLHostConfig hostName="zone.co.za">
+				<Certificate certificateChainFile="conf/zone-chain.pem"
+					certificateFile="conf/zone-cert.pem"
+					certificateKeyFile="conf/zone-privkey.pem"
+					type="UNDEFINED" />
+			</SSLHostConfig>
+			<SSLHostConfig hostName="*.zone.co.za">
+				<Certificate certificateChainFile="conf/zone-chain.pem"
+					certificateFile="conf/zone-cert.pem"
+					certificateKeyFile="conf/zone-privkey.pem"
+					type="UNDEFINED" />
+			</SSLHostConfig>
+			<SSLHostConfig hostName="ilert.co.za">
+				<Certificate certificateChainFile="conf/ilert-chain.pem"
+					certificateFile="conf/ilert-cert.pem"
+					certificateKeyFile="conf/ilert-privkey.pem"
+					type="UNDEFINED" />
+			</SSLHostConfig>
+			<SSLHostConfig hostName="*.ilert.co.za">
+				<Certificate certificateChainFile="conf/ilert-chain.pem"
+					certificateFile="conf/ilert-cert.pem"
+					certificateKeyFile="conf/ilert-privkey.pem"
+					type="UNDEFINED" />
+			</SSLHostConfig>
+			<SSLHostConfig HostName="zonemail.co.za">
+				<Certificate certificateFile="conf/cert.pem"
+					certificateKeyFile="conf/privkey.pem"
+					certificateChainFile="conf/chain.pem"
+					type="UNDEFINED"  />
+			</SSLHostConfig>
+			<SSLHostConfig hostName="*.zonemail.co.za">
+				<Certificate certificateChainFile="conf/chain.pem"
+					certificateFile="conf/cert.pem"
+					certificateKeyFile="conf/privkey.pem"
+					type="UNDEFINED" />
+			</SSLHostConfig>
+		</Connector>
+		<Connector port="8009" redirectPort="8443" protocol="AJP/1.3">
+		</Connector>
+		<Engine defaultHost="localhost" name="Catalina">
+			<Realm className="org.apache.catalina.realm.LockOutRealm">
+				<Realm className="org.apache.catalina.realm.UserDatabaseRealm">
+					<CredentialHandler className="org.apache.catalina.realm.MessageDigestCredentialHandler">
+					</CredentialHandler>
+				</Realm>
+				<CredentialHandler className="org.apache.catalina.realm.MessageDigestCredentialHandler">
+				</CredentialHandler>
+			</Realm>
+			<Host name="localhost">
+				<Valve className="org.apache.catalina.valves.AccessLogValve" pattern="%h %l %u %t &quot;%r&quot; %s %b"
+					prefix="localhost_access_log" suffix=".log" />
+			</Host>
+			<Host appBase="ilert" copyXML="true" name="api.ilert.co.za">
+				<Alias>ilert.co.za</Alias>
+				<Valve className="org.apache.catalina.valves.AccessLogValve" pattern="%h %l %u %t &quot;%r&quot; %s %b"
+					prefix="ilert_access_log" suffix=".log" />
+			</Host>
+		</Engine>
+	</Service>
+</Server>

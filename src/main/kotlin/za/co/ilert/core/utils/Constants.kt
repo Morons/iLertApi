@@ -7,10 +7,16 @@ object Constants {
 	const val ILERT_SESSION = "ILERT_SESSION"
 	const val DEFAULT_PAGE_SIZE = 15
 
-	const val FILE_SOURCE = "build/resources/main/static/images"      // Seeder pictures
+	// /opt/tomcat/ilert/ROOT/WEB-INF/classes/static/images/ic_avatar_default.png
+	const val FILE_SOURCE = "/opt/tomcat/ilert/ROOT/WEB-INF/classes/static"      // Seeder pictures
 
-	// API Path
-	private const val PATH = "/v1"
+	private const val URI_SCHEME_HTTPS = "https"
+	private const val HOST = "10.0.2.2" // "poseidon.zonemail.co.za" // "10.0.2.2"
+	private const val PORT = "8443"
+	private const val AUTHORITY = "$HOST:$PORT"
+	private const val PATH = ""
+	const val IMAGE_PATH = ""
+	const val BASE_URL = "$URI_SCHEME_HTTPS://$AUTHORITY/"
 
 	// Organization Paths
 	const val ORGANIZATION = "$PATH/organization"

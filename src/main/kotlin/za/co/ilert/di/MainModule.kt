@@ -1,4 +1,4 @@
-package za.co.ilert.core.di
+package za.co.ilert.di
 
 import com.google.gson.Gson
 import org.koin.core.module.dsl.bind

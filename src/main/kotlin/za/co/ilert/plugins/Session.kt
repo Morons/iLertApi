@@ -5,7 +5,7 @@ import io.ktor.server.sessions.*
 import za.co.ilert.core.data.session.ISession
 import za.co.ilert.core.utils.Constants.ILERT_SESSION
 
-fun Application.configureSession(){
+fun Application.configureSession() {
 
 	install(Sessions) {
 		cookie<ISession>(name = ILERT_SESSION) {

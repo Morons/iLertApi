@@ -102,8 +102,13 @@ fun Application.configureRouting() {
 		getChatByUsers(chatController = chatController)
 
 		// Static plugin. Try to access `/static/index.html`
-		static(remotePath = "/static") {
-			resources(resourcePackage = "static")
+		static(remotePath = "/") {
+			staticBasePackage = "static"
+			resource(remotePath = "index.html")
+			defaultResource(resource = "index.html")
+			static(remotePath = "images") {
+				resource(remotePath = "ic_avatar_default.png")
+			}
 		}
 	}
 }

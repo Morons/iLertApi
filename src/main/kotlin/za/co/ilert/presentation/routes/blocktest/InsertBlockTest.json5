@@ -1,0 +1,153 @@
+{
+	"blockTestId": "6307526506444cb043f17dbc",
+	"userId": "63679943e4da416141ce8d16",
+	"organizationId": "63679943e4da416141ce8d16",
+	"carcassTypeId": "637b6edea9d276641318f3c7",
+	"carcassKgCostIncl": 74.18,
+	"carcassWeight": 64.8,
+	"carcassHangingWeight": 64.8,
+	"cutTrimWeight": 0.00000001,
+	"weightLossParameter": 1.0,
+	"cuttingLossParameter": 1.0,
+	"wasteParameter": 1.0,
+	"percentGpRequired": 25.0,
+	"cuts": [
+		{
+			"cutTypeId": "638b0ae0fca2f8581cedc33e",
+			"blockTestId": "6307526506444cb043f17dbc",
+			"actualCutWeight": 0.38,
+			"marketSellPrice": 29.99,
+			"salesPrice": 0.0,
+			"cutName": "Kidney",
+			"displayName": "Kidney"
+		},
+		{
+			"cutTypeId": "63904c9971912b7948d36d1a",
+			"blockTestId": "6307526506444cb043f17dbc",
+			"actualCutWeight": 1.63,
+			"marketSellPrice": 80.00,
+			"salesPrice": 0.0,
+			"cutName": "Soft Shin",
+			"displayName": "Soft Shin"
+		},
+		{
+			"cutTypeId": "637b7cb7d1ba9d37298913d8",
+			"blockTestId": "6307526506444cb043f17dbc",
+			"actualCutWeight": 7.83,
+			"marketSellPrice": 127.99,
+			"salesPrice": 0.0,
+			"cutName": "Silverside",
+			"displayName": "Silverside"
+		},
+		{
+			"cutTypeId": "637b7cb7d1ba9d37298913da",
+			"blockTestId": "6307526506444cb043f17dbc",
+			"actualCutWeight": 4.01,
+			"marketSellPrice": 127.99,
+			"salesPrice": 0.0,
+			"cutName": "Thick Flank",
+			"displayName": "Thick Flank"
+		},
+		{
+			"cutTypeId": "637b7cb7d1ba9d37298913d7",
+			"blockTestId": "6307526506444cb043f17dbc",
+			"actualCutWeight": 5.75,
+			"marketSellPrice": 127.99,
+			"salesPrice": 0.0,
+			"cutName": "Topside",
+			"displayName": "Topside"
+		},
+		{
+			"cutTypeId": "637b7cb7d1ba9d37298913e2",
+			"blockTestId": "6307526506444cb043f17dbc",
+			"actualCutWeight": 4.08,
+			"marketSellPrice": 159.99,
+			"salesPrice": 0.0,
+			"cutName": "Rump",
+			"displayName": "Rump"
+		},
+		{
+			"cutTypeId": "638b107879aa498e3bb516b7",
+			"blockTestId": "6307526506444cb043f17dbc",
+			"actualCutWeight": 1.54,
+			"marketSellPrice": 249.99,
+			"salesPrice": 0.0,
+			"cutName": "Short Fillet",
+			"displayName": "Short Fillet"
+		},
+		{
+			"cutTypeId": "637b7cb7d1ba9d37298913c4",
+			"blockTestId": "6307526506444cb043f17dbc",
+			"actualCutWeight": 3.15,
+			"marketSellPrice": 95.99,
+			"salesPrice": 0.0,
+			"cutName": "Short Rib",
+			"displayName": "Short Rib"
+		},
+		{
+			"cutTypeId": "637b7cb7d1ba9d37298913df",
+			"blockTestId": "6307526506444cb043f17dbc",
+			"actualCutWeight": 7.69,
+			"marketSellPrice": 0.0,
+			"salesPrice": 0.0,
+			"cutName": "Clean Bones",
+			"displayName": "Clean Bones"
+		},
+		{
+			"cutTypeId": "637b7cb7d1ba9d37298913e1",
+			"blockTestId": "6307526506444cb043f17dbc",
+			"actualCutWeight": 15.36,
+			"marketSellPrice": 80.00,
+			"salesPrice": 0.0,
+			"cutName": "Beef Trimmings 80:20",
+			"displayName": "Beef Trimmings 80:20"
+		},
+		{
+			"cutTypeId": "637b7cb7d1ba9d37298913e6",
+			"blockTestId": "6307526506444cb043f17dbc",
+			"actualCutWeight": 1.06,
+			"marketSellPrice": 10.00,
+			"salesPrice": 0.0,
+			"cutName": "Beef Body Fat",
+			"displayName": "Beef Body Fat"
+		},
+		{
+			"cutTypeId": "637b7cb7d1ba9d37298913db",
+			"blockTestId": "6307526506444cb043f17dbc",
+			"actualCutWeight": 4.63,
+			"marketSellPrice": 159.99,
+			"salesPrice": 0.0,
+			"cutName": "Sirloin",
+			"displayName": "Sirloin"
+		},
+		{
+			"cutTypeId": "637b7cb7d1ba9d37298913d5",
+			"blockTestId": "6307526506444cb043f17dbc",
+			"actualCutWeight": 0.83,
+			"marketSellPrice": 164.99,
+			"salesPrice": 0.0,
+			"cutName": "Rump Tail",
+			"displayName": "Rump Tail"
+		},
+		{
+			"cutTypeId": "638b16d6238e7f1b8f29c46d",
+			"blockTestId": "6307526506444cb043f17dbc",
+			"actualCutWeight": 1.0,
+			"marketSellPrice": 89.99,
+			"salesPrice": 0.0,
+			"cutName": "Beef Rib",
+			"displayName": "Beef Rib"
+		},
+		{
+			"cutTypeId": "637b7cb7d1ba9d37298913e6",
+			"blockTestId": "6307526506444cb043f17dbc",
+			"actualCutWeight": 4.91,
+			"marketSellPrice": 10.0,
+			"salesPrice": 0.0,
+			"cutName": "Beef Body Fat",
+			"displayName": "Kidney Fat"
+		}
+	],
+	"notBalancingReason": "",
+	"locked": false
+}
