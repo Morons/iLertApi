@@ -13,6 +13,8 @@ object ApiResponseMessages {
 	const val LOGIN_AUTHENTICATED = "Login Authenticated"
 	const val CARCASS_TYPE_NOT_FOUND = "Carcass Type not found"
 	const val BLOCK_TESTS_NOT_FOUND = "Block Tests not found"
+	const val FAILED_CREATE_BLOCK_TESTS = "Failed to create Block Tests"
+	const val FAILED_SAVE_CUT = "Failed to save Block Test cut"
 	const val CUT_TYPE_NOT_FOUND = "Cut Type not found"
 
 }

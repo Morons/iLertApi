@@ -90,7 +90,7 @@ class MeatService(
 
 	suspend fun getCutTypes(): List<CutType> = cutRepository.getCutTypes()
 
-	suspend fun getCutTypeListByOrganizationId(organizationId: String): List<CutType>? =
+	suspend fun getCutTypesForOrganization(organizationId: String): List<CutType>? =
 		cutRepository.getCutTypeListByOrganizationId(organizationId)
 
 	suspend fun getCutTypesByCarcassTypeId(carcassTypeId: String): List<CutTypeResponse> {

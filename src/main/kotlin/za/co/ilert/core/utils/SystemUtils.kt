@@ -1,38 +1,51 @@
 package za.co.ilert.core.utils
 
 import io.ktor.util.*
+
 import java.io.File
 
-// FIXME: 2022/06/21 Get this from Ktor
-fun getByteArray(filePathName: String): String {
-	val byteArray = File(filePathName).readBytes()
-	return byteArray.encodeBase64()
-}
+class SystemUtils {
 
-val String.containsLatinLetter: Boolean
+	companion object {
+
+		//// FIXME: 2022/06/21 Get this from Ktor
+		fun getByteArrayX(filePathName: String): String {
+			val byteArray = File(filePathName).readBytes()
+			return byteArray.encodeBase64()
+		}
+
+		fun getByteArray(filePathName: String): String {
+			val classLoader: ClassLoader = SystemUtils::class.java.classLoader
+			val byteArray = classLoader.getResource(filePathName)?.readBytes()
+			return byteArray?.encodeBase64() ?: ""
+		}
+	}
+
+	val String.containsLatinLetter: Boolean
 	get() = matches(Regex(".*[A-Za-z].*"))
 
-val String.containsDigit: Boolean
+	val String.containsDigit: Boolean
 	get() = matches(Regex(".*\\d.*"))  // ".*[0-9].*"
 
-val String.isAlphanumeric: Boolean
+	val String.isAlphanumeric: Boolean
 	get() = matches(Regex("[A-Za-z\\d]*"))
 
-val String.hasSpecialCharacters: Boolean
+	val String.hasSpecialCharacters: Boolean
 	get() = matches(Regex(".*[.~!@#%^*_+=-].*"))
 
-val String.isSafeForSearch: Boolean
+	val String.isSafeForSearch: Boolean
 	get() = hasSpecialCharacters || isAlphanumeric || isBlank() || isEmpty()
 
-val String.hasLettersAndDigits: Boolean
+	val String.hasLettersAndDigits: Boolean
 	get() = containsLatinLetter && containsDigit
 
-val String.isIntegerNumber: Boolean
+	val String.isIntegerNumber: Boolean
 	get() = toIntOrNull() != null
 
-val String.toDecimalNumber: Boolean
+	val String.toDecimalNumber: Boolean
 	get() = toDoubleOrNull() != null
 
+}
 
 ///**
 // * Returns a string describing 'time' as a time relative to 'now'.

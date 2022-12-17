@@ -8,7 +8,6 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.bson.types.ObjectId
-import org.litote.kmongo.json
 import za.co.ilert.core.data.models.UserSecurity
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.FIELDS_BLANK
 import za.co.ilert.core.data.repository.utils.ApiResponseMessages.ORGANIZATION_NOT_FOUND
@@ -22,7 +21,7 @@ import za.co.ilert.core.data.responses.BasicApiResponse
 import za.co.ilert.core.utils.Constants.FILE_SOURCE
 import za.co.ilert.core.utils.Constants.ORGANIZATION
 import za.co.ilert.core.utils.Constants.ORGANIZATION_CREATE
-import za.co.ilert.core.utils.getByteArray
+import za.co.ilert.core.utils.SystemUtils
 import za.co.ilert.presentation.services.organization.OrganizationService
 import za.co.ilert.presentation.services.user.UserService
 import za.co.ilert.presentation.validation.ValidationEvent
@@ -51,7 +50,7 @@ fun Route.createOrganization(organizationService: OrganizationService, userServi
 				userName = userName,
 				password = password,
 				avatarAsString = avatarAsString
-					?: getByteArray(filePathName = "$FILE_SOURCE/ic_avatar_default.png"),
+					?: SystemUtils.getByteArray(filePathName = "$FILE_SOURCE/ic_avatar_default.png"),
 				security = security ?: UserSecurity(active = true, roles = "BLOCK MAN"),
 				organizationId = organizationId
 			)

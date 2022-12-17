@@ -17,7 +17,7 @@ class BlockTestRepositoryImpl(
 
 	private val blockTestDb = db.getCollection<BlockTest>()
 
-	override suspend fun getBlockTest(blockTestId: String): BlockTest? {
+	override suspend fun getBlockTestById(blockTestId: String): BlockTest? {
 		val blockTest: BlockTest = blockTestDb.findOne(filter = BlockTest::blockTestId eq blockTestId) ?: return null
 
 		return with(blockTest) {
@@ -73,6 +73,9 @@ class BlockTestRepositoryImpl(
 	 **/
 	override suspend fun insertBlockTest(blockTest: BlockTest): Boolean =
 		blockTestDb.insertOne(blockTest).wasAcknowledged()
+
+	override suspend fun upsertBlockTest(blockTest: BlockTest): Boolean =
+		blockTestDb.updateOne(filter = BlockTest::blockTestId eq blockTest.blockTestId, target = blockTest).wasAcknowledged()
 
 	override suspend fun deleteBlockTest(deleteBlockTestRequest: DeleteBlockTestRequest): Boolean {
 		return blockTestDb.deleteOneById(deleteBlockTestRequest.blockTestId).wasAcknowledged()

@@ -7,7 +7,7 @@ import za.co.ilert.core.data.responses.BlockTestListResponse
 
 interface BlockTestRepository {
 
-	suspend fun getBlockTest(blockTestId: String): BlockTest?
+	suspend fun getBlockTestById(blockTestId: String): BlockTest?
 
 	suspend fun getBlockTestList(): List<BlockTest>
 
@@ -16,6 +16,8 @@ interface BlockTestRepository {
 	suspend fun sumPrimalsWeight(blockTestId: String): Double
 
 	suspend fun insertBlockTest(blockTest: BlockTest): Boolean
+
+	suspend fun upsertBlockTest(blockTest: BlockTest): Boolean
 
 	suspend fun deleteBlockTest(deleteBlockTestRequest: DeleteBlockTestRequest): Boolean
 

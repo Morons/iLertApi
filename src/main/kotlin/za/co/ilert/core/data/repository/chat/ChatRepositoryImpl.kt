@@ -10,9 +10,8 @@ import za.co.ilert.core.data.models.Chat
 import za.co.ilert.core.data.models.Message
 import za.co.ilert.core.data.models.User
 import za.co.ilert.core.data.responses.ChatResponse
-import za.co.ilert.core.utils.Constants
 import za.co.ilert.core.utils.Constants.FILE_SOURCE
-import za.co.ilert.core.utils.getByteArray
+import za.co.ilert.core.utils.SystemUtils
 
 class ChatRepositoryImpl(db: CoroutineDatabase) : ChatRepository {
 
@@ -37,7 +36,7 @@ class ChatRepositoryImpl(db: CoroutineDatabase) : ChatRepository {
 					remoteUserId = user.userId,
 					remoteUserName = user.userName,
 					remoteAvatarAsString = user.avatarAsString
-						?: getByteArray(filePathName = "$FILE_SOURCE/ic_avatar_default.png"),
+						?: SystemUtils.getByteArray(filePathName = "$FILE_SOURCE/ic_avatar_default.png"),
 					lastMessage = lastMessage.text,
 					lastMessageTimestamp = lastMessage.timestamp
 				)

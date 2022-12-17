@@ -1,7 +1,6 @@
 package za.co.ilert.presentation.services.user
 
 import org.bson.types.ObjectId
-import org.litote.kmongo.json
 import za.co.ilert.core.data.models.User
 import za.co.ilert.core.data.models.UserSecurity
 import za.co.ilert.core.data.repository.user.UserRepository
@@ -9,7 +8,7 @@ import za.co.ilert.core.data.requests.UpdateUserRequest
 import za.co.ilert.core.data.requests.UserRequest
 import za.co.ilert.core.utils.Constants.DEFAULT_PAGE_SIZE
 import za.co.ilert.core.utils.Constants.FILE_SOURCE
-import za.co.ilert.core.utils.getByteArray
+import za.co.ilert.core.utils.SystemUtils
 import za.co.ilert.presentation.validation.ValidationEvent
 
 class UserService(
@@ -52,7 +51,7 @@ class UserService(
 				password = userRequest.password,
 				mobileNumber = userRequest.mobileNumber ?: "",
 				avatarAsString = userRequest.avatarAsString
-					?: getByteArray(filePathName = "$FILE_SOURCE/ic_avatar_default.png"),
+					?: SystemUtils.getByteArray(filePathName = "$FILE_SOURCE/ic_avatar_default.png"),
 				security = userRequest.security ?: UserSecurity(active = true, roles = "BLOCK MAN"),
 				userId = userId,
 				organizationId = userRequest.organizationId

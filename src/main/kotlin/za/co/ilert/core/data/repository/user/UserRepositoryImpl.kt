@@ -5,9 +5,8 @@ import org.litote.kmongo.coroutine.CoroutineDatabase
 import za.co.ilert.core.data.models.User
 import za.co.ilert.core.data.requests.UpdateUserRequest
 import za.co.ilert.core.data.responses.UserResponse
-import za.co.ilert.core.utils.Constants
 import za.co.ilert.core.utils.Constants.FILE_SOURCE
-import za.co.ilert.core.utils.getByteArray
+import za.co.ilert.core.utils.SystemUtils
 
 class UserRepositoryImpl(
 	db: CoroutineDatabase
@@ -38,7 +37,7 @@ class UserRepositoryImpl(
 				userName = updateUserRequest.userName,
 				password = user.password,
 				avatarAsString = updateUserRequest.avatarAsString
-					?: getByteArray(filePathName = "$FILE_SOURCE/ic_avatar_default.png"),
+					?: SystemUtils.getByteArray(filePathName = "$FILE_SOURCE/ic_avatar_default.png"),
 				security = updateUserRequest.security,
 				organizationId = updateUserRequest.organizationId,
 				isOwnProfile = isOwnProfile

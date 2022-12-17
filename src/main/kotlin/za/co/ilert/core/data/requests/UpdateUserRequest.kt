@@ -1,16 +1,15 @@
 package za.co.ilert.core.data.requests
 
 import za.co.ilert.core.data.models.UserSecurity
-import za.co.ilert.core.utils.Constants
 import za.co.ilert.core.utils.Constants.FILE_SOURCE
-import za.co.ilert.core.utils.getByteArray
+import za.co.ilert.core.utils.SystemUtils
 
 data class UpdateUserRequest(
 	val userId: String?,
 	val userEmail: String,
 	val mobileNumber: String? = "",
 	val userName: String,
-	val avatarAsString: String? = getByteArray(filePathName = "$FILE_SOURCE/ic_avatar_default.png"),
+	val avatarAsString: String? = SystemUtils.getByteArray(filePathName = "$FILE_SOURCE/ic_avatar_default.png"),
 	val security: UserSecurity? = UserSecurity(active = true, roles = "BLOCK MAN"),
 	val organizationId: String
 )

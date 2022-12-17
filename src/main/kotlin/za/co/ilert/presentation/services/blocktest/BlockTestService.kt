@@ -6,6 +6,7 @@ import za.co.ilert.core.data.repository.blocktest.BlockTestRepository
 import za.co.ilert.core.data.requests.BlockTestRequest
 import za.co.ilert.core.data.requests.DeleteBlockTestRequest
 import za.co.ilert.core.data.requests.GenericPageRequest
+import za.co.ilert.core.data.requests.NewBlockTestRequest
 import za.co.ilert.presentation.validation.ValidationEvent
 
 
@@ -22,7 +23,7 @@ class BlockTestService(
 ) {
 
 	suspend fun getBlockTest(blockTestId: String): BlockTest? {
-		return blockTestRepository.getBlockTest(blockTestId = blockTestId)
+		return blockTestRepository.getBlockTestById(blockTestId = blockTestId)
 	}
 
 	suspend fun getBlockTests(): List<BlockTest> {
@@ -33,8 +34,13 @@ class BlockTestService(
 		return blockTestRepository.getBlockTestListPaged(genericPageRequest = genericPageRequest)
 	}
 
-	suspend fun insertBlockTest(blockTestRequest: BlockTestRequest): Boolean =
-		blockTestRepository.insertBlockTest(blockTest = blockTestRequest.toBlockTest())
+	suspend fun createBlockTest(newBlockTestRequest: NewBlockTestRequest): BlockTest? {
+		val wasAcknowledged = blockTestRepository.insertBlockTest(blockTest = newBlockTestRequest.toBlockTest())
+		return if (wasAcknowledged) blockTestRepository.getBlockTestById(newBlockTestRequest.blockTestId) else null
+	}
+
+	suspend fun upsertBlockTest(blockTest: BlockTest): Boolean =
+		blockTestRepository.upsertBlockTest(blockTest = blockTest)
 
 	fun validateInsertBlockTestRequest(request: BlockTestRequest): ValidationEvent {
 		return if (

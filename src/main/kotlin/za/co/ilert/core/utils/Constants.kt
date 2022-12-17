@@ -8,7 +8,7 @@ object Constants {
 	const val DEFAULT_PAGE_SIZE = 15
 
 	// /opt/tomcat/ilert/ROOT/WEB-INF/classes/static/images/ic_avatar_default.png
-	const val FILE_SOURCE = "/opt/tomcat/ilert/ROOT/WEB-INF/classes/static"      // Seeder pictures
+	const val FILE_SOURCE = "/static"// "/opt/tomcat/ilert/ROOT/WEB-INF/classes/static"      // Seeder pictures
 
 	private const val URI_SCHEME_HTTPS = "https"
 	private const val HOST = "10.0.2.2" // "poseidon.zonemail.co.za" // "10.0.2.2"
@@ -34,6 +34,8 @@ object Constants {
 
 	// BlockTest Paths
 	const val BLOCK_TEST = "$PATH/blockTest"
+	const val BLOCK_TEST_CREATE = "$PATH/blockTest/create"
+	const val BLOCK_TEST_CUT = "$PATH/blockTest/cut"
 	const val BLOCK_TESTS = "$PATH/blockTests"
 	const val BLOCK_TEST_PRIMALS = "$PATH/blockTest/primals"
 

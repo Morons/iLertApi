@@ -8,9 +8,7 @@ import za.co.ilert.presentation.routes.address.createAddress
 import za.co.ilert.presentation.routes.auth.authenticate
 import za.co.ilert.presentation.routes.auth.createUser
 import za.co.ilert.presentation.routes.auth.loginUser
-import za.co.ilert.presentation.routes.blocktest.getBlockTest
-import za.co.ilert.presentation.routes.blocktest.getBlockTests
-import za.co.ilert.presentation.routes.blocktest.getBlockTestsPaged
+import za.co.ilert.presentation.routes.blocktest.*
 import za.co.ilert.presentation.routes.blocktest.upsertBlockTest
 import za.co.ilert.presentation.routes.chat.*
 import za.co.ilert.presentation.routes.meat.*
@@ -69,10 +67,12 @@ fun Application.configureRouting() {
 		updateUserProfile(userService = userService)
 
 		// BlockTest Routes
-		getBlockTest(blockTestService = blockTestService)
+		getBlockTestById(blockTestService = blockTestService)
 		getBlockTests(blockTestService = blockTestService)
 		getBlockTestsPaged(blockTestService = blockTestService)
+		createBlockTest(blockTestService = blockTestService)
 		upsertBlockTest(blockTestService = blockTestService)
+		upsertBlockTestCut(blockTestService = blockTestService)
 //		insertPrimalCuts(blockTestService = blockTestService)
 
 		// Meat Routes
@@ -85,7 +85,7 @@ fun Application.configureRouting() {
 		getCutTypeById(meatService = meatService)
 		loadCutTypes(meatService = meatService)
 		getCutTypes(meatService = meatService)
-		getCutTypeListByOrganizationId(meatService = meatService)
+		getCutTypesForOrganization(meatService = meatService)
 		getCutTypesByCarcassTypeId(meatService = meatService)
 
 		// Session Routes

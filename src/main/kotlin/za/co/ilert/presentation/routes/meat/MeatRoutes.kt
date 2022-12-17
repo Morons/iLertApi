@@ -240,7 +240,7 @@ fun Route.getCutTypes(meatService: MeatService) {
 	}
 }
 
-fun Route.getCutTypeListByOrganizationId(meatService: MeatService) {
+fun Route.getCutTypesForOrganization(meatService: MeatService) {
 	authenticate {
 		post(PRIVATE_CUTS) {
 			val organizationIdRequest =
@@ -254,7 +254,8 @@ fun Route.getCutTypeListByOrganizationId(meatService: MeatService) {
 					)
 					return@post
 				}
-			val cutTypeResponse = meatService.getCutTypeListByOrganizationId(organizationIdRequest.organizationId)
+			val cutTypeResponse = meatService.getCutTypesForOrganization(organizationIdRequest.organizationId)
+			println("********** getCutTypesForOrganization: cutTypeResponse = $cutTypeResponse **********")
 			if (cutTypeResponse == null) {
 				call.respond(
 					status = BadRequest,
