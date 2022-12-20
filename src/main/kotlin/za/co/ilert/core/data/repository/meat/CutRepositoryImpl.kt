@@ -29,19 +29,19 @@ class CutRepositoryImpl(db: CoroutineDatabase) : CutRepository {
 		return cutDb.findOneById(cutTypeId)
 	}
 
-	override suspend fun getCutTypes(): List<CutType> = cutDb.find().descendingSort(CutType::displayName).toList()
+	override suspend fun getCutTypes(): List<CutType> = cutDb.find().descendingSort(CutType::cutName).toList()
 
 	override suspend fun getCutTypeListByOrganizationId(organizationId: String): List<CutType> {
 		return cutDb
 			.find(filter = CutType::organizationId eq organizationId)
-			.descendingSort(CutType::displayName)
+			.descendingSort(CutType::cutName)
 			.toList()
 	}
 
 	override suspend fun getCutTypesByCarcassTypeId(carcassTypeId: String): List<CutType> {
 		return cutDb
 			.find(filter = CutType::carcassTypeId eq carcassTypeId)
-			.descendingSort(CutType::displayName)
+			.descendingSort(CutType::cutName)
 			.toList()
 	}
 }

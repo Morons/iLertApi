@@ -30,6 +30,6 @@ class CarcassRepositoryImpl(db: CoroutineDatabase) : CarcassRepository {
 	}
 
 	override suspend fun getCarcassTypeList(): List<CarcassType> {
-		return carcassDb.find().ascendingSort(CarcassType::displayName).toList()
+		return carcassDb.find().ascendingSort(CarcassType::carcassName).toList()
 	}
 }

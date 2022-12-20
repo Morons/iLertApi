@@ -24,7 +24,7 @@ class MeatService(
 			with(carcassTypeRequest) {
 				if (carcassTypeId.isEmpty()) carcassTypeId = ObjectId().toString()
 				CarcassType(
-					displayName = displayName,
+					carcassName = carcassName,
 					carcassTypeId = carcassTypeId
 				)
 			}
@@ -44,7 +44,7 @@ class MeatService(
 		return with(carcassType) {
 			CarcassTypeResponse(
 				carcassTypeId = carcassTypeId,
-				displayName = displayName
+				carcassName = carcassName
 			)
 		}
 	}
@@ -59,7 +59,6 @@ class MeatService(
 				if (cutTypeId.isEmpty()) cutTypeId = ObjectId().toString()
 				CutType(
 					cutName = cutName,
-					displayName = displayName,
 					organizationId = organizationId,
 					isMutable = isMutable,
 					carcassTypeId = carcassTypeId,
@@ -79,7 +78,6 @@ class MeatService(
 		return with(cutType) {
 			CutTypeResponse(
 				cutName = cutName,
-				displayName = displayName,
 				organizationId = organizationId,
 				isMutable = isMutable,
 				carcassTypeId = carcassTypeId,

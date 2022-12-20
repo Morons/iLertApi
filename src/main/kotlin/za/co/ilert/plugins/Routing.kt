@@ -72,7 +72,8 @@ fun Application.configureRouting() {
 		getBlockTestsPaged(blockTestService = blockTestService)
 		createBlockTest(blockTestService = blockTestService)
 		upsertBlockTest(blockTestService = blockTestService)
-		upsertBlockTestCut(blockTestService = blockTestService)
+		insertBlockTestCut(blockTestService = blockTestService)
+		amendBlockTestCut(blockTestService = blockTestService)
 //		insertPrimalCuts(blockTestService = blockTestService)
 
 		// Meat Routes

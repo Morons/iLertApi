@@ -2,23 +2,23 @@
 	"carcassTypes": [
 		{
 			"carcassTypeId": "637b6edea9d276641318f3c6",
-			"displayName": "Front Quarter"
+			"carcassName": "Front Quarter"
 		},
 		{
 			"carcassTypeId": "637b6edea9d276641318f3c7",
-			"displayName": "Hind Quarter"
+			"carcassName": "Hind Quarter"
 		},
 		{
 			"carcassTypeId": "637b6edea9d276641318f3c8",
-			"displayName": "Pork"
+			"carcassName": "Pork"
 		},
 		{
 			"carcassTypeId": "637b6edea9d276641318f3c9",
-			"displayName": "Lamb"
+			"carcassName": "Lamb"
 		},
 		{
 			"carcassTypeId": "637b6edea9d276641318f3ca",
-			"displayName": "Chicken"
+			"carcassName": "Chicken"
 		}
 	]
 }

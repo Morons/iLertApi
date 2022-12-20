@@ -1,7 +1,7 @@
 package za.co.ilert.core.data.repository.blocktest
 
+import com.mongodb.client.result.DeleteResult
 import za.co.ilert.core.data.models.BlockTest
-import za.co.ilert.core.data.requests.DeleteBlockTestRequest
 import za.co.ilert.core.data.requests.GenericPageRequest
 import za.co.ilert.core.data.responses.BlockTestListResponse
 
@@ -19,8 +19,8 @@ interface BlockTestRepository {
 
 	suspend fun upsertBlockTest(blockTest: BlockTest): Boolean
 
-	suspend fun deleteBlockTest(deleteBlockTestRequest: DeleteBlockTestRequest): Boolean
+	suspend fun deleteBlockTest(blockTestId: String): DeleteResult
 
-	suspend fun getBlockTestsPaged(genericPageRequest: GenericPageRequest):List<BlockTestListResponse>
+	suspend fun getBlockTestsPaged(genericPageRequest: GenericPageRequest): List<BlockTestListResponse>
 
 }

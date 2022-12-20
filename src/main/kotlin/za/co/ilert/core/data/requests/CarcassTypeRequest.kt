@@ -1,6 +1,6 @@
 package za.co.ilert.core.data.requests
 
 data class CarcassTypeRequest(
-	val displayName: String,
+	val carcassName: String,
 	val carcassTypeId: String
 )

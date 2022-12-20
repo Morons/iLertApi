@@ -255,7 +255,6 @@ fun Route.getCutTypesForOrganization(meatService: MeatService) {
 					return@post
 				}
 			val cutTypeResponse = meatService.getCutTypesForOrganization(organizationIdRequest.organizationId)
-			println("********** getCutTypesForOrganization: cutTypeResponse = $cutTypeResponse **********")
 			if (cutTypeResponse == null) {
 				call.respond(
 					status = BadRequest,

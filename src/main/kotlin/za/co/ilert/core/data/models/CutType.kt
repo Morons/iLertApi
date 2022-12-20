@@ -5,7 +5,6 @@ import org.bson.types.ObjectId
 
 data class CutType(
 	val cutName: String,
-	val displayName: String,
 	val organizationId: String,
 	val isMutable: Boolean,
 	val carcassTypeId: String,

@@ -1,12 +1,12 @@
 package za.co.ilert.core.data.repository.blocktest
 
+import com.mongodb.client.result.DeleteResult
 import org.litote.kmongo.*
 import org.litote.kmongo.MongoOperator.sum
 import org.litote.kmongo.coroutine.CoroutineDatabase
 import org.litote.kmongo.coroutine.aggregate
 import za.co.ilert.core.data.models.BlockTest
 import za.co.ilert.core.data.models.Cut
-import za.co.ilert.core.data.requests.DeleteBlockTestRequest
 import za.co.ilert.core.data.requests.GenericPageRequest
 import za.co.ilert.core.data.responses.BlockTestListResponse
 import za.co.ilert.core.data.responses.ResultResponse
@@ -75,10 +75,10 @@ class BlockTestRepositoryImpl(
 		blockTestDb.insertOne(blockTest).wasAcknowledged()
 
 	override suspend fun upsertBlockTest(blockTest: BlockTest): Boolean =
-		blockTestDb.updateOne(filter = BlockTest::blockTestId eq blockTest.blockTestId, target = blockTest).wasAcknowledged()
+		blockTestDb.replaceOneById(id = blockTest.blockTestId, replacement = blockTest).wasAcknowledged()
 
-	override suspend fun deleteBlockTest(deleteBlockTestRequest: DeleteBlockTestRequest): Boolean {
-		return blockTestDb.deleteOneById(deleteBlockTestRequest.blockTestId).wasAcknowledged()
+	override suspend fun deleteBlockTest(blockTestId: String): DeleteResult {
+		return blockTestDb.deleteOneById(blockTestId)
 	}
 
 	override suspend fun getBlockTestsPaged(genericPageRequest: GenericPageRequest): List<BlockTestListResponse> {

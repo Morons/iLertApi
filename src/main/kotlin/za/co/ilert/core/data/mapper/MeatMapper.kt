@@ -13,18 +13,17 @@ import za.co.ilert.core.data.responses.CutTypeResponse
 fun CarcassType.toCarcassTypeResponse(): CarcassTypeResponse {
 	return CarcassTypeResponse(
 		carcassTypeId = carcassTypeId,
-		displayName = displayName
+		carcassName = carcassName
 	)
 }
 
 fun CutType.toCutTypeResponse(): CutTypeResponse {
 	return CutTypeResponse(
-		cutTypeId = cutTypeId,
 		cutName = cutName,
-		displayName = displayName,
 		organizationId = organizationId,
 		isMutable = isMutable,
-		carcassTypeId = carcassTypeId
+		carcassTypeId = carcassTypeId,
+		cutTypeId = cutTypeId
 	)
 }
 
@@ -77,10 +76,10 @@ fun UpsertBlockTestCutRequest.toCut(): Cut {
 		blockTestId = blockTestId,
 		actualCutWeight = actualCutWeight,
 		marketSellPrice = marketSellPrice,
-		marketValue = marketValue,
-		salesPrice = salesPrice,
-		actualValue = actualValue,
-		cutName = cutName,
-		displayName = displayName
+		marketValueXVat = marketValue,
+		costPerCutXVat = costPerCutXVat,
+		salesPriceInclVat = salesPrice,
+		actualValueXVat = actualValue,
+		cutName = cutName
 	)
 }

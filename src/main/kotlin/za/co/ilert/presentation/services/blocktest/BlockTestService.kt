@@ -4,7 +4,6 @@ import za.co.ilert.core.data.mapper.toBlockTest
 import za.co.ilert.core.data.models.BlockTest
 import za.co.ilert.core.data.repository.blocktest.BlockTestRepository
 import za.co.ilert.core.data.requests.BlockTestRequest
-import za.co.ilert.core.data.requests.DeleteBlockTestRequest
 import za.co.ilert.core.data.requests.GenericPageRequest
 import za.co.ilert.core.data.requests.NewBlockTestRequest
 import za.co.ilert.presentation.validation.ValidationEvent
@@ -52,7 +51,7 @@ class BlockTestService(
 		} else ValidationEvent.Success
 	}
 
-	suspend fun deleteBlockTest(deleteBlockTestRequest: DeleteBlockTestRequest): Boolean {
-		return blockTestRepository.deleteBlockTest(deleteBlockTestRequest = deleteBlockTestRequest)
+	suspend fun deleteBlockTest(blockTest: BlockTest): Boolean {
+		return blockTestRepository.deleteBlockTest(blockTest.blockTestId).wasAcknowledged()
 	}
 }

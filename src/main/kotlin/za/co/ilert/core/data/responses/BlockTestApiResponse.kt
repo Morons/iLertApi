@@ -3,7 +3,7 @@ package za.co.ilert.core.data.responses
 import za.co.ilert.core.data.models.Cut
 
 
-data class BlockTestResponse(
+data class BlockTestApiResponse(
 	val blockTestId: String,
 	val userId: String,
 	val organizationId: String,
