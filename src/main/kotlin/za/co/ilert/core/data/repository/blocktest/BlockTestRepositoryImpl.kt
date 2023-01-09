@@ -23,6 +23,7 @@ class BlockTestRepositoryImpl(
 		return with(blockTest) {
 			BlockTest(
 				blockTestId = blockTestId,
+				blockTestName = blockTestName,
 				userId = userId,
 				organizationId = organizationId,
 				carcassTypeId = carcassTypeId,

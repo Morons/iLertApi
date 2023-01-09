@@ -1,634 +1,627 @@
 {
 	"cutTypes": [
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913c1",
+			"_id": "637b7cb7d1ba9d37298913c1",
 			"cutName": "Prime Rib",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c6"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913c2",
+			"_id": "637b7cb7d1ba9d37298913c2",
 			"cutName": "Chuck",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c6"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913c3",
+			"_id": "637b7cb7d1ba9d37298913c3",
 			"cutName": "Blade",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c6"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913c4",
+			"_id": "637b7cb7d1ba9d37298913c4",
 			"cutName": "Short Rib",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c6"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913c5",
+			"_id": "637b7cb7d1ba9d37298913c5",
 			"cutName": "Prime Rib",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c6"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913c6",
+			"_id": "637b7cb7d1ba9d37298913c6",
 			"cutName": "Brisket",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c6"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913c7",
+			"_id": "637b7cb7d1ba9d37298913c7",
 			"cutName": "Shin",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c6"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913c8",
+			"_id": "637b7cb7d1ba9d37298913c8",
 			"cutName": "Stew",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c6"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913c9",
+			"_id": "637b7cb7d1ba9d37298913c9",
 			"cutName": "Bolo",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c6"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913ca",
+			"_id": "637b7cb7d1ba9d37298913ca",
 			"cutName": "Meaty Bones",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c6"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913cb",
+			"_id": "637b7cb7d1ba9d37298913cb",
 			"cutName": "Beef Bones",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c6"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913cc",
-			"cutName": "Beef Trimmings 90:10",
+			"_id": "637b7cb7d1ba9d37298913cc",
+			"cutName": "Boerewors 90:10",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c6"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913cd",
-			"cutName": "Beef Trimmings 80:20",
+			"_id": "637b7cb7d1ba9d37298913cd",
+			"cutName": "Sausages / Burgers 80:20",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c6"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913ce",
-			"cutName": "Beef Trimmings 70:30",
+			"_id": "637b7cb7d1ba9d37298913cf",
+			"cutName": "Braaiwors 60:40",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c6"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913cf",
-			"cutName": "Beef Trimmings 60:40",
-			"organizationId": "",
-			"isMutable": false,
-			"carcassTypeId": "637b6edea9d276641318f3c6"
-		},
-		{
-			"cutTypeId": "637b7cb7d1ba9d37298913d0",
+			"_id": "637b7cb7d1ba9d37298913d0",
 			"cutName": "Beef Body Fat",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c6"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913d1",
+			"_id": "637b7cb7d1ba9d37298913d1",
 			"cutName": "Beef Fat",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c6"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913d2",
+			"_id": "637b7cb7d1ba9d37298913d2",
 			"cutName": "Cutting & Trimming Waste",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c6"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913d3",
+			"_id": "637b7cb7d1ba9d37298913d3",
 			"cutName": "Wing Rib",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c7"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913d4",
+			"_id": "637b7cb7d1ba9d37298913d4",
 			"cutName": "Thin Flank",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c7"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913d5",
+			"_id": "637b7cb7d1ba9d37298913d5",
 			"cutName": "Rump",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c7"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913d6",
+			"_id": "637b7cb7d1ba9d37298913d6",
 			"cutName": "Aitchbone",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c7"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913d7",
+			"_id": "637b7cb7d1ba9d37298913d7",
 			"cutName": "Topside",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c7"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913d8",
+			"_id": "637b7cb7d1ba9d37298913d8",
 			"cutName": "Silverside",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c7"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913d9",
+			"_id": "637b7cb7d1ba9d37298913d9",
 			"cutName": "Fillet",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c7"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913da",
+			"_id": "637b7cb7d1ba9d37298913da",
 			"cutName": "Thick Flank",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c7"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913db",
+			"_id": "637b7cb7d1ba9d37298913db",
 			"cutName": "Sirloin",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c7"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913dc",
+			"_id": "637b7cb7d1ba9d37298913dc",
 			"cutName": "Shin",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c7"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913dd",
+			"_id": "637b7cb7d1ba9d37298913dd",
 			"cutName": "Stew",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c7"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913de",
+			"_id": "637b7cb7d1ba9d37298913de",
 			"cutName": "Meaty Bones",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c7"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913df",
+			"_id": "637b7cb7d1ba9d37298913df",
 			"cutName": "Beef Bones",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c7"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913e0",
-			"cutName": "Beef Trimmings 90:10",
+			"_id": "637b7cb7d1ba9d37298913e0",
+			"cutName": "Boerewors 90:10",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c7"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913e1",
-			"cutName": "Beef Trimmings 80:20",
+			"_id": "637b7cb7d1ba9d37298913e1",
+			"cutName": "Sausages / Burgers 80:20",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c7"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913e3",
-			"cutName": "Beef Trimmings 70:30",
+			"_id": "637b7cb7d1ba9d37298913e5",
+			"cutName": "Braaiwors 60:40",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c7"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913e5",
-			"cutName": "Beef Trimmings 60:40",
-			"organizationId": "",
-			"isMutable": false,
-			"carcassTypeId": "637b6edea9d276641318f3c7"
-		},
-		{
-			"cutTypeId": "637b7cb7d1ba9d37298913e6",
+			"_id": "637b7cb7d1ba9d37298913e6",
 			"cutName": "Beef Body Fat",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c7"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913e7",
+			"_id": "637b7cb7d1ba9d37298913e7",
 			"cutName": "Beef Fat",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c7"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913e8",
+			"_id": "637b7cb7d1ba9d37298913e8",
 			"cutName": "Cutting & Trimming Waste",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c7"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913e9",
+			"_id": "637b7cb7d1ba9d37298913e9",
 			"cutName": "Thick Rib",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c8"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913ea",
+			"_id": "637b7cb7d1ba9d37298913ea",
 			"cutName": "Rib",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c8"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913eb",
+			"_id": "637b7cb7d1ba9d37298913eb",
 			"cutName": "Loin",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c8"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913ec",
+			"_id": "637b7cb7d1ba9d37298913ec",
 			"cutName": "Leg",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c8"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913ed",
+			"_id": "637b7cb7d1ba9d37298913ed",
 			"cutName": "Breast",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c8"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913ee",
+			"_id": "637b7cb7d1ba9d37298913ee",
 			"cutName": "Belly",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c8"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913ef",
+			"_id": "637b7cb7d1ba9d37298913ef",
 			"cutName": "Chump",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c8"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913f0",
+			"_id": "637b7cb7d1ba9d37298913f0",
 			"cutName": "Shank",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c8"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913f1",
+			"_id": "637b7cb7d1ba9d37298913f1",
 			"cutName": "Rinds",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c8"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913f2",
+			"_id": "637b7cb7d1ba9d37298913f2",
 			"cutName": "Trotters",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c8"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913f3",
+			"_id": "637b7cb7d1ba9d37298913f3",
 			"cutName": "Stew",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c8"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913f4",
+			"_id": "637b7cb7d1ba9d37298913f4",
 			"cutName": "Meaty Bones",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c8"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913f5",
+			"_id": "637b7cb7d1ba9d37298913f5",
 			"cutName": "Pork Bones",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c8"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913f6",
-			"cutName": "Pork Trimmings 90:10",
+			"_id": "637b7cb7d1ba9d37298913f6",
+			"cutName": "Boerewors 90:10",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c8"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913f7",
-			"cutName": "Pork Trimmings 80:20",
+			"_id": "637b7cb7d1ba9d37298913f7",
+			"cutName": "Sausages / Burgers 80:20",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c8"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913f8",
-			"cutName": "Pork Trimmings 70:30",
+			"_id": "637b7cb7d1ba9d37298913f9",
+			"cutName": "Braaiwors 60:40",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c8"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913f9",
-			"cutName": "Pork Trimmings 60:40",
-			"organizationId": "",
-			"isMutable": false,
-			"carcassTypeId": "637b6edea9d276641318f3c8"
-		},
-		{
-			"cutTypeId": "637b7cb7d1ba9d37298913fa",
+			"_id": "637b7cb7d1ba9d37298913fa",
 			"cutName": "Pork Trimmings 50:50",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c8"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913fb",
+			"_id": "637b7cb7d1ba9d37298913fb",
 			"cutName": "Pork Spek",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c8"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913fc",
+			"_id": "637b7cb7d1ba9d37298913fc",
 			"cutName": "Neck",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913fd",
+			"_id": "637b7cb7d1ba9d37298913fd",
 			"cutName": "Thick Rib",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913fe",
+			"_id": "637b7cb7d1ba9d37298913fe",
 			"cutName": "Rib",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d37298913ff",
+			"_id": "637b7cb7d1ba9d37298913ff",
 			"cutName": "Loin",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891400",
+			"_id": "637b7cb7d1ba9d3729891400",
 			"cutName": "Chump",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891401",
+			"_id": "637b7cb7d1ba9d3729891401",
 			"cutName": "Flank",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891402",
+			"_id": "637b7cb7d1ba9d3729891402",
 			"cutName": "Breast",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891403",
+			"_id": "637b7cb7d1ba9d3729891403",
 			"cutName": "Shoulder",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891404",
+			"_id": "637b7cb7d1ba9d3729891404",
 			"cutName": "Leg",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891405",
+			"_id": "637b7cb7d1ba9d3729891405",
 			"cutName": "Shank",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891406",
+			"_id": "637b7cb7d1ba9d3729891406",
 			"cutName": "Stew",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891407",
+			"_id": "637b7cb7d1ba9d3729891407",
 			"cutName": "Meaty Bones",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891408",
+			"_id": "637b7cb7d1ba9d3729891408",
 			"cutName": "Neck",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891409",
+			"_id": "637b7cb7d1ba9d3729891409",
 			"cutName": "Lamb Bones",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d372989140a",
-			"cutName": "Lamb Trimmings 90:10",
+			"_id": "637b7cb7d1ba9d372989140a",
+			"cutName": "Boerewors 90:10",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d372989140b",
-			"cutName": "Lamb Trimmings 80:20",
+			"_id": "637b7cb7d1ba9d372989140b",
+			"cutName": "Sausages / Burgers 80:20",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d372989140c",
-			"cutName": "Lamb Trimmings 70:30",
+			"_id": "637b7cb7d1ba9d372989140d",
+			"cutName": "Braaiwors 60:40",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d372989140d",
-			"cutName": "Lamb Trimmings 60:40",
-			"organizationId": "",
-			"isMutable": false,
-			"carcassTypeId": "637b6edea9d276641318f3c9"
-		},
-		{
-			"cutTypeId": "637b7cb7d1ba9d372989140e",
+			"_id": "637b7cb7d1ba9d372989140e",
 			"cutName": "Lamb Body Fat",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d372989140f",
+			"_id": "637b7cb7d1ba9d372989140f",
 			"cutName": "Lamb Kidney Fat",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891410",
+			"_id": "637b7cb7d1ba9d3729891410",
 			"cutName": "Cutting & Trimming Waste",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3c9"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891411",
+			"_id": "637b7cb7d1ba9d3729891411",
 			"cutName": "Drum Sticks",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3ca"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891412",
+			"_id": "637b7cb7d1ba9d3729891412",
 			"cutName": "Thighs",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3ca"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891413",
+			"_id": "637b7cb7d1ba9d3729891413",
 			"cutName": "Breasts Fillet",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3ca"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891414",
+			"_id": "637b7cb7d1ba9d3729891414",
 			"cutName": "Wings",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3ca"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891415",
+			"_id": "637b7cb7d1ba9d3729891415",
 			"cutName": "Leg Quarters",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3ca"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891416",
+			"_id": "637b7cb7d1ba9d3729891416",
 			"cutName": "Bones",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3ca"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891417",
+			"_id": "637b7cb7d1ba9d3729891417",
 			"cutName": "Heads",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3ca"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891418",
+			"_id": "637b7cb7d1ba9d3729891418",
 			"cutName": "Feet",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3ca"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d3729891419",
+			"_id": "637b7cb7d1ba9d3729891419",
 			"cutName": "Chicken Trimmings",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3ca"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d372989141a",
+			"_id": "637b7cb7d1ba9d372989141a",
 			"cutName": "Chicken Fat",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3ca"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d372989141b",
+			"_id": "637b7cb7d1ba9d372989141b",
 			"cutName": "Chicken Skin Fat",
 			"organizationId": "",
 			"isMutable": false,
 			"carcassTypeId": "637b6edea9d276641318f3ca"
 		},
 		{
-			"cutTypeId": "637b7cb7d1ba9d372989141c",
-			"cutName": "Cutting & Trimming Waste",
-			"organizationId": "",
-			"isMutable": false,
-			"carcassTypeId": "637b6edea9d276641318f3ca"
+			"_id": "63a3e00725cbc0274cc71050",
+			"cutName": "Braai Chops",
+			"organizationId": "63a2928e25cbc0274cc71048",
+			"isMutable": true,
+			"carcassTypeId": "637b6edea9d276641318f3c9"
+		},
+		{
+			"_id": "63a3e0af25cbc0274cc71053",
+			"cutName": "Knuckles",
+			"organizationId": "63a2928e25cbc0274cc71048",
+			"isMutable": true,
+			"carcassTypeId": "637b6edea9d276641318f3c9"
+		},
+		{
+			"_id": "63a3e0f225cbc0274cc71055",
+			"cutName": "Arm Chops",
+			"organizationId": "63a2928e25cbc0274cc71048",
+			"isMutable": true,
+			"carcassTypeId": "637b6edea9d276641318f3c9"
+		},
+		{
+			"_id": "63a3e19925cbc0274cc71059",
+			"cutName": "Rib & Loin Chops",
+			"organizationId": "63a2928e25cbc0274cc71048",
+			"isMutable": true,
+			"carcassTypeId": "637b6edea9d276641318f3c9"
 		}
 	]
 }

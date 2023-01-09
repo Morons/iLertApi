@@ -3,6 +3,7 @@ package za.co.ilert.core.data.requests
 
 data class NewBlockTestRequest(
 	val blockTestId: String,
+	val blockTestName: String,
 	val userId: String,
 	val organizationId: String,
 	val carcassTypeId: String,

@@ -22,28 +22,28 @@ class SystemUtils {
 	}
 
 	val String.containsLatinLetter: Boolean
-	get() = matches(Regex(".*[A-Za-z].*"))
+		get() = matches(Regex(".*[A-Za-z].*"))
 
 	val String.containsDigit: Boolean
-	get() = matches(Regex(".*\\d.*"))  // ".*[0-9].*"
+		get() = matches(Regex(".*\\d.*"))  // ".*[0-9].*"
 
 	val String.isAlphanumeric: Boolean
-	get() = matches(Regex("[A-Za-z\\d]*"))
+		get() = matches(Regex("[A-Za-z\\d]*"))
 
 	val String.hasSpecialCharacters: Boolean
-	get() = matches(Regex(".*[.~!@#%^*_+=-].*"))
+		get() = matches(Regex(".*[.~!@#%^*_+=-].*"))
 
 	val String.isSafeForSearch: Boolean
-	get() = hasSpecialCharacters || isAlphanumeric || isBlank() || isEmpty()
+		get() = hasSpecialCharacters || isAlphanumeric || isBlank() || isEmpty()
 
 	val String.hasLettersAndDigits: Boolean
-	get() = containsLatinLetter && containsDigit
+		get() = containsLatinLetter && containsDigit
 
 	val String.isIntegerNumber: Boolean
-	get() = toIntOrNull() != null
+		get() = toIntOrNull() != null
 
 	val String.toDecimalNumber: Boolean
-	get() = toDoubleOrNull() != null
+		get() = toDoubleOrNull() != null
 
 }
 

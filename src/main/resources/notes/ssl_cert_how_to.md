@@ -4,26 +4,35 @@
 
 ### self signed .jks
 
+**keytool comes with your java installation**
+
+see JAVA_HOME environment variable like: 
 ```
-keytool -genkeypair -keyalg RSA -keysize 2048 -alias ilert -dname "CN=Development,OU=CryptoCode,O=Centurion,C=ZA" -ext "SAN:c=DNS:192.168.70.198,IP:10.0.2.2" -validity 3650 -keystore ilert.jks -storepass tomcat -keypass tomcat -deststoretype pkcs12
+C:\Program Files\Eclipse Adoptium\jdk-11.0.17.8-hotspot\
 ```
+```
+keytool -genkeypair -keyalg RSA -keysize 2048 -alias self-cert -dname "CN=Development,OU=CryptoCode,O=Centurion,C=ZA" 
+-ext "SAN:c=DNS:192.168.1.100,IP:10.0.2.2" -validity 3650 -keystore self-cert.jks -storepass tomcat -keypass tomcat 
+-deststoretype pkcs12
+```
+**note:** 192.168.1.100 is your local network - the IP  number on your computer that will run the API code.
 
 ### convert .jks to PKCS12
 
 ```
-keytool -importkeystore -srckeystore ilert.jks -destkeystore ilert.p12 -srcstoretype JKS -deststoretype PKCS12 -deststorepass tomcat
+keytool -importkeystore -srckeystore self-cert.jks -destkeystore self-cert.p12 -srcstoretype JKS -deststoretype PKCS12 -deststorepass tomcat
 ```
 
 ### convert .jks to PEM
 
 ```
-openssl pkcs12 -in ilert.p12 -out ilert.pem
+openssl pkcs12 -in self-cert.p12 -out self-cert.pem
 ```
 
 or
 
 ```
-keytool -exportcert -alias ilert -keypass tomcat -keystore ilert.jks -storepass tomcat -rfc -file ilert.pem
+keytool -exportcert -alias self-cert -keypass tomcat -keystore self-cert.jks -storepass tomcat -rfc -file self-cert.pem
 ```
 
 ### NOTE:
@@ -32,7 +41,7 @@ We need to have this .pem file to allow Android Client to talk to the server usi
 
 # Android Config
 
-Make sure the file `ilert.pem` is in this location app/src/main/res/raw/ilert.pem
+Make sure the file `self-cert.pem` is in this location app/src/main/res/raw/self-cert.pem
 
 ### app/src/main/res/xml/network_security_config.xml
 
@@ -42,7 +51,7 @@ Make sure the file `ilert.pem` is in this location app/src/main/res/raw/ilert.pe
 	<domain-config cleartextTrafficPermitted="true">
 		<domain includeSubdomains="true">192.168.70.0</domain> <!-- https://server.tld will work -->
 		<trust-anchors>
-			<certificates src="@raw/ilert"/>
+			<certificates src="@raw/self-cert"/>
 		</trust-anchors>
 	</domain-config>
 </network-security-config>
@@ -74,8 +83,8 @@ ktor {
     }
     security {
         ssl {
-            keyStore = src/main/resources/ilert.jks
-            keyAlias = ilert
+            keyStore = src/main/resources/self-cert.jks
+            keyAlias = self-cert
             keyStorePassword = "tomcat"
             privateKeyPassword = "tomcat"
         }
@@ -106,7 +115,7 @@ fun Application.httpsRedirect() {
 keytool -genkeypair -alias tomcat -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore tomcat.p12 -validity 3650
 ```
 
-3. We can store as many numbers of key-pair in the same keystore each identified by a unique alias.
+2. We can store as many numbers of key-pair in the same keystore each identified by a unique alias.
 
 For generating our keystore in a JKS format, we can use the following command:
 
@@ -114,7 +123,7 @@ For generating our keystore in a JKS format, we can use the following command:
 keytool -genkeypair -alias tomcat -keyalg RSA -keysize 2048 -keystore tomcat.jks -validity 3650
 ```
 
-5. It is recommended to use the PKCS12 format which is an industry standard format. So in case we already have a JKS
+3. It is recommended to use the PKCS12 format which is an industry standard format. So in case we already have a JKS
    keystore, we can convert it to PKCS12 format using the following command:
 
 ```

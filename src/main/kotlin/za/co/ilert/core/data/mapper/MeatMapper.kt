@@ -30,6 +30,7 @@ fun CutType.toCutTypeResponse(): CutTypeResponse {
 fun BlockTestRequest.toBlockTest(): BlockTest {
 	return BlockTest(
 		blockTestId = blockTestId,
+		blockTestName = blockTestName,
 		userId = userId,
 		organizationId = organizationId,
 		carcassTypeId = carcassTypeId,
@@ -51,6 +52,7 @@ fun BlockTestRequest.toBlockTest(): BlockTest {
 fun NewBlockTestRequest.toBlockTest(): BlockTest {
 	return BlockTest(
 		blockTestId = blockTestId,
+		blockTestName = blockTestName,
 		userId = userId,
 		organizationId = organizationId,
 		carcassTypeId = carcassTypeId,

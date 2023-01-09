@@ -5,6 +5,7 @@ import za.co.ilert.core.data.models.Cut
 
 data class BlockTestRequest(
 	val blockTestId: String,
+	val blockTestName: String,
 	val userId: String,
 	val organizationId: String,
 	val carcassTypeId: String,

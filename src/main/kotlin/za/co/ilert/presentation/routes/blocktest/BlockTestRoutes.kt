@@ -48,6 +48,7 @@ fun Route.getBlockTestById(blockTestService: BlockTestService) {
 				val blockTestApiResponse = with(blockTest) {
 					BlockTestApiResponse(
 						blockTestId = blockTestId,
+						blockTestName = blockTestName,
 						userId = userId,
 						organizationId = organizationId,
 						carcassTypeId = carcassTypeId,
@@ -59,8 +60,8 @@ fun Route.getBlockTestById(blockTestService: BlockTestService) {
 						cuttingLossParameter = cuttingLossParameter,
 						wasteParameter = wasteParameter,
 						percentGpRequired = percentGpRequired,
-						cuts = cuts,
 						notBalancingReason = notBalancingReason,
+						cuts = cuts,
 						locked = locked,
 						timestamp = timestamp
 					)
@@ -234,6 +235,8 @@ fun Route.amendBlockTestCut(blockTestService: BlockTestService) {
 				val cuts = blockTest.cuts.toMutableList()
 				cuts.find { it.cutId == cutId }?.let { cut ->
 					with(cut) {
+						marketSellPrice = request.marketSellPrice
+						actualCutWeight = request.actualCutWeight
 						marketValueXVat = request.marketValueXVat
 						costPerCutXVat = request.costPerCutXVat
 						salesPriceInclVat = request.salesPriceInclVat
